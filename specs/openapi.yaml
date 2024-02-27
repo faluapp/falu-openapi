@@ -44,6 +44,13 @@ tags:
       schema:
         allOf:
           - $ref: '#/components/schemas/CustomerBalanceTransaction'
+  - name: Customer Tax Ids
+    description: This object represents the tax ids related to a Customer(#billing/customers).
+    x-object-schema:
+      name: Customer Tax Id
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/CustomerTaxId'
   - name: Customers
     description: |-
       This object represents a customer of your business.
@@ -1177,6 +1184,224 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - customer_balance_transaction_not_found
+  /v1/customer_tax_ids:
+    get:
+      tags:
+        - Customer Tax Ids
+      summary: List customer tax ids
+      operationId: customer-tax-ids-list
+      parameters:
+        - name: customer
+          in: query
+          description: Filter options for `customer` property.
+          required: true
+          schema:
+            type: string
+            example: cust_602a8dd0a54847479a874de4
+          example: cust_602a8dd0a54847479a874de4
+        - name: country
+          in: query
+          schema:
+            maxLength: 3
+            minLength: 0
+            type: string
+            format: currency
+            example: kes
+        - name: type
+          in: query
+          description: Filter options for `type` property.
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/CustomerTaxIdType'
+        - name: status
+          in: query
+          description: Filter options for `status` property.
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/CustomerTaxIdVerificationStatus'
+        - name: created.eq
+          in: query
+          description: |-
+            Option for equal (=).
+            Recommended only for fixed integral values.
+          schema:
+            type: string
+            format: date-time
+        - name: created.lt
+          in: query
+          description: Option for less than (<).
+          schema:
+            type: string
+            format: date-time
+        - name: created.lte
+          in: query
+          description: Option for less than or equal to (<=).
+          schema:
+            type: string
+            format: date-time
+        - name: created.gt
+          in: query
+          description: Option for greater than (>).
+          schema:
+            type: string
+            format: date-time
+        - name: created.gte
+          in: query
+          description: Option for greater than or equal to (>=).
+          schema:
+            type: string
+            format: date-time
+        - name: sort
+          in: query
+          description: Order to use for sorting the objects returned. Defaults to `desc`.
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/SortingOrder'
+            default: desc
+        - name: count
+          in: query
+          description: Maximum number of objects to return. Defaults to `10`.
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            format: int32
+            default: 10
+        - name: ct
+          in: query
+          description: |-
+            A cursor for use in pagination.
+            The token from a previous request as gotten from the header of it's response.
+            For instance, if you make a request and receive 10 objects, the response contain
+            a `X-Continuation-Token` header with value `bravo`, your subsequent
+            call can include `ct=bravo`.
+          schema:
+            type: string
+            allOf:
+              - $ref: '#/components/schemas/Int64ContinuationToken'
+            format: opaque
+        - $ref: '#/components/parameters/X-Falu-Version'
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Trace-Id:
+              $ref: '#/components/headers/X-Trace-Id'
+            X-Request-Id:
+              $ref: '#/components/headers/X-Request-Id'
+            X-Continuation-Token:
+              $ref: '#/components/headers/X-Continuation-Token'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerTaxId'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      x-supports-pagination: true
+    post:
+      tags:
+        - Customer Tax Ids
+      summary: Create a customer tax id
+      operationId: customer-tax-ids-create
+      parameters:
+        - $ref: '#/components/parameters/X-Falu-Version'
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CustomerTaxIdCreateModel'
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Trace-Id:
+              $ref: '#/components/headers/X-Trace-Id'
+            X-Request-Id:
+              $ref: '#/components/headers/X-Request-Id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerTaxId'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      x-error-codes:
+        - customer_not_found
+  /v1/customer_tax_ids/{id}:
+    get:
+      tags:
+        - Customer Tax Ids
+      summary: Retrieve a customer tax id
+      operationId: customer-tax-ids-get
+      parameters:
+        - name: id
+          in: path
+          description: Unique identifier for the coupon
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/X-Falu-Version'
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Trace-Id:
+              $ref: '#/components/headers/X-Trace-Id'
+            X-Request-Id:
+              $ref: '#/components/headers/X-Request-Id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerTaxId'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+    delete:
+      tags:
+        - Customer Tax Ids
+      summary: Delete a customer tax id
+      operationId: customer-tax-ids-delete
+      parameters:
+        - name: id
+          in: path
+          description: The unique identifier of the customer tax id
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/X-Falu-Version'
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Trace-Id:
+              $ref: '#/components/headers/X-Trace-Id'
+            X-Request-Id:
+              $ref: '#/components/headers/X-Request-Id'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      x-error-codes:
+        - customer_tax_id_not_found
+        - customer_tax_id_cannot_be_modified
   /v1/customers:
     get:
       tags:
@@ -10172,6 +10397,174 @@ components:
           nullable: true
           example: pm_602a8dd0a54847479a874de4
       additionalProperties: false
+    CustomerTaxId:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object.
+          nullable: true
+          example: custtxid_602a8dd0a54847479a874de4
+        created:
+          type: string
+          description: Time at which the object was created.
+          format: date-time
+        updated:
+          type: string
+          description: Time at which the object was last updated.
+          format: date-time
+        customer:
+          type: string
+          description: Identifier of the customer that this tax id belongs to.
+          nullable: true
+          example: cust_602a8dd0a54847479a874de4
+        country:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: |-
+            Three-letter [ISO country code](https://www.iso.org/iso-3166-country-codes.html),
+            in lowercase, where the tax rate applies.
+          format: country
+          nullable: true
+          example: ken
+        type:
+          allOf:
+            - $ref: '#/components/schemas/CustomerTaxIdType'
+          description: Customer tax id type
+        status:
+          allOf:
+            - $ref: '#/components/schemas/CustomerTaxIdVerificationStatus'
+          description: Status of the tax id verification.
+        value:
+          type: string
+          description: Value of the tax id
+          nullable: true
+        name:
+          type: string
+          description: The verified name of the customer
+          nullable: true
+        address:
+          allOf:
+            - $ref: '#/components/schemas/PhysicalAddress'
+          description: The verified address of the customer
+          nullable: true
+        obligations:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerTaxObligation'
+          description: The verified registered tax obligations
+          nullable: true
+        workspace:
+          type: string
+          description: Unique identifier for the workspace that the object belongs to.
+          nullable: true
+          example: wksp_602a8dd0a54847479a874de4
+        live:
+          type: boolean
+          description: Indicates if this object belongs in the live environment
+        etag:
+          type: string
+          description: |-
+            A value that validates concurrent access of this object when stored in the database.
+            This value changes with every update and can thus be used to track changes.
+          example: FL9rRnlW2Qg=
+      additionalProperties: false
+    CustomerTaxIdCreateModel:
+      required:
+        - customer
+        - type
+        - value
+      type: object
+      properties:
+        customer:
+          minLength: 1
+          type: string
+          description: Identifier of the customer this customer tax id belongs to.
+          example: cust_602a8dd0a54847479a874de4
+        value:
+          minLength: 1
+          type: string
+          description: Value of the tax id
+        type:
+          allOf:
+            - $ref: '#/components/schemas/CustomerTaxIdType'
+          description: Customer tax id type
+      additionalProperties: false
+    CustomerTaxIdDetails:
+      type: object
+      properties:
+        value:
+          type: string
+          description: Value of the tax id
+          nullable: true
+        type:
+          allOf:
+            - $ref: '#/components/schemas/CustomerTaxIdType'
+          description: Customer tax id type
+      additionalProperties: false
+    CustomerTaxIdType:
+      enum:
+        - ken_pin
+        - uga_tin
+        - tza_tin
+      type: string
+      x-enumDescriptions:
+        ken_pin: Kenyan Personal Identification Number (PIN).
+        uga_tin: Ugandan Tax Identification Number (TIN).
+        tza_tin: Tanzanian Tax Identification Number (TIN).
+    CustomerTaxIdVerificationStatus:
+      enum:
+        - pending
+        - verified
+        - unverified
+        - unavailable
+      type: string
+      x-enumDescriptions:
+        pending: The customer tax id verification is still being processed.
+        verified: The customer tax id has been verified.
+        unverified: The customer tax id cannot be verified.
+    CustomerTaxObligation:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The Name.
+          nullable: true
+          example: Value Added Tax (VAT)
+        status:
+          allOf:
+            - $ref: '#/components/schemas/CustomerTaxObligationStatus'
+          description: The status
+        effective:
+          allOf:
+            - $ref: '#/components/schemas/CustomerTaxObligationPeriod'
+          description: The tax obligation registration dates
+          nullable: true
+      additionalProperties: false
+    CustomerTaxObligationPeriod:
+      type: object
+      properties:
+        start:
+          type: string
+          description: The starting date of the effective period.
+          format: date-time
+          example: '2019-08-24T14:15:22.0000000+00:00'
+        end:
+          type: string
+          description: |-
+            The ending date of the effective period.
+            When null, it means the obligation is still effective.
+          format: date-time
+          nullable: true
+          example: '2019-09-24T14:15:22.0000000+00:00'
+      additionalProperties: false
+    CustomerTaxObligationStatus:
+      enum:
+        - unknown
+        - active
+        - cancelled
+      type: string
     DataRedaction:
       type: object
       properties:
@@ -12140,6 +12533,12 @@ components:
           format: language
           nullable: true
           example: eng
+        customer_tax_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerTaxIdDetails'
+          description: Customer tax ids
+          nullable: true
       additionalProperties: false
     InvoiceItem:
       required:
@@ -17005,6 +17404,7 @@ x-tagGroups:
       - Coupons
       - Tax Rates
       - Customer Balance Transactions
+      - Customer Tax Ids
       - Subscriptions
       - Subscription Items
       - Subscription Usage
