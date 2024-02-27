@@ -6265,6 +6265,7 @@ paths:
             type: string
             format: tel
             example: '+254722000000'
+            x-pii: true
         - name: created.eq
           in: query
           description: |-
@@ -8623,38 +8624,6 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - transfer_not_found
-  /v1/realtime/negotiate:
-    post:
-      tags:
-        - Realtime Connections
-      summary: Negotiate a realtime connection.
-      operationId: realtime-connections-negotiate
-      parameters:
-        - $ref: '#/components/parameters/X-Falu-Version'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              allOf:
-                - $ref: '#/components/schemas/RealtimeConnectionNegotiationModel'
-      responses:
-        '200':
-          description: Success
-          headers:
-            X-Trace-Id:
-              $ref: '#/components/headers/X-Trace-Id'
-            X-Request-Id:
-              $ref: '#/components/headers/X-Request-Id'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RealtimeConnectionNegotiation'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '403':
-          $ref: '#/components/responses/403'
   /v1/events:
     get:
       tags:
@@ -10016,6 +9985,9 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
+      x-patchable:
+        - description
+        - metadata
     CustomerBalanceTransactionCreateModel:
       required:
         - amount
@@ -10359,6 +10331,9 @@ components:
         - invoice.updated
         - credit_note.created
         - credit_note.updated
+        - customer.tax_id.created
+        - customer.tax_id.updated
+        - customer.tax_id.deleted
         - money_balances.updated
         - money_statement.uploaded
         - payment.updated
@@ -10434,6 +10409,9 @@ components:
         invoice.updated: Occurs whenever a invoice is updated.
         credit_note.created: Occurs whenever a credit note is created.
         credit_note.updated: Occurs whenever a credit note is updated.
+        customer.tax_id.created: Occurs whenever an customer tax id is created.
+        customer.tax_id.updated: Occurs whenever an customer tax id is updated.
+        customer.tax_id.deleted: Occurs whenever an customer tax id is deleted.
         money_balances.updated: Occurs whenever money balances are updated.
         money_statement.uploaded: Occurs whenever a money statement is uploaded.
         payment.updated: Occurs whenever a payment is updated.
@@ -10836,6 +10814,7 @@ components:
             - $ref: '#/components/schemas/IdentityVerificationOutputs'
           description: The user's verified data.
           nullable: true
+          x-pii: true
         redaction:
           allOf:
             - $ref: '#/components/schemas/DataRedaction'
@@ -11281,21 +11260,25 @@ components:
             - $ref: '#/components/schemas/IdentityVerificationReportIdNumber'
           description: Result from an id number check.
           nullable: true
+          x-pii: true
         document:
           allOf:
             - $ref: '#/components/schemas/IdentityVerificationReportDocument'
           description: Result from a document check.
           nullable: true
+          x-pii: true
         selfie:
           allOf:
             - $ref: '#/components/schemas/IdentityVerificationReportSelfie'
           description: Result from a selfie check.
           nullable: true
+          x-pii: true
         video:
           allOf:
             - $ref: '#/components/schemas/IdentityVerificationReportVideo'
           description: Result from a video check.
           nullable: true
+          x-pii: true
         ip_address:
           allOf:
             - $ref: '#/components/schemas/IdentityVerificationReportIPAddress'
@@ -12364,6 +12347,7 @@ components:
           type: string
           description: Actual message content sent.
           nullable: true
+          x-pii: true
         template:
           allOf:
             - $ref: '#/components/schemas/MessageSourceTemplate'
@@ -12618,6 +12602,7 @@ components:
           description: |-
             Destination phone numbers in [E.164 format](https://en.wikipedia.org/wiki/E.164).
             You can send up to 1,000 messages in one API request.
+          x-pii: true
         body:
           maxLength: 1600
           type: string
@@ -12626,6 +12611,7 @@ components:
             Required if `template` is not specified.
           nullable: true
           example: Welcome home John!
+          x-pii: true
         template:
           allOf:
             - $ref: '#/components/schemas/MessageCreateModelTemplate'
@@ -12739,6 +12725,7 @@ components:
           description: Destination phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
           format: tel
           example: '+254722000000'
+          x-pii: true
         body:
           maxLength: 1600
           type: string
@@ -12747,6 +12734,7 @@ components:
             Required if `template` is not specified.
           nullable: true
           example: Welcome home John!
+          x-pii: true
         template:
           allOf:
             - $ref: '#/components/schemas/MessageCreateModelTemplate'
@@ -12865,6 +12853,7 @@ components:
           additionalProperties: {}
           description: Model applied when rendering the template.
           nullable: true
+          x-pii: true
       additionalProperties: false
       x-pii:
         - model
@@ -13188,6 +13177,7 @@ components:
           additionalProperties: {}
           description: Model applied when rendering the template.
           nullable: true
+          x-pii: true
       additionalProperties: false
       x-pii:
         - model
@@ -13349,6 +13339,7 @@ components:
           format: tel
           nullable: true
           example: '+254722000000'
+          x-pii: true
         origin:
           allOf:
             - $ref: '#/components/schemas/MessageSuppressionOrigin'
@@ -13386,6 +13377,7 @@ components:
           description: Destination phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
           format: tel
           example: '+254722000000'
+          x-pii: true
         stream:
           minLength: 1
           type: string
@@ -14097,6 +14089,7 @@ components:
           description: Phone number representing the account to be charged, in [E.164 format](https://en.wikipedia.org/wiki/E.164).
           format: tel
           example: '+254722000000'
+          x-pii: true
         reference:
           maxLength: 50
           minLength: 1
@@ -14106,6 +14099,7 @@ components:
             Reference that the payment will be made in.
             This can be an account number.
           example: INV-2020-12-01-1234
+          x-pii: true
         paybill:
           type: boolean
           description: |-
@@ -14294,6 +14288,7 @@ components:
           description: Phone number representing the MPESA wallet to be charged.
           format: tel
           example: '+254722000000'
+          x-pii: true
       additionalProperties: false
       x-pii:
         - phone
@@ -14337,17 +14332,20 @@ components:
           description: Reference the payment was made in.
           nullable: true
           example: INV-2020-12-01-1234
+          x-pii: true
         phone:
           type: string
           description: Phone number that made the payment, in [E.164 format](https://en.wikipedia.org/wiki/E.164).
           format: tel
           nullable: true
           example: '+254722000000'
+          x-pii: true
         payer:
           type: string
           description: Name of the entity making or that made the payment.
           nullable: true
           example: JOHN KAMAU ONYANGO
+          x-pii: true
       additionalProperties: false
       description: Represents the provider details for an MPESA payment.
       x-pii:
@@ -15168,80 +15166,6 @@ components:
       x-enumDescriptions:
         firebase: Firebase Cloud Messaging
         apns: Apple Push Notification Service
-    RealtimeConnectionNegotiation:
-      type: object
-      properties:
-        type:
-          allOf:
-            - $ref: '#/components/schemas/RealtimeConnectionType'
-          description: Type of connection negotiated.
-        url:
-          type: string
-          description: |-
-            URL for opening the connection.
-            It contains authentication information.
-          format: uri
-          nullable: true
-          example: wss://realtime.falu.io/client
-        expires:
-          type: string
-          description: |-
-            Time at which the URL and it's authentication
-            information expires.
-          format: date-time
-        token:
-          type: string
-          description: Authentication token.
-          nullable: true
-          example: eyJhbGci....FFgYtKRo
-        user:
-          type: string
-          description: Unique identifier of the user who owns the connection.
-          nullable: true
-          example: usr_0o5Fs0EELR0fUjHjbCnEtdUwQe3
-        workspace:
-          type: string
-          description: Unique identifier for the workspace that the object belongs to.
-          nullable: true
-          example: wksp_602a8dd0a54847479a874de4
-        live:
-          type: boolean
-          description: Indicates if this object belongs in the live environment
-      additionalProperties: false
-    RealtimeConnectionNegotiationModel:
-      required:
-        - type
-      type: object
-      properties:
-        type:
-          allOf:
-            - $ref: '#/components/schemas/RealtimeConnectionType'
-          description: Type of connection.
-        ttl:
-          type: string
-          description: |-
-            Duration of time for which the authentication token will be active.
-            When not provided, defaults to 30 min.
-            Maximum value is 1 hour.
-          format: duration
-          example: P1D15M
-      additionalProperties: false
-    RealtimeConnectionType:
-      enum:
-        - websocket
-        - webtransport
-      type: string
-      x-enumDescriptions:
-        websocket: |-
-          Conneection via a Websocket as standardized under
-          [RFC6455](https://datatracker.ietf.org/doc/html/rfc6455)
-          and guided further by [Mozilla Docs](https://websockets.spec.whatwg.org/).
-        webtransport: |-
-          Connection via WebTransport as per the draft specs on this is yet to finalized as per
-          [for HTTP/3](https://www.ietf.org/archive/id/draft-ietf-webtrans-overview-02.html),
-          [for HTTP/2](https://www.ietf.org/id/draft-ietf-webtrans-http2-05.html),
-          combined by [W3C](https://www.w3.org/TR/webtransport/),
-          and guided further by [Mozilla Docs](https://developer.mozilla.org/en-US/docs/Web/API/WebTransport).
     SortingOrder:
       enum:
         - asc
@@ -16244,6 +16168,7 @@ components:
           description: Phone number to which the money is to be sent, in [E.164 format](https://en.wikipedia.org/wiki/E.164).
           format: tel
           example: '+254722000000'
+          x-pii: true
       additionalProperties: false
       x-pii:
         - phone
@@ -16297,6 +16222,7 @@ components:
           type: string
           description: Destination of where the transfer is/was sent to.
           nullable: true
+          x-pii: true
         charges:
           type: integer
           description: Charges for the transaction in the smallest currency unit.
@@ -16307,6 +16233,7 @@ components:
           description: Details of the receiver.
           nullable: true
           example: 254722000000 - JOHN KAMAU ONYANGO
+          x-pii: true
       additionalProperties: false
       description: Represents the provider details for an MPESA transfer.
       x-pii:
