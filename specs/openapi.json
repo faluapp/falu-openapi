@@ -6610,7 +6610,7 @@
           "Files"
         ],
         "summary": "Redact the contents of a file.",
-        "description": "Redact a file to remove all collected information from Falu.\nThis will redact the File and all objects related to it,\nincluding Events, request logs, etc.\n\nRedacting a file is also done when related objects such as identity verifications are redacted.\nAs such, you do not need to redact each file created in the process.\nRedacting a file is useful if you uploaded a file that you have not used and have\nno intension of doing so, such as one that was uploaded by mistake.\n\nWhen the redaction process completes a `file.redacted` event will be emitted.\n\nRedaction is irreversible. Redacted objects are still accessible in the API,\nbut all the fields that contain personal data will be replaced by the string\n`[redacted]` or a similar placeholder. The metadata field will also be erased.\nRedacted objects cannot be updated or used for any purpose.",
+        "description": "Redact a file to remove all collected information from Falu.\nThis will redact the File and all objects related to it,\nincluding Events, request logs, etc.\n\nRedacting a file is also done when related objects such as identity verifications are redacted.\nAs such, you do not need to redact each file created in the process.\nRedacting a file is useful if you uploaded a file that you have not used and have\nno intention of doing so, such as one that was uploaded by mistake.\n\nWhen the redaction process completes a `file.redacted` event will be emitted.\n\nRedaction is irreversible. Redacted objects are still accessible in the API,\nbut all the fields that contain personal data will be replaced by the string\n`[redacted]` or a similar placeholder. The metadata field will also be erased.\nRedacted objects cannot be updated or used for any purpose.",
         "operationId": "files-redact",
         "parameters": [
           {
@@ -15272,7 +15272,7 @@
           "message.sent": "Occurs whenever a message is sent.",
           "message.failed": "Occurs whenever a message fails to send.",
           "message.delivered": "Occurs whenever a message is delivered successfully.",
-          "message.read": "Occurs whenever a message is read by the recepient.",
+          "message.read": "Occurs whenever a message is read by the recipient.",
           "message.cancelled": "Occurs whenever the message has been cancelled and future\nupdate attempts have been disabled.",
           "message.redacted": "Occurs whenever a message has been redacted.",
           "message.received": "Occurs whenever an incoming message is received.",
