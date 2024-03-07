@@ -15382,6 +15382,14 @@
             ],
             "description": "Customer tax id type"
           },
+          "tax_status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerTaxIdStatus"
+              }
+            ],
+            "description": "Status of the customer tax identification number."
+          },
           "status": {
             "allOf": [
               {
@@ -15484,6 +15492,20 @@
         },
         "additionalProperties": false
       },
+      "CustomerTaxIdStatus": {
+        "enum": [
+          "unknown",
+          "active",
+          "inactive"
+        ],
+        "type": "string",
+        "description": "Status of a customer tax identification number.",
+        "x-enumDescriptions": {
+          "unknown": "Unknown.",
+          "active": "Active customer tax identification number.",
+          "inactive": "Inactive customer tax identification number."
+        }
+      },
       "CustomerTaxIdType": {
         "enum": [
           "ken_pin",
@@ -15562,7 +15584,7 @@
       "CustomerTaxObligationStatus": {
         "enum": [
           "unknown",
-          "active",
+          "registered",
           "cancelled"
         ],
         "type": "string"
