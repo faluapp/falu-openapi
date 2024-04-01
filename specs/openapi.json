@@ -129,7 +129,7 @@
     },
     {
       "name": "File Links",
-      "description": "To share the contents of an `File` object with non-Falu users, you can create an `FileLink`.\nIt contain a URL that can be used to retrieve the contents of the file without authentication.",
+      "description": "To share the contents of an `File` object with non-Falu users, you can create an `FileLink`.\nIt contains a URL that can be used to retrieve the contents of the file without authentication.",
       "x-object-schema": {
         "name": "File Link",
         "schema": {
@@ -16476,7 +16476,10 @@
           "liveness_manipulated",
           "ipaddress_unresolvable",
           "ipaddress_private",
-          "device_info_unresolvable"
+          "device_info_unresolvable",
+          "tax_authority_unavailable",
+          "tax_id_mismatch",
+          "tax_id_unverified"
         ],
         "type": "string",
         "x-enumDescriptions": {
@@ -16501,7 +16504,10 @@
           "liveness_manipulated": "The captured video was manipulated.",
           "ipaddress_unresolvable": "The IP address of the client could not be resolved.",
           "ipaddress_private": "The IP address of the client is privately registered.",
-          "device_info_unresolvable": "The device could not be detected."
+          "device_info_unresolvable": "The device could not be detected.",
+          "tax_authority_unavailable": "The tax authority is unavailable for tax verification purposes.\nNormally this will be the result after trying multiple retires.",
+          "tax_id_mismatch": "The tax id information doesn't match details extracted from the document(s) provided.",
+          "tax_id_unverified": "The tax id could not be verified by the tax authority."
         }
       },
       "IdentityVerificationIdNumberErrorCode": {
@@ -16659,6 +16665,15 @@
             ],
             "description": "Options for the video check.",
             "nullable": true
+          },
+          "tax_id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentityVerificationOptionsForTaxId"
+              }
+            ],
+            "description": "Options for tax id check",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -16683,6 +16698,23 @@
       },
       "IdentityVerificationOptionsForSelfie": {
         "type": "object",
+        "additionalProperties": false
+      },
+      "IdentityVerificationOptionsForTaxId": {
+        "required": [
+          "allowed"
+        ],
+        "type": "object",
+        "properties": {
+          "allowed": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityVerificationTaxIdType"
+            },
+            "description": "The allowed identity tax id types.\nIf a user provides an identity tax id type which isn't one of the allowed types, it will be rejected."
+          }
+        },
         "additionalProperties": false
       },
       "IdentityVerificationOptionsForVideo": {
@@ -16778,6 +16810,37 @@
               }
             ],
             "description": "The user's sex",
+            "nullable": true
+          },
+          "tax_id": {
+            "type": "string",
+            "description": "The verified tax id",
+            "nullable": true
+          },
+          "tax_id_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentityVerificationTaxIdType"
+              }
+            ],
+            "description": "The tax id type",
+            "nullable": true
+          },
+          "tax_id_status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentityVerificationTaxIdStatus"
+              }
+            ],
+            "description": "Status of the tax id.",
+            "nullable": true
+          },
+          "tax_id_obligations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityVerificationTaxIdObligation"
+            },
+            "description": "The verified registered tax obligations",
             "nullable": true
           }
         },
@@ -16884,6 +16947,16 @@
             "description": "Result from the device check.",
             "nullable": true
           },
+          "tax_id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentityVerificationReportTaxId"
+              }
+            ],
+            "description": "Result from tax id check",
+            "nullable": true,
+            "x-pii": true
+          },
           "workspace": {
             "type": "string",
             "description": "Unique identifier for the workspace that the object belongs to.",
@@ -16905,7 +16978,8 @@
           "id_number",
           "document",
           "selfie",
-          "video"
+          "video",
+          "tax_id"
         ]
       },
       "IdentityVerificationReportDevice": {
@@ -17440,6 +17514,107 @@
         },
         "additionalProperties": false
       },
+      "IdentityVerificationReportTaxId": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentityVerificationReportTaxIdErrorCodeIdentityVerificationReportError"
+              }
+            ],
+            "description": "Details on the verification error.\nPresent when not verified.",
+            "nullable": true
+          },
+          "verified": {
+            "type": "boolean",
+            "description": "Whether the check resulted in a successful verification."
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentityVerificationTaxIdType"
+              }
+            ],
+            "description": "The tax id type"
+          },
+          "tax_status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentityVerificationTaxIdStatus"
+              }
+            ],
+            "description": "Status of the tax identification number.",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "description": "Value of the tax id",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The verified name of the tax payer",
+            "nullable": true
+          },
+          "address": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhysicalAddress"
+              }
+            ],
+            "description": "The verified address of the customer",
+            "nullable": true
+          },
+          "obligations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityVerificationTaxIdObligation"
+            },
+            "description": "The verified registered tax obligations",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdentityVerificationReportTaxIdErrorCode": {
+        "enum": [
+          "tax_authority_unavailable",
+          "tax_id_mismatch",
+          "tax_id_unverified"
+        ],
+        "type": "string",
+        "x-enumDescriptions": {
+          "tax_authority_unavailable": "The tax authority is unavailable for tax verification purposes.\nNormally this will be the result after trying multiple retires.",
+          "tax_id_mismatch": "The tax id information doesn't match details extracted from the document(s) provided.",
+          "tax_id_unverified": "The tax id could not be verified by the tax authority."
+        }
+      },
+      "IdentityVerificationReportTaxIdErrorCodeIdentityVerificationReportError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentityVerificationReportTaxIdErrorCode"
+              }
+            ],
+            "description": "A short machine-readable string giving the reason for the failure."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Time at which failure occurred, if any.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "A human-readable message giving the reason for the failure.\nThis message can be shown to your user.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "IdentityVerificationReportVideo": {
         "type": "object",
         "properties": {
@@ -17537,6 +17712,86 @@
           "processing": "The session has been submitted and is being processed.\nMost verification checks take a few minutes to process.",
           "verified": "Processing of all the verification checks are complete and successfully verified.",
           "cancelled": "The IdentityVerification has been invalidated for future submission attempts."
+        }
+      },
+      "IdentityVerificationTaxIdObligation": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The Name.",
+            "nullable": true,
+            "example": "Value Added Tax (VAT)"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentityVerificationTaxIdObligationStatus"
+              }
+            ],
+            "description": "The status"
+          },
+          "effective": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentityVerificationTaxIdObligationPeriod"
+              }
+            ],
+            "description": "The tax obligation registration dates",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdentityVerificationTaxIdObligationPeriod": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "description": "The starting date of the effective period.",
+            "format": "date-time",
+            "example": "2019-08-24T14:15:22.0000000+00:00"
+          },
+          "end": {
+            "type": "string",
+            "description": "The ending date of the effective period.\nWhen null, it means the obligation is still effective.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "2019-09-24T14:15:22.0000000+00:00"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdentityVerificationTaxIdObligationStatus": {
+        "enum": [
+          "unknown",
+          "registered",
+          "cancelled"
+        ],
+        "type": "string"
+      },
+      "IdentityVerificationTaxIdStatus": {
+        "enum": [
+          "unknown",
+          "active",
+          "inactive"
+        ],
+        "type": "string",
+        "description": "Status of an identity tax identification number.",
+        "x-enumDescriptions": {
+          "unknown": "Unknown.",
+          "active": "Active tax identification number.",
+          "inactive": "Inactive tax identification number."
+        }
+      },
+      "IdentityVerificationTaxIdType": {
+        "enum": [
+          "ken_pin"
+        ],
+        "type": "string",
+        "description": "Type of a tax identification number.",
+        "x-enumDescriptions": {
+          "ken_pin": "Kenyan Personal Identification Number (PIN)."
         }
       },
       "IdentityVerificationType": {
@@ -18724,7 +18979,8 @@
       "MessageErrorCode": {
         "enum": [
           "blocked",
-          "other"
+          "other",
+          "delivery_failed"
         ],
         "type": "string"
       },
@@ -19328,7 +19584,7 @@
         ],
         "type": "string",
         "x-enumDescriptions": {
-          "recipient": "The suppression was requested by the recipient of a message.\n\n\nThis usually happens by the dialing the USSD code at the end\nof the message or replying with `STOP`, where applicable",
+          "recipient": "The suppression was requested by the recipient of a message.\n\n\nThis usually happens by following unsubscribe instructions included in the message, where applicable",
           "workspace": "The suppression was added via the API or the dashboard.",
           "admin": "The suppression was added as part of administrative tasks by Falu.",
           "mobile_operator": "The suppression was requested by the mobile operator."

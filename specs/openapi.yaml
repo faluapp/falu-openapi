@@ -101,7 +101,7 @@ tags:
   - name: File Links
     description: |-
       To share the contents of an `File` object with non-Falu users, you can create an `FileLink`.
-      It contain a URL that can be used to retrieve the contents of the file without authentication.
+      It contains a URL that can be used to retrieve the contents of the file without authentication.
     x-object-schema:
       name: File Link
       schema:
@@ -11376,6 +11376,9 @@ components:
         - ipaddress_unresolvable
         - ipaddress_private
         - device_info_unresolvable
+        - tax_authority_unavailable
+        - tax_id_mismatch
+        - tax_id_unverified
       type: string
       x-enumDescriptions:
         consent_declined: |-
@@ -11407,6 +11410,11 @@ components:
         ipaddress_unresolvable: The IP address of the client could not be resolved.
         ipaddress_private: The IP address of the client is privately registered.
         device_info_unresolvable: The device could not be detected.
+        tax_authority_unavailable: |-
+          The tax authority is unavailable for tax verification purposes.
+          Normally this will be the result after trying multiple retires.
+        tax_id_mismatch: The tax id information doesn't match details extracted from the document(s) provided.
+        tax_id_unverified: The tax id could not be verified by the tax authority.
     IdentityVerificationIdNumberErrorCode:
       enum:
         - id_number_unverified_other
@@ -11532,6 +11540,11 @@ components:
             - $ref: '#/components/schemas/IdentityVerificationOptionsForVideo'
           description: Options for the video check.
           nullable: true
+        tax_id:
+          allOf:
+            - $ref: '#/components/schemas/IdentityVerificationOptionsForTaxId'
+          description: Options for tax id check
+          nullable: true
       additionalProperties: false
     IdentityVerificationOptionsForDocument:
       type: object
@@ -11551,6 +11564,20 @@ components:
       additionalProperties: false
     IdentityVerificationOptionsForSelfie:
       type: object
+      additionalProperties: false
+    IdentityVerificationOptionsForTaxId:
+      required:
+        - allowed
+      type: object
+      properties:
+        allowed:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityVerificationTaxIdType'
+          description: |-
+            The allowed identity tax id types.
+            If a user provides an identity tax id type which isn't one of the allowed types, it will be rejected.
       additionalProperties: false
     IdentityVerificationOptionsForVideo:
       type: object
@@ -11631,6 +11658,26 @@ components:
             - $ref: '#/components/schemas/IdentityVerificationSex'
           description: The user's sex
           nullable: true
+        tax_id:
+          type: string
+          description: The verified tax id
+          nullable: true
+        tax_id_type:
+          allOf:
+            - $ref: '#/components/schemas/IdentityVerificationTaxIdType'
+          description: The tax id type
+          nullable: true
+        tax_id_status:
+          allOf:
+            - $ref: '#/components/schemas/IdentityVerificationTaxIdStatus'
+          description: Status of the tax id.
+          nullable: true
+        tax_id_obligations:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityVerificationTaxIdObligation'
+          description: The verified registered tax obligations
+          nullable: true
       additionalProperties: false
     IdentityVerificationReport:
       type: object
@@ -11697,6 +11744,12 @@ components:
             - $ref: '#/components/schemas/IdentityVerificationReportDevice'
           description: Result from the device check.
           nullable: true
+        tax_id:
+          allOf:
+            - $ref: '#/components/schemas/IdentityVerificationReportTaxId'
+          description: Result from tax id check
+          nullable: true
+          x-pii: true
         workspace:
           type: string
           description: Unique identifier for the workspace that the object belongs to.
@@ -11717,6 +11770,7 @@ components:
         - document
         - selfie
         - video
+        - tax_id
     IdentityVerificationReportDevice:
       type: object
       properties:
@@ -12141,6 +12195,79 @@ components:
           nullable: true
           example: file_602a8dd0a54847479a874de4
       additionalProperties: false
+    IdentityVerificationReportTaxId:
+      type: object
+      properties:
+        error:
+          allOf:
+            - $ref: '#/components/schemas/IdentityVerificationReportTaxIdErrorCodeIdentityVerificationReportError'
+          description: |-
+            Details on the verification error.
+            Present when not verified.
+          nullable: true
+        verified:
+          type: boolean
+          description: Whether the check resulted in a successful verification.
+        type:
+          allOf:
+            - $ref: '#/components/schemas/IdentityVerificationTaxIdType'
+          description: The tax id type
+        tax_status:
+          allOf:
+            - $ref: '#/components/schemas/IdentityVerificationTaxIdStatus'
+          description: Status of the tax identification number.
+          nullable: true
+        value:
+          type: string
+          description: Value of the tax id
+          nullable: true
+        name:
+          type: string
+          description: The verified name of the tax payer
+          nullable: true
+        address:
+          allOf:
+            - $ref: '#/components/schemas/PhysicalAddress'
+          description: The verified address of the customer
+          nullable: true
+        obligations:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityVerificationTaxIdObligation'
+          description: The verified registered tax obligations
+          nullable: true
+      additionalProperties: false
+    IdentityVerificationReportTaxIdErrorCode:
+      enum:
+        - tax_authority_unavailable
+        - tax_id_mismatch
+        - tax_id_unverified
+      type: string
+      x-enumDescriptions:
+        tax_authority_unavailable: |-
+          The tax authority is unavailable for tax verification purposes.
+          Normally this will be the result after trying multiple retires.
+        tax_id_mismatch: The tax id information doesn't match details extracted from the document(s) provided.
+        tax_id_unverified: The tax id could not be verified by the tax authority.
+    IdentityVerificationReportTaxIdErrorCodeIdentityVerificationReportError:
+      type: object
+      properties:
+        code:
+          allOf:
+            - $ref: '#/components/schemas/IdentityVerificationReportTaxIdErrorCode'
+          description: A short machine-readable string giving the reason for the failure.
+        timestamp:
+          type: string
+          description: Time at which failure occurred, if any.
+          format: date-time
+          nullable: true
+        description:
+          type: string
+          description: |-
+            A human-readable message giving the reason for the failure.
+            This message can be shown to your user.
+          nullable: true
+      additionalProperties: false
     IdentityVerificationReportVideo:
       type: object
       properties:
@@ -12220,6 +12347,65 @@ components:
           Most verification checks take a few minutes to process.
         verified: Processing of all the verification checks are complete and successfully verified.
         cancelled: The IdentityVerification has been invalidated for future submission attempts.
+    IdentityVerificationTaxIdObligation:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The Name.
+          nullable: true
+          example: Value Added Tax (VAT)
+        status:
+          allOf:
+            - $ref: '#/components/schemas/IdentityVerificationTaxIdObligationStatus'
+          description: The status
+        effective:
+          allOf:
+            - $ref: '#/components/schemas/IdentityVerificationTaxIdObligationPeriod'
+          description: The tax obligation registration dates
+          nullable: true
+      additionalProperties: false
+    IdentityVerificationTaxIdObligationPeriod:
+      type: object
+      properties:
+        start:
+          type: string
+          description: The starting date of the effective period.
+          format: date-time
+          example: '2019-08-24T14:15:22.0000000+00:00'
+        end:
+          type: string
+          description: |-
+            The ending date of the effective period.
+            When null, it means the obligation is still effective.
+          format: date-time
+          nullable: true
+          example: '2019-09-24T14:15:22.0000000+00:00'
+      additionalProperties: false
+    IdentityVerificationTaxIdObligationStatus:
+      enum:
+        - unknown
+        - registered
+        - cancelled
+      type: string
+    IdentityVerificationTaxIdStatus:
+      enum:
+        - unknown
+        - active
+        - inactive
+      type: string
+      description: Status of an identity tax identification number.
+      x-enumDescriptions:
+        unknown: Unknown.
+        active: Active tax identification number.
+        inactive: Inactive tax identification number.
+    IdentityVerificationTaxIdType:
+      enum:
+        - ken_pin
+      type: string
+      description: Type of a tax identification number.
+      x-enumDescriptions:
+        ken_pin: Kenyan Personal Identification Number (PIN).
     IdentityVerificationType:
       enum:
         - id_number
@@ -13294,6 +13480,7 @@ components:
       enum:
         - blocked
         - other
+        - delivery_failed
       type: string
     MessageMedia:
       type: object
@@ -13814,8 +14001,7 @@ components:
           The suppression was requested by the recipient of a message.
 
 
-          This usually happens by the dialing the USSD code at the end
-          of the message or replying with `STOP`, where applicable
+          This usually happens by following unsubscribe instructions included in the message, where applicable
         workspace: The suppression was added via the API or the dashboard.
         admin: The suppression was added as part of administrative tasks by Falu.
         mobile_operator: The suppression was requested by the mobile operator.
