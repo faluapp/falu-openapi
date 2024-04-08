@@ -463,6 +463,7 @@ paths:
         - name: type
           in: query
           description: Filter options for `type` property.
+          style: form
           schema:
             type: array
             items:
@@ -470,6 +471,7 @@ paths:
         - name: frequency
           in: query
           description: Filter options for `frequency` property.
+          style: form
           schema:
             type: array
             items:
@@ -479,36 +481,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -516,6 +524,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -530,6 +539,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -604,6 +614,7 @@ paths:
           in: path
           description: Unique identifier for the coupon
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -635,6 +646,7 @@ paths:
           in: path
           description: Unique identifier of the coupon
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -681,6 +693,7 @@ paths:
           in: path
           description: The unique identifier of the coupon
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -711,6 +724,7 @@ paths:
         - name: customer
           in: query
           description: Filter options for `customer` property.
+          style: form
           schema:
             type: string
             example: cust_602a8dd0a54847479a874de4
@@ -718,6 +732,7 @@ paths:
         - name: invoice
           in: query
           description: Filter options for `invoice` property.
+          style: form
           schema:
             type: string
             example: inv_602a8dd0a54847479a874de4
@@ -725,6 +740,7 @@ paths:
         - name: reason
           in: query
           description: Filter options for `reason` property.
+          style: form
           schema:
             type: array
             items:
@@ -732,6 +748,7 @@ paths:
         - name: status
           in: query
           description: Filter options for `status` property.
+          style: form
           schema:
             type: array
             items:
@@ -741,36 +758,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -778,6 +801,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -792,6 +816,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -869,6 +894,7 @@ paths:
           in: path
           description: Unique identifier for the credit note
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -900,6 +926,7 @@ paths:
           in: path
           description: Unique identifier of the credit note
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -947,6 +974,7 @@ paths:
           in: path
           description: Unique identifier of the credit note
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -983,6 +1011,7 @@ paths:
           in: query
           description: Filter options for `customer` property.
           required: true
+          style: form
           schema:
             type: string
             example: cust_602a8dd0a54847479a874de4
@@ -992,36 +1021,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -1029,6 +1064,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -1043,6 +1079,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -1117,6 +1154,7 @@ paths:
           in: path
           description: Unique identifier for the customer balance transaction
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -1148,6 +1186,7 @@ paths:
           in: path
           description: Unique identifier of the customer balance transaction
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -1195,12 +1234,14 @@ paths:
           in: query
           description: Filter options for `customer` property.
           required: true
+          style: form
           schema:
             type: string
             example: cust_602a8dd0a54847479a874de4
           example: cust_602a8dd0a54847479a874de4
         - name: country
           in: query
+          style: form
           schema:
             maxLength: 3
             minLength: 0
@@ -1210,6 +1251,7 @@ paths:
         - name: type
           in: query
           description: Filter options for `type` property.
+          style: form
           schema:
             type: array
             items:
@@ -1217,6 +1259,7 @@ paths:
         - name: status
           in: query
           description: Filter options for `status` property.
+          style: form
           schema:
             type: array
             items:
@@ -1226,36 +1269,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -1263,6 +1312,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -1277,6 +1327,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -1351,6 +1402,7 @@ paths:
           in: path
           description: Unique identifier for the coupon
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -1382,6 +1434,7 @@ paths:
           in: path
           description: The unique identifier of the customer tax id
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -1412,6 +1465,7 @@ paths:
         - name: email
           in: query
           description: Filter options for `email` property.
+          style: form
           schema:
             type: string
             format: email
@@ -1419,6 +1473,7 @@ paths:
         - name: phone
           in: query
           description: Filter options for `phone` property.
+          style: form
           schema:
             type: string
             format: tel
@@ -1426,6 +1481,7 @@ paths:
         - name: timezone
           in: query
           description: Filter options for `timezone` property.
+          style: form
           schema:
             type: string
             format: timezone
@@ -1435,36 +1491,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -1472,6 +1534,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -1486,6 +1549,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -1563,6 +1627,7 @@ paths:
           in: path
           description: Unique identifier for the customer
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -1594,6 +1659,7 @@ paths:
           in: path
           description: Unique identifier of the customer
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -1661,6 +1727,7 @@ paths:
           in: path
           description: Unique identifier of the customer
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -1696,6 +1763,7 @@ paths:
         - name: customer
           in: query
           description: Filter options for `customer` property.
+          style: form
           schema:
             type: string
             example: cust_602a8dd0a54847479a874de4
@@ -1703,6 +1771,7 @@ paths:
         - name: subscription
           in: query
           description: Filter options for `subscription` property.
+          style: form
           schema:
             type: string
             example: sub_602a8dd0a54847479a874de4
@@ -1710,6 +1779,7 @@ paths:
         - name: invoice
           in: query
           description: Filter options for `invoice` property.
+          style: form
           schema:
             type: string
             example: inv_602a8dd0a54847479a874de4
@@ -1719,36 +1789,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -1756,6 +1832,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -1770,6 +1847,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -1810,6 +1888,7 @@ paths:
           in: path
           description: Unique identifier for the discount
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -1841,6 +1920,7 @@ paths:
         - name: customer
           in: query
           description: Filter options for `customer` property.
+          style: form
           schema:
             type: string
             example: cust_602a8dd0a54847479a874de4
@@ -1848,6 +1928,7 @@ paths:
         - name: invoice
           in: query
           description: Filter options for `invoice` property.
+          style: form
           schema:
             type: string
             example: inv_602a8dd0a54847479a874de4
@@ -1855,6 +1936,7 @@ paths:
         - name: subscription
           in: query
           description: Filter options for `subscription` property.
+          style: form
           schema:
             type: string
             example: sub_602a8dd0a54847479a874de4
@@ -1862,6 +1944,7 @@ paths:
         - name: subscription_item
           in: query
           description: Filter options for `subscription_item` property.
+          style: form
           schema:
             type: string
             example: subi_602a8dd0a54847479a874de4
@@ -1869,6 +1952,7 @@ paths:
         - name: product
           in: query
           description: Filter options for `product` property.
+          style: form
           schema:
             type: string
             example: prod_602a8dd0a54847479a874de4
@@ -1876,6 +1960,7 @@ paths:
         - name: price
           in: query
           description: Filter options for `price` property.
+          style: form
           schema:
             type: string
             example: price_602a8dd0a54847479a874de4
@@ -1885,36 +1970,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -1922,6 +2013,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -1936,6 +2028,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -1976,6 +2069,7 @@ paths:
           in: path
           description: Unique identifier for the invoice item
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2007,6 +2101,7 @@ paths:
           in: path
           description: Unique identifier of the invoice item
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2053,6 +2148,7 @@ paths:
         - name: status
           in: query
           description: Filter options for `status` property.
+          style: form
           schema:
             type: array
             items:
@@ -2060,11 +2156,13 @@ paths:
         - name: customer
           in: query
           description: Filter options for `customer` property.
+          style: form
           schema:
             type: string
         - name: subscription
           in: query
           description: Filter options for `subscription` property.
+          style: form
           schema:
             type: string
         - name: created.eq
@@ -2072,36 +2170,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -2109,6 +2213,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -2123,6 +2228,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -2163,6 +2269,7 @@ paths:
           in: path
           description: Unique identifier for the invoice
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2194,6 +2301,7 @@ paths:
           in: path
           description: Unique identifier of the invoice
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2279,6 +2387,7 @@ paths:
           in: path
           description: Unique identifier of the invoice
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2314,6 +2423,7 @@ paths:
           in: path
           description: Unique identifier of the invoice
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2349,6 +2459,7 @@ paths:
           in: path
           description: Unique identifier of the invoice
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2384,6 +2495,7 @@ paths:
           in: path
           description: Unique identifier of the invoice
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2425,6 +2537,7 @@ paths:
         - name: type
           in: query
           description: Filter options for `type` property.
+          style: form
           schema:
             type: array
             items:
@@ -2432,6 +2545,7 @@ paths:
         - name: customer
           in: query
           description: Filter options for `customer` property.
+          style: form
           schema:
             type: string
             example: cust_602a8dd0a54847479a874de4
@@ -2441,36 +2555,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -2478,6 +2598,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -2492,6 +2613,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -2567,6 +2689,7 @@ paths:
           in: path
           description: Unique identifier for the payment method
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2598,6 +2721,7 @@ paths:
           in: path
           description: Unique identifier for the payment method
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2645,6 +2769,7 @@ paths:
           in: path
           description: The unique identifier of the payment method
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2689,6 +2814,7 @@ paths:
           in: path
           description: The unique identifier of the payment method
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2724,10 +2850,12 @@ paths:
         - name: active
           in: query
           description: Filter options for `active` property.
+          style: form
           schema:
             type: boolean
         - name: currency
           in: query
+          style: form
           schema:
             maxLength: 3
             minLength: 0
@@ -2737,6 +2865,7 @@ paths:
         - name: type
           in: query
           description: Filter options for `type` property.
+          style: form
           schema:
             type: array
             items:
@@ -2744,6 +2873,7 @@ paths:
         - name: recurring_interval
           in: query
           description: Filter options for `recurring.interval` property.
+          style: form
           schema:
             type: array
             items:
@@ -2751,6 +2881,7 @@ paths:
         - name: product
           in: query
           description: Filter options for `product` property.
+          style: form
           schema:
             type: string
             example: prod_602a8dd0a54847479a874de4
@@ -2760,36 +2891,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -2797,6 +2934,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -2811,6 +2949,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -2885,6 +3024,7 @@ paths:
           in: path
           description: Unique identifier for the price
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2916,6 +3056,7 @@ paths:
           in: path
           description: Unique identifier of the price
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2962,6 +3103,7 @@ paths:
           in: path
           description: The unique identifier of the price
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -2992,6 +3134,7 @@ paths:
         - name: active
           in: query
           description: Filter options for `active` property.
+          style: form
           schema:
             type: boolean
         - name: created.eq
@@ -2999,36 +3142,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -3036,6 +3185,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -3050,6 +3200,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -3122,6 +3273,7 @@ paths:
           in: path
           description: Unique identifier for the product
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -3153,6 +3305,7 @@ paths:
           in: path
           description: Unique identifier of the product
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -3199,6 +3352,7 @@ paths:
           in: path
           description: The unique identifier of the product
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -3229,6 +3383,7 @@ paths:
         - name: subscription
           in: query
           description: Filter options for `subscription` property.
+          style: form
           schema:
             type: string
             example: sub_602a8dd0a54847479a874de4
@@ -3236,6 +3391,7 @@ paths:
         - name: product
           in: query
           description: Filter options for `product` property.
+          style: form
           schema:
             type: string
             example: prod_602a8dd0a54847479a874de4
@@ -3243,6 +3399,7 @@ paths:
         - name: price
           in: query
           description: Filter options for `price` property.
+          style: form
           schema:
             type: string
             example: price_602a8dd0a54847479a874de4
@@ -3252,36 +3409,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -3289,6 +3452,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -3303,6 +3467,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -3383,6 +3548,7 @@ paths:
           in: path
           description: Unique identifier for the subscription item
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -3414,6 +3580,7 @@ paths:
           in: path
           description: Unique identifier of the subscription item
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -3468,6 +3635,7 @@ paths:
           in: path
           description: Unique identifier for the subscription item
           required: true
+          style: simple
           schema:
             type: string
         - name: created.eq
@@ -3475,36 +3643,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -3512,6 +3686,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -3526,6 +3701,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -3568,6 +3744,7 @@ paths:
           in: path
           description: Unique identifier for the subscription item
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -3619,6 +3796,7 @@ paths:
         - name: status
           in: query
           description: Filter options for `status` property.
+          style: form
           schema:
             type: array
             items:
@@ -3626,6 +3804,7 @@ paths:
         - name: customer
           in: query
           description: Filter options for `customer` property.
+          style: form
           schema:
             type: string
             example: cust_602a8dd0a54847479a874de4
@@ -3635,36 +3814,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -3672,6 +3857,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -3686,6 +3872,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -3772,6 +3959,7 @@ paths:
           in: path
           description: Unique identifier for the subscription
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -3803,6 +3991,7 @@ paths:
           in: path
           description: Unique identifier of the subscription
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -3864,6 +4053,7 @@ paths:
           in: path
           description: Unique identifier of the subscription
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -3905,6 +4095,7 @@ paths:
         - name: active
           in: query
           description: Filter options for `active` property.
+          style: form
           schema:
             type: boolean
         - name: created.eq
@@ -3912,36 +4103,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -3949,6 +4146,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -3963,6 +4161,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -4035,6 +4234,7 @@ paths:
           in: path
           description: Unique identifier for the tax rate
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -4066,6 +4266,7 @@ paths:
           in: path
           description: Unique identifier of the tax rate
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -4112,6 +4313,7 @@ paths:
           in: path
           description: The unique identifier of the tax rate
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -4142,6 +4344,7 @@ paths:
         - name: file
           in: query
           description: Unique identifier of the file.
+          style: form
           schema:
             type: string
             example: file_602a8dd0a54847479a874de4
@@ -4149,6 +4352,7 @@ paths:
         - name: expired
           in: query
           description: Filter options for `expired` property.
+          style: form
           schema:
             type: boolean
         - name: created.eq
@@ -4156,36 +4360,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -4193,6 +4403,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -4207,6 +4418,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -4284,6 +4496,7 @@ paths:
           in: path
           description: Unique identifier for the file link
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -4315,6 +4528,7 @@ paths:
           in: path
           description: Unique identifier of the file link
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -4362,6 +4576,7 @@ paths:
         - name: purpose
           in: query
           description: Filter options for `purpose` property.
+          style: form
           schema:
             type: array
             items:
@@ -4371,36 +4586,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -4408,6 +4629,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -4422,6 +4644,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -4524,6 +4747,7 @@ paths:
           in: path
           description: Unique identifier for the file
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -4556,6 +4780,7 @@ paths:
           in: path
           description: Unique identifier for the file
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -4619,6 +4844,7 @@ paths:
           in: path
           description: Unique identifier for the file
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -4652,6 +4878,7 @@ paths:
         - name: verification
           in: query
           description: Unique identifier of the Identity Verification to filter for.
+          style: form
           schema:
             type: string
             example: idv_602a8dd0a54847479a874de4
@@ -4661,36 +4888,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -4698,6 +4931,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -4712,6 +4946,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -4752,6 +4987,7 @@ paths:
           in: path
           description: Unique identifier for the identity verification report
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -4783,6 +5019,7 @@ paths:
         - name: status
           in: query
           description: Filter options for `status` property.
+          style: form
           schema:
             type: array
             items:
@@ -4790,6 +5027,7 @@ paths:
         - name: type
           in: query
           description: Filter options for `type` property.
+          style: form
           schema:
             type: array
             items:
@@ -4797,6 +5035,7 @@ paths:
         - name: customer
           in: query
           description: Filter options for `customer` property.
+          style: form
           schema:
             type: string
             example: cust_602a8dd0a54847479a874de4
@@ -4806,36 +5045,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -4843,6 +5088,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -4857,6 +5103,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -4932,6 +5179,7 @@ paths:
           in: path
           description: Unique identifier for the identity verification
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -4963,6 +5211,7 @@ paths:
           in: path
           description: Unique identifier for the identity verification
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5016,6 +5265,7 @@ paths:
           in: path
           description: Unique identifier for the identity verification
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5067,6 +5317,7 @@ paths:
           in: path
           description: Unique identifier for the identity verification
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5102,6 +5353,7 @@ paths:
         - name: kind
           in: query
           description: Filter options for `kind` property.
+          style: form
           schema:
             type: array
             items:
@@ -5109,6 +5361,7 @@ paths:
         - name: device
           in: query
           description: Device identifier to filter for.
+          style: form
           schema:
             type: string
         - name: created.eq
@@ -5116,36 +5369,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -5153,6 +5412,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -5167,6 +5427,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -5239,6 +5500,7 @@ paths:
           in: path
           description: The unique identifier of the push registration.
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5270,6 +5532,7 @@ paths:
           in: path
           description: The unique identifier of the push registration.
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5309,6 +5572,7 @@ paths:
           in: path
           description: The unique identifier of the push registration.
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5336,6 +5600,7 @@ paths:
         - name: object
           in: query
           description: Filter option for a given object identifier.
+          style: form
           schema:
             type: string
             example: idv_0o5Fs0EELR0fUjHjbCnEtdUwQe3
@@ -5345,36 +5610,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -5382,6 +5653,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -5396,6 +5668,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -5467,6 +5740,7 @@ paths:
           in: path
           description: Unique identifier for the temporary key
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5499,6 +5773,7 @@ paths:
           in: path
           description: Unique identifier for the temporary key
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5528,6 +5803,7 @@ paths:
           description: |-
             Stream to filter for.
             It can either be the name or unique identifier of the stream.
+          style: form
           schema:
             type: string
             example: transactional
@@ -5535,6 +5811,7 @@ paths:
         - name: sender
           in: query
           description: Unique identifier of the sender to filter for.
+          style: form
           schema:
             type: string
             example: msdr_0o5Fs0EELR0fUjHjbCnEtdUwQe3
@@ -5544,36 +5821,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -5581,6 +5864,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -5595,6 +5879,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -5681,6 +5966,7 @@ paths:
           in: path
           description: Unique identifier of the message batch
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5712,6 +5998,7 @@ paths:
           in: path
           description: Unique identifier of the message batch
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5760,6 +6047,7 @@ paths:
           in: path
           description: Unique identifier of the message batch
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5795,6 +6083,7 @@ paths:
           in: path
           description: Unique identifier of the message batch
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5847,6 +6136,7 @@ paths:
           in: path
           description: Unique identifier of the message batch
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5884,6 +6174,7 @@ paths:
           description: |-
             Stream to filter for.
             It can either be the name or unique identifier of the stream.
+          style: form
           schema:
             type: string
             example: transactional
@@ -5891,6 +6182,7 @@ paths:
         - name: type
           in: query
           description: Filter options for `type` property.
+          style: form
           schema:
             type: array
             items:
@@ -5898,6 +6190,7 @@ paths:
         - name: channel
           in: query
           description: Filter options for `channel` property.
+          style: form
           schema:
             type: array
             items:
@@ -5905,6 +6198,7 @@ paths:
         - name: status
           in: query
           description: Filter options for `status` property.
+          style: form
           schema:
             type: array
             items:
@@ -5914,36 +6208,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -5951,6 +6251,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -5965,6 +6266,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -6041,6 +6343,7 @@ paths:
           in: path
           description: The unique identifier of the message sender
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -6072,6 +6375,7 @@ paths:
           in: path
           description: Unique identifier of the message sender
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -6118,6 +6422,7 @@ paths:
           in: path
           description: The unique identifier of the message sender
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -6148,6 +6453,7 @@ paths:
         - name: type
           in: query
           description: Filter options for `type` property.
+          style: form
           schema:
             type: array
             items:
@@ -6155,6 +6461,7 @@ paths:
         - name: default
           in: query
           description: Filter options for `default` property.
+          style: form
           schema:
             type: boolean
         - name: created.eq
@@ -6162,36 +6469,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -6199,6 +6512,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -6213,6 +6527,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -6287,6 +6602,7 @@ paths:
           in: path
           description: The unique identifier of the message stream
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -6318,6 +6634,7 @@ paths:
           in: path
           description: Unique identifier of the message stream
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -6365,6 +6682,7 @@ paths:
           in: path
           description: The unique identifier of the message stream
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -6396,6 +6714,7 @@ paths:
           in: path
           description: Unique identifier of the message stream
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -6430,6 +6749,7 @@ paths:
           in: path
           description: Unique identifier of the message stream
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -6465,6 +6785,7 @@ paths:
           description: |-
             Stream to filter for.
             It can either be the name or unique identifier of the stream.
+          style: form
           schema:
             type: string
             example: transactional
@@ -6472,6 +6793,7 @@ paths:
         - name: origin
           in: query
           description: Filter options for `origin` property.
+          style: form
           schema:
             type: array
             items:
@@ -6479,6 +6801,7 @@ paths:
         - name: reason
           in: query
           description: Filter options for `reason` property.
+          style: form
           schema:
             type: array
             items:
@@ -6486,6 +6809,7 @@ paths:
         - name: to
           in: query
           description: Filter options for `to` property.
+          style: form
           schema:
             type: string
             format: tel
@@ -6496,36 +6820,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -6533,6 +6863,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -6547,6 +6878,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -6622,6 +6954,7 @@ paths:
           in: path
           description: The unique identifier of the message suppression
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -6656,6 +6989,7 @@ paths:
           in: path
           description: The unique identifier of the message suppression
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -6686,6 +7020,7 @@ paths:
         - name: type
           in: query
           description: Filter options for `type` property.
+          style: form
           schema:
             type: array
             items:
@@ -6695,36 +7030,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -6732,6 +7073,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -6746,6 +7088,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -6821,6 +7164,7 @@ paths:
           in: path
           description: The unique identifier of the message template
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -6852,6 +7196,7 @@ paths:
           in: path
           description: The unique identifier of the message template
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -6900,6 +7245,7 @@ paths:
           in: path
           description: The unique identifier of the message template
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -6966,6 +7312,7 @@ paths:
           description: |-
             Stream to filter for.
             It can either be the name or unique identifier of the stream.
+          style: form
           schema:
             type: string
             example: transactional
@@ -6973,6 +7320,7 @@ paths:
         - name: sender
           in: query
           description: Unique identifier of the sender to filter for.
+          style: form
           schema:
             type: string
             example: msdr_0o5Fs0EELR0fUjHjbCnEtdUwQe3
@@ -6980,6 +7328,7 @@ paths:
         - name: batch
           in: query
           description: Unique identifier of the batch to filter for.
+          style: form
           schema:
             type: string
             example: msba_0o5Fs0EELR0fUjHjbCnEtdUwQe3
@@ -6989,30 +7338,35 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: sent.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sent.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sent.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sent.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
@@ -7021,30 +7375,35 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: delivered.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: delivered.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: delivered.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: delivered.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
@@ -7053,36 +7412,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: read.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: read.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: read.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: read.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: status
           in: query
           description: Filter options for `status` property.
+          style: form
           schema:
             type: array
             items:
@@ -7090,16 +7455,19 @@ paths:
         - name: from
           in: query
           description: Filter options for `from` property.
+          style: form
           schema:
             type: string
         - name: to
           in: query
           description: Filter options for `to` property.
+          style: form
           schema:
             type: string
         - name: customer
           in: query
           description: Filter options for `customer` property.
+          style: form
           schema:
             type: string
             example: cust_602a8dd0a54847479a874de4
@@ -7109,36 +7477,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -7146,6 +7520,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -7160,6 +7535,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -7244,6 +7620,7 @@ paths:
           in: path
           description: The unique identifier of the message
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -7275,6 +7652,7 @@ paths:
           in: path
           description: Unique identifier of the message
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -7324,6 +7702,7 @@ paths:
           in: path
           description: Unique identifier of the message
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -7375,6 +7754,7 @@ paths:
           in: path
           description: Unique identifier of the message
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -7459,6 +7839,7 @@ paths:
         - name: status
           in: query
           description: Filter options for `status` property.
+          style: form
           schema:
             type: array
             items:
@@ -7466,11 +7847,13 @@ paths:
         - name: approved
           in: query
           description: Filter options for `approved` property.
+          style: form
           schema:
             type: boolean
         - name: status_reason
           in: query
           description: Filter options for `status_reason` property.
+          style: form
           schema:
             type: array
             items:
@@ -7478,12 +7861,14 @@ paths:
         - name: decline_reason
           in: query
           description: Filter options for `decline_reason` property.
+          style: form
           schema:
             type: array
             items:
               $ref: '#/components/schemas/PaymentAuthorizationDeclineReason'
         - name: currency
           in: query
+          style: form
           schema:
             maxLength: 3
             minLength: 0
@@ -7495,30 +7880,35 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: integer
             format: int64
@@ -7527,36 +7917,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -7564,6 +7960,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -7578,6 +7975,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -7618,6 +8016,7 @@ paths:
           in: path
           description: Unique identifier for the payment authorization
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -7649,6 +8048,7 @@ paths:
           in: path
           description: Unique identifier for the payment authorization
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -7696,6 +8096,7 @@ paths:
           in: path
           description: Unique identifier for the payment authorization
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -7739,6 +8140,7 @@ paths:
           in: path
           description: Unique identifier for the payment authorization
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -7781,6 +8183,7 @@ paths:
         - name: status
           in: query
           description: Filter options for `status` property.
+          style: form
           schema:
             type: array
             items:
@@ -7788,6 +8191,7 @@ paths:
         - name: reason
           in: query
           description: Filter options for `reason` property.
+          style: form
           schema:
             type: array
             items:
@@ -7795,12 +8199,14 @@ paths:
         - name: customer
           in: query
           description: Filter options for `customer` property.
+          style: form
           schema:
             type: string
             example: cust_602a8dd0a54847479a874de4
           example: cust_602a8dd0a54847479a874de4
         - name: currency
           in: query
+          style: form
           schema:
             maxLength: 3
             minLength: 0
@@ -7812,30 +8218,35 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: integer
             format: int64
@@ -7844,36 +8255,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -7881,6 +8298,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -7895,6 +8313,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -7972,6 +8391,7 @@ paths:
           in: path
           description: Unique identifier for the refund.
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -8003,6 +8423,7 @@ paths:
           in: path
           description: Unique identifier for the refund.
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -8049,6 +8470,7 @@ paths:
         - name: status
           in: query
           description: Filter options for `status` property.
+          style: form
           schema:
             type: array
             items:
@@ -8056,6 +8478,7 @@ paths:
         - name: type
           in: query
           description: Filter options for `type` property.
+          style: form
           schema:
             type: array
             items:
@@ -8063,12 +8486,14 @@ paths:
         - name: customer
           in: query
           description: Filter options for `customer` property.
+          style: form
           schema:
             type: string
             example: cust_602a8dd0a54847479a874de4
           example: cust_602a8dd0a54847479a874de4
         - name: currency
           in: query
+          style: form
           schema:
             maxLength: 3
             minLength: 0
@@ -8080,30 +8505,35 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: integer
             format: int64
@@ -8112,36 +8542,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -8149,6 +8585,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -8163,6 +8600,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -8240,6 +8678,7 @@ paths:
           in: path
           description: Unique identifier for the payment
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -8271,6 +8710,7 @@ paths:
           in: path
           description: Unique identifier for the payment
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -8317,6 +8757,7 @@ paths:
         - name: status
           in: query
           description: Filter options for `status` property.
+          style: form
           schema:
             type: array
             items:
@@ -8324,6 +8765,7 @@ paths:
         - name: reason
           in: query
           description: Filter options for `reason` property.
+          style: form
           schema:
             type: array
             items:
@@ -8331,12 +8773,14 @@ paths:
         - name: customer
           in: query
           description: Filter options for `customer` property.
+          style: form
           schema:
             type: string
             example: cust_602a8dd0a54847479a874de4
           example: cust_602a8dd0a54847479a874de4
         - name: currency
           in: query
+          style: form
           schema:
             maxLength: 3
             minLength: 0
@@ -8348,30 +8792,35 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: integer
             format: int64
@@ -8380,36 +8829,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -8417,6 +8872,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -8431,6 +8887,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -8507,6 +8964,7 @@ paths:
           in: path
           description: Unique identifier for the reversal
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -8538,6 +8996,7 @@ paths:
           in: path
           description: Unique identifier for the reversal
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -8584,6 +9043,7 @@ paths:
         - name: status
           in: query
           description: Filter options for `status` property.
+          style: form
           schema:
             type: array
             items:
@@ -8591,6 +9051,7 @@ paths:
         - name: type
           in: query
           description: Filter options for `type` property.
+          style: form
           schema:
             type: array
             items:
@@ -8598,6 +9059,7 @@ paths:
         - name: purpose
           in: query
           description: Filter options for `purpose` property.
+          style: form
           schema:
             type: array
             items:
@@ -8605,12 +9067,14 @@ paths:
         - name: customer
           in: query
           description: Filter options for `customer` property.
+          style: form
           schema:
             type: string
             example: cust_602a8dd0a54847479a874de4
           example: cust_602a8dd0a54847479a874de4
         - name: currency
           in: query
+          style: form
           schema:
             maxLength: 3
             minLength: 0
@@ -8622,30 +9086,35 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: integer
             format: int64
         - name: amount.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: integer
             format: int64
@@ -8654,36 +9123,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -8691,6 +9166,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -8705,6 +9181,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -8782,6 +9259,7 @@ paths:
           in: path
           description: Unique identifier for the transfer
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -8813,6 +9291,7 @@ paths:
           in: path
           description: Unique identifier for the transfer
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -8859,6 +9338,7 @@ paths:
         - name: type
           in: query
           description: Filter options for `type` property.
+          style: form
           schema:
             type: array
             items:
@@ -8866,6 +9346,7 @@ paths:
         - name: object
           in: query
           description: The unique identifier of the object for which to get events.
+          style: form
           schema:
             type: string
             example: idv_0o5Fs0EELR0fUjHjbCnEtdUwQe3
@@ -8875,36 +9356,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -8912,6 +9399,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -8926,6 +9414,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -8966,6 +9455,7 @@ paths:
           in: path
           description: The unique identifier of the event
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -9012,6 +9502,7 @@ paths:
           in: path
           description: The unique identifier of the event
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -9045,6 +9536,7 @@ paths:
         - name: status
           in: query
           description: Filter options for `status` property.
+          style: form
           schema:
             type: array
             items:
@@ -9054,36 +9546,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -9091,6 +9589,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -9105,6 +9604,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -9180,6 +9680,7 @@ paths:
           in: path
           description: The unique identifier of the webhook endpoint
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -9211,6 +9712,7 @@ paths:
           in: path
           description: The unique identifier of the webhook endpoint
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -9257,6 +9759,7 @@ paths:
           in: path
           description: The unique identifier of the webhook endpoint
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -9286,16 +9789,19 @@ paths:
         - name: endpoint
           in: query
           description: Filter options for `endpoint` property.
+          style: form
           schema:
             type: string
         - name: event
           in: query
           description: Filter options for `event` property.
+          style: form
           schema:
             type: string
         - name: type
           in: query
           description: Filter options for `type` property.
+          style: form
           schema:
             type: array
             items:
@@ -9305,36 +9811,42 @@ paths:
           description: |-
             Option for equal (=).
             Recommended only for fixed integral values.
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lt
           in: query
           description: Option for less than (<).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.lte
           in: query
           description: Option for less than or equal to (<=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gt
           in: query
           description: Option for greater than (>).
+          style: form
           schema:
             type: string
             format: date-time
         - name: created.gte
           in: query
           description: Option for greater than or equal to (>=).
+          style: form
           schema:
             type: string
             format: date-time
         - name: sort
           in: query
           description: Order to use for sorting the objects returned. Defaults to `desc`.
+          style: form
           schema:
             allOf:
               - $ref: '#/components/schemas/SortingOrder'
@@ -9342,6 +9854,7 @@ paths:
         - name: count
           in: query
           description: Maximum number of objects to return. Defaults to `10`.
+          style: form
           schema:
             maximum: 100
             minimum: 1
@@ -9356,6 +9869,7 @@ paths:
             For instance, if you make a request and receive 10 objects, the response contain
             a `X-Continuation-Token` header with value `bravo`, your subsequent
             call can include `ct=bravo`.
+          style: form
           schema:
             type: string
             allOf:
@@ -9396,6 +9910,7 @@ paths:
           in: path
           description: The unique identifier of the webhook
           required: true
+          style: simple
           schema:
             type: string
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -11107,11 +11622,13 @@ components:
         - civilian
         - diplomatic
         - military
+        - service
       type: string
       x-enumDescriptions:
         civilian: Passport issued to general citizens for general travel and identification.
         diplomatic: Passport issued to diplomatic personnel.
         military: Passport issued to military personnel.
+        service: Passport issued to people who work abroad for the state.
     IdentityDocumentType:
       enum:
         - driving_license
@@ -11658,6 +12175,22 @@ components:
             - $ref: '#/components/schemas/IdentityVerificationSex'
           description: The user's sex
           nullable: true
+        driving_license_categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityVerificationReportDocumentVehicleCategory'
+          description: |-
+            The driving license vehicle categories.
+            Only populated if this report is for a driving license.
+          nullable: true
+        issuing_authority:
+          type: string
+          description: The issuing authority for the document
+          nullable: true
+        place_of_birth:
+          type: string
+          description: Place where the document holder was born
+          nullable: true
         tax_id:
           type: string
           description: The verified tax id
@@ -12001,6 +12534,10 @@ components:
         issuing_authority:
           type: string
           description: The issuing authority for the document
+          nullable: true
+        place_of_birth:
+          type: string
+          description: Place where the document holder was born
           nullable: true
         files:
           type: array
@@ -15318,12 +15855,12 @@ components:
           nullable: true
           example:
             - breakpoint: 10
-              flat_amount: ''
+              flat_amount: null
               unit_amount: 10
             - breakpoint: 20
               flat_amount: 3
               unit_amount: 8
-            - breakpoint: ''
+            - breakpoint: null
               flat_amount: 10
               unit_amount: 5
         workspace:
@@ -15422,12 +15959,12 @@ components:
           nullable: true
           example:
             - breakpoint: 10
-              flat_amount: ''
+              flat_amount: null
               unit_amount: 10
             - breakpoint: 20
               flat_amount: 3
               unit_amount: 8
-            - breakpoint: ''
+            - breakpoint: null
               flat_amount: 10
               unit_amount: 5
       additionalProperties: false
@@ -17498,6 +18035,7 @@ components:
       name: X-Falu-Signature
       in: header
       description: A signature used to check the integrity of the webhook event request. See [docs](/docs/developers/webhooks/signatures) for more information.
+      style: simple
       schema:
         type: string
       example: t=1599629923,sha256=be82575aba7e8790c00f92f8200b9464bab59ef6ccce224351ecd5c9f94d8584
@@ -17505,6 +18043,7 @@ components:
       name: X-Falu-Version
       in: header
       required: true
+      style: simple
       schema:
         $ref: '#/components/schemas/ApiVersion'
   requestBodies:
@@ -17560,56 +18099,3 @@ components:
               description: Your server implementation should return the 4xx range of HTTP status codes to indicate it does not understand the format of the payload. The delivery will be treated as a failure and no retries are attempted.
             '500':
               description: Your server implementation should return the 5xx range of HTTP status codes to indicate a server-side error. The delivery will be treated as a failure retries shall be attempted.
-x-tagGroups:
-  - name: Identity
-    tags:
-      - Identity Verifications
-      - Identity Verification Reports
-      - Identity Verifications Workflow
-      - Identity Workflow
-  - name: Messages
-    tags:
-      - Messages
-      - Message Batches
-      - Message Streams
-      - Message Senders
-      - Message Suppressions
-      - Message Templates
-      - Messaging
-  - name: Money
-    tags:
-      - Money Balances
-      - Payments
-      - Payment Authorizations
-      - Payment Refunds
-      - Transfers
-      - Transfer Reversals
-  - name: Files
-    tags:
-      - Files
-      - File Links
-      - Moderation
-  - name: Events
-    tags:
-      - Events
-      - Webhook Endpoints
-      - Webhooks
-      - Webhooks Sync
-  - name: Customers
-    tags:
-      - Customers
-  - name: Billing
-    tags:
-      - Products
-      - Prices
-      - Coupons
-      - Tax Rates
-      - Customer Balance Transactions
-      - Customer Tax Ids
-      - Subscriptions
-      - Subscription Items
-      - Subscription Usage
-      - Discounts
-      - Invoices
-      - Invoice Items
-      - Credit Notes
