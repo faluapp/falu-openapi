@@ -18129,3 +18129,56 @@ components:
               description: Your server implementation should return the 4xx range of HTTP status codes to indicate it does not understand the format of the payload. The delivery will be treated as a failure and no retries are attempted.
             '500':
               description: Your server implementation should return the 5xx range of HTTP status codes to indicate a server-side error. The delivery will be treated as a failure retries shall be attempted.
+x-tagGroups:
+  - name: Identity
+    tags:
+      - Identity Verifications
+      - Identity Verification Reports
+      - Identity Verifications Workflow
+      - Identity Workflow
+  - name: Messages
+    tags:
+      - Messages
+      - Message Batches
+      - Message Streams
+      - Message Senders
+      - Message Suppressions
+      - Message Templates
+      - Messaging
+  - name: Money
+    tags:
+      - Money Balances
+      - Payments
+      - Payment Authorizations
+      - Payment Refunds
+      - Transfers
+      - Transfer Reversals
+  - name: Files
+    tags:
+      - Files
+      - File Links
+      - Moderation
+  - name: Events
+    tags:
+      - Events
+      - Webhook Endpoints
+      - Webhooks
+      - Webhooks Sync
+  - name: Customers
+    tags:
+      - Customers
+  - name: Billing
+    tags:
+      - Products
+      - Prices
+      - Coupons
+      - Tax Rates
+      - Customer Balance Transactions
+      - Customer Tax Ids
+      - Subscriptions
+      - Subscription Items
+      - Subscription Usage
+      - Discounts
+      - Invoices
+      - Invoice Items
+      - Credit Notes

@@ -24273,5 +24273,80 @@
         }
       }
     }
-  }
+  },
+  "x-tagGroups": [
+    {
+      "name": "Identity",
+      "tags": [
+        "Identity Verifications",
+        "Identity Verification Reports",
+        "Identity Verifications Workflow",
+        "Identity Workflow"
+      ]
+    },
+    {
+      "name": "Messages",
+      "tags": [
+        "Messages",
+        "Message Batches",
+        "Message Streams",
+        "Message Senders",
+        "Message Suppressions",
+        "Message Templates",
+        "Messaging"
+      ]
+    },
+    {
+      "name": "Money",
+      "tags": [
+        "Money Balances",
+        "Payments",
+        "Payment Authorizations",
+        "Payment Refunds",
+        "Transfers",
+        "Transfer Reversals"
+      ]
+    },
+    {
+      "name": "Files",
+      "tags": [
+        "Files",
+        "File Links",
+        "Moderation"
+      ]
+    },
+    {
+      "name": "Events",
+      "tags": [
+        "Events",
+        "Webhook Endpoints",
+        "Webhooks",
+        "Webhooks Sync"
+      ]
+    },
+    {
+      "name": "Customers",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "name": "Billing",
+      "tags": [
+        "Products",
+        "Prices",
+        "Coupons",
+        "Tax Rates",
+        "Customer Balance Transactions",
+        "Customer Tax Ids",
+        "Subscriptions",
+        "Subscription Items",
+        "Subscription Usage",
+        "Discounts",
+        "Invoices",
+        "Invoice Items",
+        "Credit Notes"
+      ]
+    }
+  ]
 }
