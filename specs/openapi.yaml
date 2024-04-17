@@ -1,14 +1,14 @@
 openapi: 3.0.1
 info:
   title: Falu API Reference
-  description: The FALU REST API. For more information, check https://falu.io/docs/api
+  description: The Falu REST API. For more information, check https://falu.io/docs/api
   termsOfService: https://falu.io/legal/terms
   contact:
     name: API Support
     url: https://falu.io/support
     email: support@falu.io
   license:
-    name: FALU API
+    name: Falu API
     url: https://falu.io/legal/terms
   version: '2022-09-01'
 servers:
@@ -1486,6 +1486,14 @@ paths:
             type: string
             format: timezone
             example: Africa/Nairobi
+        - name: type
+          in: query
+          description: Filter options for `type` property.
+          style: form
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/CustomerType'
         - name: created.eq
           in: query
           description: |-
@@ -10558,6 +10566,13 @@ components:
           type: string
           description: The coupon attached to the customer.
           nullable: true
+        type:
+          allOf:
+            - $ref: '#/components/schemas/CustomerType'
+          description: |-
+            Type of customer
+            Defaults to `individual`.
+          default: individual
         invoicing:
           allOf:
             - $ref: '#/components/schemas/CustomerInvoicing'
@@ -10629,6 +10644,7 @@ components:
         - timezone
         - language
         - coupon
+        - type
         - invoicing
         - balances
         - metadata
@@ -10855,6 +10871,13 @@ components:
           type: string
           description: The coupon attached to the customer.
           nullable: true
+        type:
+          allOf:
+            - $ref: '#/components/schemas/CustomerType'
+          description: |-
+            Type of customer
+            Defaults to `individual`.
+          default: individual
         invoicing:
           allOf:
             - $ref: '#/components/schemas/CustomerInvoicing'
@@ -11094,6 +11117,13 @@ components:
         - unknown
         - registered
         - cancelled
+      type: string
+    CustomerType:
+      enum:
+        - other
+        - individual
+        - corporate
+        - small_business
       type: string
     DataRedaction:
       type: object
