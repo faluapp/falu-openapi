@@ -608,7 +608,6 @@
             "name": "type",
             "in": "query",
             "description": "Filter options for `type` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -620,7 +619,6 @@
             "name": "frequency",
             "in": "query",
             "description": "Filter options for `frequency` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -632,7 +630,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -642,7 +639,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -652,7 +648,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -662,7 +657,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -672,7 +666,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -682,7 +675,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -696,7 +688,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -709,7 +700,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -773,13 +763,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/CouponCreateModel"
+                    "$ref": "#/components/schemas/CouponCreateOptions"
                   }
                 ]
               }
@@ -833,7 +822,6 @@
             "in": "path",
             "description": "Unique identifier for the coupon",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -884,7 +872,6 @@
             "in": "path",
             "description": "Unique identifier of the coupon",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -959,7 +946,6 @@
             "in": "path",
             "description": "The unique identifier of the coupon",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -1008,7 +994,6 @@
             "name": "customer",
             "in": "query",
             "description": "Filter options for `customer` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "cust_602a8dd0a54847479a874de4"
@@ -1019,7 +1004,6 @@
             "name": "invoice",
             "in": "query",
             "description": "Filter options for `invoice` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "inv_602a8dd0a54847479a874de4"
@@ -1030,7 +1014,6 @@
             "name": "reason",
             "in": "query",
             "description": "Filter options for `reason` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -1042,7 +1025,6 @@
             "name": "status",
             "in": "query",
             "description": "Filter options for `status` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -1054,7 +1036,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1064,7 +1045,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1074,7 +1054,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1084,7 +1063,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1094,7 +1072,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1104,7 +1081,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -1118,7 +1094,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -1131,7 +1106,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -1195,13 +1169,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/CreditNoteCreateModel"
+                    "$ref": "#/components/schemas/CreditNoteCreateOptions"
                   }
                 ]
               }
@@ -1258,7 +1231,6 @@
             "in": "path",
             "description": "Unique identifier for the credit note",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -1309,7 +1281,6 @@
             "in": "path",
             "description": "Unique identifier of the credit note",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -1386,7 +1357,6 @@
             "in": "path",
             "description": "Unique identifier of the credit note",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -1444,7 +1414,6 @@
             "in": "query",
             "description": "Filter options for `customer` property.",
             "required": true,
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "cust_602a8dd0a54847479a874de4"
@@ -1455,7 +1424,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1465,7 +1433,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1475,7 +1442,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1485,7 +1451,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1495,7 +1460,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1505,7 +1469,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -1519,7 +1482,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -1532,7 +1494,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -1596,13 +1557,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/CustomerBalanceTransactionCreateModel"
+                    "$ref": "#/components/schemas/CustomerBalanceTransactionCreateOptions"
                   }
                 ]
               }
@@ -1656,7 +1616,6 @@
             "in": "path",
             "description": "Unique identifier for the customer balance transaction",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -1707,7 +1666,6 @@
             "in": "path",
             "description": "Unique identifier of the customer balance transaction",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -1784,7 +1742,6 @@
             "in": "query",
             "description": "Filter options for `customer` property.",
             "required": true,
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "cust_602a8dd0a54847479a874de4"
@@ -1794,7 +1751,6 @@
           {
             "name": "country",
             "in": "query",
-            "style": "form",
             "schema": {
               "maxLength": 3,
               "minLength": 0,
@@ -1807,7 +1763,6 @@
             "name": "type",
             "in": "query",
             "description": "Filter options for `type` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -1819,7 +1774,6 @@
             "name": "status",
             "in": "query",
             "description": "Filter options for `status` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -1831,7 +1785,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1841,7 +1794,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1851,7 +1803,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1861,7 +1812,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1871,7 +1821,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1881,7 +1830,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -1895,7 +1843,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -1908,7 +1855,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -1972,13 +1918,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/CustomerTaxIdCreateModel"
+                    "$ref": "#/components/schemas/CustomerTaxIdCreateOptions"
                   }
                 ]
               }
@@ -2032,7 +1977,6 @@
             "in": "path",
             "description": "Unique identifier for the coupon",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -2083,7 +2027,6 @@
             "in": "path",
             "description": "The unique identifier of the customer tax id",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -2132,7 +2075,6 @@
             "name": "email",
             "in": "query",
             "description": "Filter options for `email` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "email",
@@ -2143,7 +2085,6 @@
             "name": "phone",
             "in": "query",
             "description": "Filter options for `phone` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "tel",
@@ -2154,7 +2095,6 @@
             "name": "timezone",
             "in": "query",
             "description": "Filter options for `timezone` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "timezone",
@@ -2165,7 +2105,6 @@
             "name": "type",
             "in": "query",
             "description": "Filter options for `type` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -2177,7 +2116,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2187,7 +2125,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2197,7 +2134,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2207,7 +2143,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2217,7 +2152,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2227,7 +2161,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -2241,7 +2174,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -2254,7 +2186,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -2318,13 +2249,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/CustomerCreateModel"
+                    "$ref": "#/components/schemas/CustomerCreateOptions"
                   }
                 ]
               }
@@ -2381,7 +2311,6 @@
             "in": "path",
             "description": "Unique identifier for the customer",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -2432,7 +2361,6 @@
             "in": "path",
             "description": "Unique identifier of the customer",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -2508,7 +2436,7 @@
           "Customers"
         ],
         "summary": "Redact a customer",
-        "description": "Redact a customer to remove all collected information from Falu.\nThis will redact the Customer and all objects related to it,\nincluding Events, request logs, etc.\n            \nThe redaction process may take up a week. When the redaction process is in progress,\nthe Customer's `redaction.status` field will be set to `processing`;\nwhen the process is finished, it will change to `redacted` and a\n`customer.redacted` event will be emitted.\n            \nRedaction is irreversible. Redacted objects are still accessible in the API,\nbut all the fields that contain personal data will be replaced by the string\n`[redacted]` or a similar placeholder. The metadata field will also be erased.\nRedacted objects cannot be updated or used for any purpose.",
+        "description": "Redact a customer to remove all collected information from Falu.\nThis will redact the Customer and all objects related to it,\nincluding Events, request logs, etc.\n\nThe redaction process may take up a week. When the redaction process is in progress,\nthe Customer's `redaction.status` field will be set to `processing`;\nwhen the process is finished, it will change to `redacted` and a\n`customer.redacted` event will be emitted.\n\nRedaction is irreversible. Redacted objects are still accessible in the API,\nbut all the fields that contain personal data will be replaced by the string\n`[redacted]` or a similar placeholder. The metadata field will also be erased.\nRedacted objects cannot be updated or used for any purpose.",
         "operationId": "customers-redact",
         "parameters": [
           {
@@ -2516,7 +2444,6 @@
             "in": "path",
             "description": "Unique identifier of the customer",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -2573,7 +2500,6 @@
             "name": "customer",
             "in": "query",
             "description": "Filter options for `customer` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "cust_602a8dd0a54847479a874de4"
@@ -2584,7 +2510,6 @@
             "name": "subscription",
             "in": "query",
             "description": "Filter options for `subscription` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "sub_602a8dd0a54847479a874de4"
@@ -2595,7 +2520,6 @@
             "name": "invoice",
             "in": "query",
             "description": "Filter options for `invoice` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "inv_602a8dd0a54847479a874de4"
@@ -2606,7 +2530,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2616,7 +2539,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2626,7 +2548,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2636,7 +2557,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2646,7 +2566,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2656,7 +2575,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -2670,7 +2588,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -2683,7 +2600,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -2749,7 +2665,6 @@
             "in": "path",
             "description": "Unique identifier for the discount",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -2801,7 +2716,6 @@
             "name": "customer",
             "in": "query",
             "description": "Filter options for `customer` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "cust_602a8dd0a54847479a874de4"
@@ -2812,7 +2726,6 @@
             "name": "invoice",
             "in": "query",
             "description": "Filter options for `invoice` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "inv_602a8dd0a54847479a874de4"
@@ -2823,7 +2736,6 @@
             "name": "subscription",
             "in": "query",
             "description": "Filter options for `subscription` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "sub_602a8dd0a54847479a874de4"
@@ -2834,7 +2746,6 @@
             "name": "subscription_item",
             "in": "query",
             "description": "Filter options for `subscription_item` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "subi_602a8dd0a54847479a874de4"
@@ -2845,7 +2756,6 @@
             "name": "product",
             "in": "query",
             "description": "Filter options for `product` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "prod_602a8dd0a54847479a874de4"
@@ -2856,7 +2766,6 @@
             "name": "price",
             "in": "query",
             "description": "Filter options for `price` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "price_602a8dd0a54847479a874de4"
@@ -2867,7 +2776,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2877,7 +2785,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2887,7 +2794,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2897,7 +2803,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2907,7 +2812,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2917,7 +2821,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -2931,7 +2834,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -2944,7 +2846,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -3010,7 +2911,6 @@
             "in": "path",
             "description": "Unique identifier for the invoice item",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -3061,7 +2961,6 @@
             "in": "path",
             "description": "Unique identifier of the invoice item",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -3137,7 +3036,6 @@
             "name": "status",
             "in": "query",
             "description": "Filter options for `status` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -3149,7 +3047,6 @@
             "name": "customer",
             "in": "query",
             "description": "Filter options for `customer` property.",
-            "style": "form",
             "schema": {
               "type": "string"
             }
@@ -3158,7 +3055,6 @@
             "name": "subscription",
             "in": "query",
             "description": "Filter options for `subscription` property.",
-            "style": "form",
             "schema": {
               "type": "string"
             }
@@ -3167,7 +3063,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3177,7 +3072,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3187,7 +3081,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3197,7 +3090,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3207,7 +3099,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3217,7 +3108,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -3231,7 +3121,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -3244,7 +3133,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -3310,7 +3198,6 @@
             "in": "path",
             "description": "Unique identifier for the invoice",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -3361,7 +3248,6 @@
             "in": "path",
             "description": "Unique identifier of the invoice",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -3501,7 +3387,6 @@
             "in": "path",
             "description": "Unique identifier of the invoice",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -3558,7 +3443,6 @@
             "in": "path",
             "description": "Unique identifier of the invoice",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -3615,7 +3499,6 @@
             "in": "path",
             "description": "Unique identifier of the invoice",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -3672,7 +3555,6 @@
             "in": "path",
             "description": "Unique identifier of the invoice",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -3688,7 +3570,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/InvoicePaymentModel"
+                    "$ref": "#/components/schemas/InvoicePayOptions"
                   }
                 ]
               }
@@ -3742,7 +3624,6 @@
             "name": "type",
             "in": "query",
             "description": "Filter options for `type` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -3754,7 +3635,6 @@
             "name": "customer",
             "in": "query",
             "description": "Filter options for `customer` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "cust_602a8dd0a54847479a874de4"
@@ -3765,7 +3645,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3775,7 +3654,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3785,7 +3663,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3795,7 +3672,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3805,7 +3681,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3815,7 +3690,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -3829,7 +3703,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -3842,7 +3715,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -3906,13 +3778,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/PaymentMethodCreateModel"
+                    "$ref": "#/components/schemas/PaymentMethodCreateOptions"
                   }
                 ]
               }
@@ -3967,7 +3838,6 @@
             "in": "path",
             "description": "Unique identifier for the payment method",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -4018,7 +3888,6 @@
             "in": "path",
             "description": "Unique identifier for the payment method",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -4095,7 +3964,6 @@
             "in": "path",
             "description": "The unique identifier of the payment method",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -4111,7 +3979,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/PaymentMethodAttachModel"
+                    "$ref": "#/components/schemas/PaymentMethodAttachOptions"
                   }
                 ]
               }
@@ -4168,7 +4036,6 @@
             "in": "path",
             "description": "The unique identifier of the payment method",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -4225,7 +4092,6 @@
             "name": "active",
             "in": "query",
             "description": "Filter options for `active` property.",
-            "style": "form",
             "schema": {
               "type": "boolean"
             }
@@ -4233,7 +4099,6 @@
           {
             "name": "currency",
             "in": "query",
-            "style": "form",
             "schema": {
               "maxLength": 3,
               "minLength": 0,
@@ -4246,7 +4111,6 @@
             "name": "type",
             "in": "query",
             "description": "Filter options for `type` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -4258,7 +4122,6 @@
             "name": "recurring_interval",
             "in": "query",
             "description": "Filter options for `recurring.interval` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -4270,7 +4133,6 @@
             "name": "product",
             "in": "query",
             "description": "Filter options for `product` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "prod_602a8dd0a54847479a874de4"
@@ -4281,7 +4143,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -4291,7 +4152,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -4301,7 +4161,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -4311,7 +4170,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -4321,7 +4179,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -4331,7 +4188,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -4345,7 +4201,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -4358,7 +4213,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -4422,13 +4276,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/PriceCreateModel"
+                    "$ref": "#/components/schemas/PriceCreateOptions"
                   }
                 ]
               }
@@ -4482,7 +4335,6 @@
             "in": "path",
             "description": "Unique identifier for the price",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -4533,7 +4385,6 @@
             "in": "path",
             "description": "Unique identifier of the price",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -4608,7 +4459,6 @@
             "in": "path",
             "description": "The unique identifier of the price",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -4657,7 +4507,6 @@
             "name": "active",
             "in": "query",
             "description": "Filter options for `active` property.",
-            "style": "form",
             "schema": {
               "type": "boolean"
             }
@@ -4666,7 +4515,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -4676,7 +4524,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -4686,7 +4533,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -4696,7 +4542,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -4706,7 +4551,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -4716,7 +4560,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -4730,7 +4573,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -4743,7 +4585,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -4807,13 +4648,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/ProductCreateModel"
+                    "$ref": "#/components/schemas/ProductCreateOptions"
                   }
                 ]
               }
@@ -4864,7 +4704,6 @@
             "in": "path",
             "description": "Unique identifier for the product",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -4915,7 +4754,6 @@
             "in": "path",
             "description": "Unique identifier of the product",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -4990,7 +4828,6 @@
             "in": "path",
             "description": "The unique identifier of the product",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -5039,7 +4876,6 @@
             "name": "subscription",
             "in": "query",
             "description": "Filter options for `subscription` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "sub_602a8dd0a54847479a874de4"
@@ -5050,7 +4886,6 @@
             "name": "product",
             "in": "query",
             "description": "Filter options for `product` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "prod_602a8dd0a54847479a874de4"
@@ -5061,7 +4896,6 @@
             "name": "price",
             "in": "query",
             "description": "Filter options for `price` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "price_602a8dd0a54847479a874de4"
@@ -5072,7 +4906,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5082,7 +4915,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5092,7 +4924,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5102,7 +4933,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5112,7 +4942,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5122,7 +4951,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -5136,7 +4964,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -5149,7 +4976,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -5213,13 +5039,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/SubscriptionItemCreateModel"
+                    "$ref": "#/components/schemas/SubscriptionItemCreateOptions"
                   }
                 ]
               }
@@ -5279,7 +5104,6 @@
             "in": "path",
             "description": "Unique identifier for the subscription item",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -5330,7 +5154,6 @@
             "in": "path",
             "description": "Unique identifier of the subscription item",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -5414,7 +5237,6 @@
             "in": "path",
             "description": "Unique identifier for the subscription item",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -5423,7 +5245,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5433,7 +5254,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5443,7 +5263,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5453,7 +5272,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5463,7 +5281,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5473,7 +5290,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -5487,7 +5303,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -5500,7 +5315,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -5564,7 +5378,6 @@
             "in": "path",
             "description": "Unique identifier for the subscription item",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -5580,7 +5393,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/SubscriptionItemReportUsageModel"
+                    "$ref": "#/components/schemas/SubscriptionItemReportUsageOptions"
                   }
                 ]
               }
@@ -5648,7 +5461,6 @@
             "name": "status",
             "in": "query",
             "description": "Filter options for `status` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -5660,7 +5472,6 @@
             "name": "customer",
             "in": "query",
             "description": "Filter options for `customer` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "cust_602a8dd0a54847479a874de4"
@@ -5671,7 +5482,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5681,7 +5491,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5691,7 +5500,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5701,7 +5509,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5711,7 +5518,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -5721,7 +5527,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -5735,7 +5540,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -5748,7 +5552,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -5812,13 +5615,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/SubscriptionCreateModel"
+                    "$ref": "#/components/schemas/SubscriptionCreateOptions"
                   }
                 ]
               }
@@ -5884,7 +5686,6 @@
             "in": "path",
             "description": "Unique identifier for the subscription",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -5935,7 +5736,6 @@
             "in": "path",
             "description": "Unique identifier of the subscription",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -6022,7 +5822,6 @@
             "in": "path",
             "description": "Unique identifier of the subscription",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -6038,7 +5837,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/SubscriptionCancelModel"
+                    "$ref": "#/components/schemas/SubscriptionCancelOptions"
                   }
                 ]
               }
@@ -6092,7 +5891,6 @@
             "name": "active",
             "in": "query",
             "description": "Filter options for `active` property.",
-            "style": "form",
             "schema": {
               "type": "boolean"
             }
@@ -6101,7 +5899,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6111,7 +5908,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6121,7 +5917,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6131,7 +5926,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6141,7 +5935,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6151,7 +5944,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -6165,7 +5957,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -6178,7 +5969,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -6242,13 +6032,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/TaxRateCreateModel"
+                    "$ref": "#/components/schemas/TaxRateCreateOptions"
                   }
                 ]
               }
@@ -6299,7 +6088,6 @@
             "in": "path",
             "description": "Unique identifier for the tax rate",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -6350,7 +6138,6 @@
             "in": "path",
             "description": "Unique identifier of the tax rate",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -6425,7 +6212,6 @@
             "in": "path",
             "description": "The unique identifier of the tax rate",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -6474,7 +6260,6 @@
             "name": "file",
             "in": "query",
             "description": "Unique identifier of the file.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "file_602a8dd0a54847479a874de4"
@@ -6485,7 +6270,6 @@
             "name": "expired",
             "in": "query",
             "description": "Filter options for `expired` property.",
-            "style": "form",
             "schema": {
               "type": "boolean"
             }
@@ -6494,7 +6278,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6504,7 +6287,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6514,7 +6296,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6524,7 +6305,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6534,7 +6314,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6544,7 +6323,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -6558,7 +6336,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -6571,7 +6348,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -6635,13 +6411,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/FileLinkCreateModel"
+                    "$ref": "#/components/schemas/FileLinkCreateOptions"
                   }
                 ]
               }
@@ -6698,7 +6473,6 @@
             "in": "path",
             "description": "Unique identifier for the file link",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -6749,7 +6523,6 @@
             "in": "path",
             "description": "Unique identifier of the file link",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -6826,7 +6599,6 @@
             "name": "purpose",
             "in": "query",
             "description": "Filter options for `purpose` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -6838,7 +6610,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6848,7 +6619,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6858,7 +6628,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6868,7 +6637,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6878,7 +6646,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -6888,7 +6655,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -6902,7 +6668,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -6915,7 +6680,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -7076,7 +6840,6 @@
             "in": "path",
             "description": "Unique identifier for the file",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -7129,7 +6892,6 @@
             "in": "path",
             "description": "Unique identifier for the file",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -7204,7 +6966,6 @@
             "in": "path",
             "description": "Unique identifier for the file",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -7259,7 +7020,6 @@
             "name": "verification",
             "in": "query",
             "description": "Unique identifier of the Identity Verification to filter for.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "idv_602a8dd0a54847479a874de4"
@@ -7270,7 +7030,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -7280,7 +7039,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -7290,7 +7048,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -7300,7 +7057,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -7310,7 +7066,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -7320,7 +7075,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -7334,7 +7088,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -7347,7 +7100,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -7413,7 +7165,6 @@
             "in": "path",
             "description": "Unique identifier for the identity verification report",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -7465,7 +7216,6 @@
             "name": "status",
             "in": "query",
             "description": "Filter options for `status` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -7477,7 +7227,6 @@
             "name": "type",
             "in": "query",
             "description": "Filter options for `type` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -7489,7 +7238,6 @@
             "name": "customer",
             "in": "query",
             "description": "Filter options for `customer` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "cust_602a8dd0a54847479a874de4"
@@ -7500,7 +7248,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -7510,7 +7257,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -7520,7 +7266,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -7530,7 +7275,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -7540,7 +7284,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -7550,7 +7293,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -7564,7 +7306,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -7577,7 +7318,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -7641,13 +7381,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/IdentityVerificationCreateModel"
+                    "$ref": "#/components/schemas/IdentityVerificationCreateOptions"
                   }
                 ]
               }
@@ -7702,7 +7441,6 @@
             "in": "path",
             "description": "Unique identifier for the identity verification",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -7753,7 +7491,6 @@
             "in": "path",
             "description": "Unique identifier for the identity verification",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -7833,7 +7570,6 @@
             "in": "path",
             "description": "Unique identifier for the identity verification",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -7891,7 +7627,6 @@
             "in": "path",
             "description": "Unique identifier for the identity verification",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -7936,385 +7671,6 @@
         ]
       }
     },
-    "/v1/me/push_registrations": {
-      "get": {
-        "tags": [
-          "Push Registrations"
-        ],
-        "summary": "List push registration",
-        "operationId": "push-registrations-list",
-        "parameters": [
-          {
-            "name": "kind",
-            "in": "query",
-            "description": "Filter options for `kind` property.",
-            "style": "form",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/PushRegistrationKind"
-              }
-            }
-          },
-          {
-            "name": "device",
-            "in": "query",
-            "description": "Device identifier to filter for.",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "created.eq",
-            "in": "query",
-            "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "created.lt",
-            "in": "query",
-            "description": "Option for less than (<).",
-            "style": "form",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "created.lte",
-            "in": "query",
-            "description": "Option for less than or equal to (<=).",
-            "style": "form",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "created.gt",
-            "in": "query",
-            "description": "Option for greater than (>).",
-            "style": "form",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "created.gte",
-            "in": "query",
-            "description": "Option for greater than or equal to (>=).",
-            "style": "form",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
-            "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/SortingOrder"
-                }
-              ],
-              "default": "desc"
-            }
-          },
-          {
-            "name": "count",
-            "in": "query",
-            "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
-            "schema": {
-              "maximum": 100,
-              "minimum": 1,
-              "type": "integer",
-              "format": "int32",
-              "default": 10
-            }
-          },
-          {
-            "name": "ct",
-            "in": "query",
-            "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
-            "schema": {
-              "type": "string",
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/Int64ContinuationToken"
-                }
-              ],
-              "format": "opaque"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/X-Falu-Version"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "headers": {
-              "X-Trace-Id": {
-                "$ref": "#/components/headers/X-Trace-Id"
-              },
-              "X-Request-Id": {
-                "$ref": "#/components/headers/X-Request-Id"
-              },
-              "X-Continuation-Token": {
-                "$ref": "#/components/headers/X-Continuation-Token"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PushRegistration"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
-          },
-          "403": {
-            "$ref": "#/components/responses/403"
-          }
-        },
-        "x-supports-pagination": true
-      },
-      "post": {
-        "tags": [
-          "Push Registrations"
-        ],
-        "summary": "Create a push registration",
-        "operationId": "push-registrations-create",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/X-Falu-Version"
-          }
-        ],
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/PushRegistrationCreateModel"
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "headers": {
-              "X-Trace-Id": {
-                "$ref": "#/components/headers/X-Trace-Id"
-              },
-              "X-Request-Id": {
-                "$ref": "#/components/headers/X-Request-Id"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PushRegistration"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
-          },
-          "403": {
-            "$ref": "#/components/responses/403"
-          }
-        }
-      }
-    },
-    "/v1/me/push_registrations/{id}": {
-      "get": {
-        "tags": [
-          "Push Registrations"
-        ],
-        "summary": "Retrieve a push registration",
-        "operationId": "push-registrations-get",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique identifier of the push registration.",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/X-Falu-Version"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "headers": {
-              "X-Trace-Id": {
-                "$ref": "#/components/headers/X-Trace-Id"
-              },
-              "X-Request-Id": {
-                "$ref": "#/components/headers/X-Request-Id"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PushRegistration"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
-          },
-          "403": {
-            "$ref": "#/components/responses/403"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Push Registrations"
-        ],
-        "summary": "Update a push registration",
-        "operationId": "push-registrations-update",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique identifier of the push registration.",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/X-Falu-Version"
-          }
-        ],
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "headers": {
-              "X-Trace-Id": {
-                "$ref": "#/components/headers/X-Trace-Id"
-              },
-              "X-Request-Id": {
-                "$ref": "#/components/headers/X-Request-Id"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PushRegistration"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
-          },
-          "403": {
-            "$ref": "#/components/responses/403"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Push Registrations"
-        ],
-        "summary": "Delete a push registration",
-        "operationId": "push-registrations-delete",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique identifier of the push registration.",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/X-Falu-Version"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "headers": {
-              "X-Trace-Id": {
-                "$ref": "#/components/headers/X-Trace-Id"
-              },
-              "X-Request-Id": {
-                "$ref": "#/components/headers/X-Request-Id"
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
-          },
-          "403": {
-            "$ref": "#/components/responses/403"
-          }
-        }
-      }
-    },
     "/v1/temporary_keys": {
       "get": {
         "tags": [
@@ -8327,7 +7683,6 @@
             "name": "object",
             "in": "query",
             "description": "Filter option for a given object identifier.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "idv_0o5Fs0EELR0fUjHjbCnEtdUwQe3"
@@ -8338,7 +7693,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -8348,7 +7702,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -8358,7 +7711,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -8368,7 +7720,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -8378,7 +7729,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -8388,7 +7738,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -8402,7 +7751,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -8415,7 +7763,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -8484,7 +7831,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/TemporaryKeyCreateModel"
+                    "$ref": "#/components/schemas/TemporaryKeyCreateOptions"
                   }
                 ]
               }
@@ -8535,7 +7882,6 @@
             "in": "path",
             "description": "Unique identifier for the temporary key",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -8587,7 +7933,6 @@
             "in": "path",
             "description": "Unique identifier for the temporary key",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -8632,7 +7977,6 @@
             "name": "stream",
             "in": "query",
             "description": "Stream to filter for.\nIt can either be the name or unique identifier of the stream.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "transactional"
@@ -8643,7 +7987,6 @@
             "name": "sender",
             "in": "query",
             "description": "Unique identifier of the sender to filter for.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "msdr_0o5Fs0EELR0fUjHjbCnEtdUwQe3"
@@ -8654,7 +7997,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -8664,7 +8006,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -8674,7 +8015,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -8684,7 +8024,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -8694,7 +8033,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -8704,7 +8042,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -8718,7 +8055,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -8731,7 +8067,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -8799,13 +8134,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/MessageBatchCreateModel"
+                    "$ref": "#/components/schemas/MessageBatchCreateOptions"
                   }
                 ]
               }
@@ -8868,7 +8202,6 @@
             "in": "path",
             "description": "Unique identifier of the message batch",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -8919,7 +8252,6 @@
             "in": "path",
             "description": "Unique identifier of the message batch",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -8997,7 +8329,6 @@
             "in": "path",
             "description": "Unique identifier of the message batch",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -9054,7 +8385,6 @@
             "in": "path",
             "description": "Unique identifier of the message batch",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -9112,7 +8442,6 @@
             "in": "path",
             "description": "Unique identifier of the message batch",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -9169,7 +8498,6 @@
             "name": "stream",
             "in": "query",
             "description": "Stream to filter for.\nIt can either be the name or unique identifier of the stream.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "transactional"
@@ -9180,7 +8508,6 @@
             "name": "type",
             "in": "query",
             "description": "Filter options for `type` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -9192,7 +8519,6 @@
             "name": "channel",
             "in": "query",
             "description": "Filter options for `channel` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -9204,7 +8530,6 @@
             "name": "status",
             "in": "query",
             "description": "Filter options for `status` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -9216,7 +8541,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -9226,7 +8550,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -9236,7 +8559,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -9246,7 +8568,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -9256,7 +8577,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -9266,7 +8586,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -9280,7 +8599,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -9293,7 +8611,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -9365,7 +8682,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/MessageSenderCreateModel"
+                    "$ref": "#/components/schemas/MessageSenderCreateOptions"
                   }
                 ]
               }
@@ -9420,7 +8737,6 @@
             "in": "path",
             "description": "The unique identifier of the message sender",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -9471,7 +8787,6 @@
             "in": "path",
             "description": "Unique identifier of the message sender",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -9546,7 +8861,6 @@
             "in": "path",
             "description": "The unique identifier of the message sender",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -9595,7 +8909,6 @@
             "name": "type",
             "in": "query",
             "description": "Filter options for `type` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -9607,7 +8920,6 @@
             "name": "default",
             "in": "query",
             "description": "Filter options for `default` property.",
-            "style": "form",
             "schema": {
               "type": "boolean"
             }
@@ -9616,7 +8928,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -9626,7 +8937,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -9636,7 +8946,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -9646,7 +8955,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -9656,7 +8964,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -9666,7 +8973,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -9680,7 +8986,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -9693,7 +8998,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -9757,13 +9061,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/MessageStreamCreateModel"
+                    "$ref": "#/components/schemas/MessageStreamCreateOptions"
                   }
                 ]
               }
@@ -9817,7 +9120,6 @@
             "in": "path",
             "description": "The unique identifier of the message stream",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -9868,7 +9170,6 @@
             "in": "path",
             "description": "Unique identifier of the message stream",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -9944,7 +9245,6 @@
             "in": "path",
             "description": "The unique identifier of the message stream",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -9994,7 +9294,6 @@
             "in": "path",
             "description": "Unique identifier of the message stream",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -10050,7 +9349,6 @@
             "in": "path",
             "description": "Unique identifier of the message stream",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -10105,7 +9403,6 @@
             "name": "stream",
             "in": "query",
             "description": "Stream to filter for.\nIt can either be the name or unique identifier of the stream.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "transactional"
@@ -10116,7 +9413,6 @@
             "name": "origin",
             "in": "query",
             "description": "Filter options for `origin` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -10128,7 +9424,6 @@
             "name": "reason",
             "in": "query",
             "description": "Filter options for `reason` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -10140,7 +9435,6 @@
             "name": "to",
             "in": "query",
             "description": "Filter options for `to` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "tel",
@@ -10152,7 +9446,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10162,7 +9455,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10172,7 +9464,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10182,7 +9473,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10192,7 +9482,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10202,7 +9491,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -10216,7 +9504,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -10229,7 +9516,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -10301,7 +9587,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/MessageSuppressionCreateModel"
+                    "$ref": "#/components/schemas/MessageSuppressionCreateOptions"
                   }
                 ]
               }
@@ -10355,7 +9641,6 @@
             "in": "path",
             "description": "The unique identifier of the message suppression",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -10407,7 +9692,6 @@
             "in": "path",
             "description": "The unique identifier of the message suppression",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -10456,7 +9740,6 @@
             "name": "type",
             "in": "query",
             "description": "Filter options for `type` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -10468,7 +9751,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10478,7 +9760,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10488,7 +9769,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10498,7 +9778,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10508,7 +9787,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10518,7 +9796,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -10532,7 +9809,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -10545,7 +9821,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -10609,13 +9884,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/MessageTemplateCreateModel"
+                    "$ref": "#/components/schemas/MessageTemplateCreateOptions"
                   }
                 ]
               }
@@ -10670,7 +9944,6 @@
             "in": "path",
             "description": "The unique identifier of the message template",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -10721,7 +9994,6 @@
             "in": "path",
             "description": "The unique identifier of the message template",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -10798,7 +10070,6 @@
             "in": "path",
             "description": "The unique identifier of the message template",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -10847,13 +10118,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/MessageTemplateValidateModel"
+                    "$ref": "#/components/schemas/MessageTemplateValidateOptions"
                   }
                 ]
               }
@@ -10906,7 +10176,6 @@
             "name": "stream",
             "in": "query",
             "description": "Stream to filter for.\nIt can either be the name or unique identifier of the stream.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "transactional"
@@ -10917,7 +10186,6 @@
             "name": "sender",
             "in": "query",
             "description": "Unique identifier of the sender to filter for.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "msdr_0o5Fs0EELR0fUjHjbCnEtdUwQe3"
@@ -10928,7 +10196,6 @@
             "name": "batch",
             "in": "query",
             "description": "Unique identifier of the batch to filter for.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "msba_0o5Fs0EELR0fUjHjbCnEtdUwQe3"
@@ -10939,7 +10206,6 @@
             "name": "sent.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10949,7 +10215,6 @@
             "name": "sent.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10959,7 +10224,6 @@
             "name": "sent.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10969,7 +10233,6 @@
             "name": "sent.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10979,7 +10242,6 @@
             "name": "sent.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10989,7 +10251,6 @@
             "name": "delivered.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -10999,7 +10260,6 @@
             "name": "delivered.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11009,7 +10269,6 @@
             "name": "delivered.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11019,7 +10278,6 @@
             "name": "delivered.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11029,7 +10287,6 @@
             "name": "delivered.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11039,7 +10296,6 @@
             "name": "read.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11049,7 +10305,6 @@
             "name": "read.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11059,7 +10314,6 @@
             "name": "read.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11069,7 +10323,6 @@
             "name": "read.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11079,7 +10332,6 @@
             "name": "read.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11089,7 +10341,6 @@
             "name": "status",
             "in": "query",
             "description": "Filter options for `status` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -11101,7 +10352,6 @@
             "name": "from",
             "in": "query",
             "description": "Filter options for `from` property.",
-            "style": "form",
             "schema": {
               "type": "string"
             }
@@ -11110,7 +10360,6 @@
             "name": "to",
             "in": "query",
             "description": "Filter options for `to` property.",
-            "style": "form",
             "schema": {
               "type": "string"
             }
@@ -11119,7 +10368,6 @@
             "name": "customer",
             "in": "query",
             "description": "Filter options for `customer` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "cust_602a8dd0a54847479a874de4"
@@ -11130,7 +10378,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11140,7 +10387,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11150,7 +10396,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11160,7 +10405,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11170,7 +10414,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11180,7 +10423,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -11194,7 +10436,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -11207,7 +10448,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -11274,13 +10514,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/MessageCreateModel"
+                    "$ref": "#/components/schemas/MessageCreateOptions"
                   }
                 ]
               }
@@ -11342,7 +10581,6 @@
             "in": "path",
             "description": "The unique identifier of the message",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -11393,7 +10631,6 @@
             "in": "path",
             "description": "Unique identifier of the message",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -11472,7 +10709,6 @@
             "in": "path",
             "description": "Unique identifier of the message",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -11530,7 +10766,6 @@
             "in": "path",
             "description": "Unique identifier of the message",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -11667,7 +10902,6 @@
             "name": "status",
             "in": "query",
             "description": "Filter options for `status` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -11679,7 +10913,6 @@
             "name": "approved",
             "in": "query",
             "description": "Filter options for `approved` property.",
-            "style": "form",
             "schema": {
               "type": "boolean"
             }
@@ -11688,7 +10921,6 @@
             "name": "status_reason",
             "in": "query",
             "description": "Filter options for `status_reason` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -11700,7 +10932,6 @@
             "name": "decline_reason",
             "in": "query",
             "description": "Filter options for `decline_reason` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -11711,7 +10942,6 @@
           {
             "name": "currency",
             "in": "query",
-            "style": "form",
             "schema": {
               "maxLength": 3,
               "minLength": 0,
@@ -11724,7 +10954,6 @@
             "name": "amount.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -11734,7 +10963,6 @@
             "name": "amount.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -11744,7 +10972,6 @@
             "name": "amount.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -11754,7 +10981,6 @@
             "name": "amount.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -11764,7 +10990,6 @@
             "name": "amount.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -11774,7 +10999,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11784,7 +11008,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11794,7 +11017,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11804,7 +11026,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11814,7 +11035,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -11824,7 +11044,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -11838,7 +11057,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -11851,7 +11069,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -11917,7 +11134,6 @@
             "in": "path",
             "description": "Unique identifier for the payment authorization",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -11968,7 +11184,6 @@
             "in": "path",
             "description": "Unique identifier for the payment authorization",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -12045,7 +11260,6 @@
             "in": "path",
             "description": "Unique identifier for the payment authorization",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -12061,7 +11275,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/PaymentAuthorizationApproveModel"
+                    "$ref": "#/components/schemas/PaymentAuthorizationApproveOptions"
                   }
                 ],
                 "description": "Options for approving a payment authorization."
@@ -12117,7 +11331,6 @@
             "in": "path",
             "description": "Unique identifier for the payment authorization",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -12133,7 +11346,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/PaymentAuthorizationDeclineModel"
+                    "$ref": "#/components/schemas/PaymentAuthorizationDeclineOptions"
                   }
                 ],
                 "description": "Options for declining a payment authorization."
@@ -12188,7 +11401,6 @@
             "name": "status",
             "in": "query",
             "description": "Filter options for `status` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -12200,7 +11412,6 @@
             "name": "reason",
             "in": "query",
             "description": "Filter options for `reason` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -12212,7 +11423,6 @@
             "name": "customer",
             "in": "query",
             "description": "Filter options for `customer` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "cust_602a8dd0a54847479a874de4"
@@ -12222,7 +11432,6 @@
           {
             "name": "currency",
             "in": "query",
-            "style": "form",
             "schema": {
               "maxLength": 3,
               "minLength": 0,
@@ -12235,7 +11444,6 @@
             "name": "amount.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -12245,7 +11453,6 @@
             "name": "amount.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -12255,7 +11462,6 @@
             "name": "amount.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -12265,7 +11471,6 @@
             "name": "amount.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -12275,7 +11480,6 @@
             "name": "amount.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -12285,7 +11489,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -12295,7 +11498,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -12305,7 +11507,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -12315,7 +11516,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -12325,7 +11525,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -12335,7 +11534,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -12349,7 +11547,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -12362,7 +11559,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -12426,13 +11622,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/PaymentRefundCreateModel"
+                    "$ref": "#/components/schemas/PaymentRefundCreateOptions"
                   }
                 ],
                 "description": "Options for creating a payment refund."
@@ -12489,7 +11684,6 @@
             "in": "path",
             "description": "Unique identifier for the refund.",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -12540,7 +11734,6 @@
             "in": "path",
             "description": "Unique identifier for the refund.",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -12616,7 +11809,6 @@
             "name": "status",
             "in": "query",
             "description": "Filter options for `status` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -12628,7 +11820,6 @@
             "name": "type",
             "in": "query",
             "description": "Filter options for `type` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -12640,7 +11831,6 @@
             "name": "customer",
             "in": "query",
             "description": "Filter options for `customer` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "cust_602a8dd0a54847479a874de4"
@@ -12650,7 +11840,6 @@
           {
             "name": "currency",
             "in": "query",
-            "style": "form",
             "schema": {
               "maxLength": 3,
               "minLength": 0,
@@ -12663,7 +11852,6 @@
             "name": "amount.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -12673,7 +11861,6 @@
             "name": "amount.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -12683,7 +11870,6 @@
             "name": "amount.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -12693,7 +11879,6 @@
             "name": "amount.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -12703,7 +11888,6 @@
             "name": "amount.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -12713,7 +11897,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -12723,7 +11906,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -12733,7 +11915,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -12743,7 +11924,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -12753,7 +11933,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -12763,7 +11942,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -12777,7 +11955,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -12790,7 +11967,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -12854,13 +12030,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/PaymentCreateModel"
+                    "$ref": "#/components/schemas/PaymentCreateOptions"
                   }
                 ],
                 "description": "Options for creating a payment."
@@ -12917,7 +12092,6 @@
             "in": "path",
             "description": "Unique identifier for the payment",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -12968,7 +12142,6 @@
             "in": "path",
             "description": "Unique identifier for the payment",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -13044,7 +12217,6 @@
             "name": "status",
             "in": "query",
             "description": "Filter options for `status` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -13056,7 +12228,6 @@
             "name": "reason",
             "in": "query",
             "description": "Filter options for `reason` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -13068,7 +12239,6 @@
             "name": "customer",
             "in": "query",
             "description": "Filter options for `customer` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "cust_602a8dd0a54847479a874de4"
@@ -13078,7 +12248,6 @@
           {
             "name": "currency",
             "in": "query",
-            "style": "form",
             "schema": {
               "maxLength": 3,
               "minLength": 0,
@@ -13091,7 +12260,6 @@
             "name": "amount.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -13101,7 +12269,6 @@
             "name": "amount.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -13111,7 +12278,6 @@
             "name": "amount.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -13121,7 +12287,6 @@
             "name": "amount.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -13131,7 +12296,6 @@
             "name": "amount.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -13141,7 +12305,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13151,7 +12314,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13161,7 +12323,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13171,7 +12332,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13181,7 +12341,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13191,7 +12350,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -13205,7 +12363,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -13218,7 +12375,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -13282,13 +12438,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/TransferReversalCreateModel"
+                    "$ref": "#/components/schemas/TransferReversalCreateOptions"
                   }
                 ]
               }
@@ -13344,7 +12499,6 @@
             "in": "path",
             "description": "Unique identifier for the reversal",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -13395,7 +12549,6 @@
             "in": "path",
             "description": "Unique identifier for the reversal",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -13471,7 +12624,6 @@
             "name": "status",
             "in": "query",
             "description": "Filter options for `status` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -13483,7 +12635,6 @@
             "name": "type",
             "in": "query",
             "description": "Filter options for `type` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -13495,7 +12646,6 @@
             "name": "purpose",
             "in": "query",
             "description": "Filter options for `purpose` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -13507,7 +12657,6 @@
             "name": "customer",
             "in": "query",
             "description": "Filter options for `customer` property.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "cust_602a8dd0a54847479a874de4"
@@ -13517,7 +12666,6 @@
           {
             "name": "currency",
             "in": "query",
-            "style": "form",
             "schema": {
               "maxLength": 3,
               "minLength": 0,
@@ -13530,7 +12678,6 @@
             "name": "amount.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -13540,7 +12687,6 @@
             "name": "amount.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -13550,7 +12696,6 @@
             "name": "amount.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -13560,7 +12705,6 @@
             "name": "amount.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -13570,7 +12714,6 @@
             "name": "amount.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -13580,7 +12723,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13590,7 +12732,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13600,7 +12741,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13610,7 +12750,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13620,7 +12759,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13630,7 +12768,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -13644,7 +12781,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -13657,7 +12793,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -13721,13 +12856,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/TransferCreateModel"
+                    "$ref": "#/components/schemas/TransferCreateOptions"
                   }
                 ]
               }
@@ -13784,7 +12918,6 @@
             "in": "path",
             "description": "Unique identifier for the transfer",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -13835,7 +12968,6 @@
             "in": "path",
             "description": "Unique identifier for the transfer",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -13911,7 +13043,6 @@
             "name": "type",
             "in": "query",
             "description": "Filter options for `type` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -13923,7 +13054,6 @@
             "name": "object",
             "in": "query",
             "description": "The unique identifier of the object for which to get events.",
-            "style": "form",
             "schema": {
               "type": "string",
               "example": "idv_0o5Fs0EELR0fUjHjbCnEtdUwQe3"
@@ -13934,7 +13064,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13944,7 +13073,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13954,7 +13082,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13964,7 +13091,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13974,7 +13100,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13984,7 +13109,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -13998,7 +13122,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -14011,7 +13134,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -14077,7 +13199,6 @@
             "in": "path",
             "description": "The unique identifier of the event",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -14131,7 +13252,6 @@
             "in": "path",
             "description": "The unique identifier of the event",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -14186,7 +13306,6 @@
             "name": "status",
             "in": "query",
             "description": "Filter options for `status` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -14198,7 +13317,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -14208,7 +13326,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -14218,7 +13335,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -14228,7 +13344,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -14238,7 +13353,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -14248,7 +13362,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -14262,7 +13375,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -14275,7 +13387,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -14339,13 +13450,12 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/WebhookEndpointCreateModel"
+                    "$ref": "#/components/schemas/WebhookEndpointCreateOptions"
                   }
                 ]
               }
@@ -14401,7 +13511,6 @@
             "in": "path",
             "description": "The unique identifier of the webhook endpoint",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -14452,7 +13561,6 @@
             "in": "path",
             "description": "The unique identifier of the webhook endpoint",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -14527,7 +13635,6 @@
             "in": "path",
             "description": "The unique identifier of the webhook endpoint",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -14575,7 +13682,6 @@
             "name": "endpoint",
             "in": "query",
             "description": "Filter options for `endpoint` property.",
-            "style": "form",
             "schema": {
               "type": "string"
             }
@@ -14584,7 +13690,6 @@
             "name": "event",
             "in": "query",
             "description": "Filter options for `event` property.",
-            "style": "form",
             "schema": {
               "type": "string"
             }
@@ -14593,7 +13698,6 @@
             "name": "type",
             "in": "query",
             "description": "Filter options for `type` property.",
-            "style": "form",
             "schema": {
               "type": "array",
               "items": {
@@ -14605,7 +13709,6 @@
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -14615,7 +13718,6 @@
             "name": "created.lt",
             "in": "query",
             "description": "Option for less than (<).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -14625,7 +13727,6 @@
             "name": "created.lte",
             "in": "query",
             "description": "Option for less than or equal to (<=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -14635,7 +13736,6 @@
             "name": "created.gt",
             "in": "query",
             "description": "Option for greater than (>).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -14645,7 +13745,6 @@
             "name": "created.gte",
             "in": "query",
             "description": "Option for greater than or equal to (>=).",
-            "style": "form",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -14655,7 +13754,6 @@
             "name": "sort",
             "in": "query",
             "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "style": "form",
             "schema": {
               "allOf": [
                 {
@@ -14669,7 +13767,6 @@
             "name": "count",
             "in": "query",
             "description": "Maximum number of objects to return. Defaults to `10`.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -14682,7 +13779,6 @@
             "name": "ct",
             "in": "query",
             "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "style": "form",
             "schema": {
               "type": "string",
               "allOf": [
@@ -14748,7 +13844,6 @@
             "in": "path",
             "description": "The unique identifier of the webhook",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
             }
@@ -15002,7 +14097,7 @@
           "metadata"
         ]
       },
-      "CouponCreateModel": {
+      "CouponCreateOptions": {
         "required": [
           "frequency",
           "type"
@@ -15251,7 +14346,7 @@
           "metadata"
         ]
       },
-      "CreditNoteCreateModel": {
+      "CreditNoteCreateOptions": {
         "required": [
           "invoice",
           "items",
@@ -15291,7 +14386,7 @@
             "minItems": 1,
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CreditNoteItemCreateModelItem"
+              "$ref": "#/components/schemas/CreditNoteItemCreateOptionsItem"
             },
             "description": "Items that make up the credit note."
           }
@@ -15395,7 +14490,7 @@
         },
         "additionalProperties": false
       },
-      "CreditNoteItemCreateModelItem": {
+      "CreditNoteItemCreateOptionsItem": {
         "required": [
           "invoice_item"
         ],
@@ -15693,7 +14788,7 @@
           "metadata"
         ]
       },
-      "CustomerBalanceTransactionCreateModel": {
+      "CustomerBalanceTransactionCreateOptions": {
         "required": [
           "amount",
           "currency",
@@ -15758,7 +14853,7 @@
           "unapplied_from_invoice": "Traces the reversal of an applied customer balance from a linked invoice.\nPaired with an earlier ‘applied_to_invoice’ transaction."
         }
       },
-      "CustomerCreateModel": {
+      "CustomerCreateOptions": {
         "type": "object",
         "properties": {
           "address": {
@@ -15989,7 +15084,7 @@
         },
         "additionalProperties": false
       },
-      "CustomerTaxIdCreateModel": {
+      "CustomerTaxIdCreateOptions": {
         "required": [
           "customer",
           "type",
@@ -16648,7 +15743,7 @@
           "expires"
         ]
       },
-      "FileLinkCreateModel": {
+      "FileLinkCreateOptions": {
         "required": [
           "file"
         ],
@@ -16884,7 +15979,7 @@
           "outputs"
         ]
       },
-      "IdentityVerificationCreateModel": {
+      "IdentityVerificationCreateOptions": {
         "required": [
           "type"
         ],
@@ -18894,7 +17989,7 @@
           "metadata"
         ]
       },
-      "InvoicePaymentModel": {
+      "InvoicePayOptions": {
         "required": [
           "paid_externally"
         ],
@@ -19189,7 +18284,7 @@
           "metadata"
         ]
       },
-      "MessageBatchCreateModel": {
+      "MessageBatchCreateOptions": {
         "required": [
           "messages",
           "stream"
@@ -19214,7 +18309,7 @@
             "minItems": 1,
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MessageBatchCreateModelMessage"
+              "$ref": "#/components/schemas/MessageBatchCreateOptionsMessage"
             },
             "description": "The messages.\nYou can send up to 1,000 messages in one API request."
           },
@@ -19233,7 +18328,7 @@
           "schedule": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MessageCreateModelSchedule"
+                "$ref": "#/components/schemas/MessageCreateOptionsSchedule"
               }
             ],
             "description": "Schedule for sending the messages.\nWhen not provided or set to `null`, the message(s)\nis/are enqueued for immediate sending.",
@@ -19242,7 +18337,7 @@
         },
         "additionalProperties": false
       },
-      "MessageBatchCreateModelMessage": {
+      "MessageBatchCreateOptionsMessage": {
         "required": [
           "tos"
         ],
@@ -19270,7 +18365,7 @@
           "template": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MessageCreateModelTemplate"
+                "$ref": "#/components/schemas/MessageCreateOptionsTemplate"
               }
             ],
             "description": "The template to use.\nRequired if `body` is not specified.",
@@ -19279,7 +18374,7 @@
           "media": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MessageCreateModelMedia"
+                "$ref": "#/components/schemas/MessageCreateOptionsMedia"
               }
             ],
             "description": "Media to be sent with the message.",
@@ -19371,7 +18466,7 @@
           "apple": "Apple Business Chat as described\n[here](https://apple.com/ios/business-chat/)."
         }
       },
-      "MessageCreateModel": {
+      "MessageCreateOptions": {
         "required": [
           "stream",
           "to"
@@ -19405,7 +18500,7 @@
           "template": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MessageCreateModelTemplate"
+                "$ref": "#/components/schemas/MessageCreateOptionsTemplate"
               }
             ],
             "description": "The template to use.\nRequired if `body` is not specified.",
@@ -19414,7 +18509,7 @@
           "media": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MessageCreateModelMedia"
+                "$ref": "#/components/schemas/MessageCreateOptionsMedia"
               }
             ],
             "description": "Media to be sent with the message.",
@@ -19435,7 +18530,7 @@
           "schedule": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MessageCreateModelSchedule"
+                "$ref": "#/components/schemas/MessageCreateOptionsSchedule"
               }
             ],
             "description": "Schedule for sending the message.\nWhen not provided or set to `null`, the message\nis/are enqueued for immediate sending.",
@@ -19454,7 +18549,7 @@
           "body"
         ]
       },
-      "MessageCreateModelMedia": {
+      "MessageCreateOptionsMedia": {
         "type": "object",
         "properties": {
           "url": {
@@ -19474,7 +18569,7 @@
         },
         "additionalProperties": false
       },
-      "MessageCreateModelSchedule": {
+      "MessageCreateOptionsSchedule": {
         "type": "object",
         "properties": {
           "time": {
@@ -19493,7 +18588,7 @@
         },
         "additionalProperties": false
       },
-      "MessageCreateModelTemplate": {
+      "MessageCreateOptionsTemplate": {
         "type": "object",
         "properties": {
           "id": {
@@ -19773,7 +18868,7 @@
         "type": "object",
         "additionalProperties": false
       },
-      "MessageSenderCreateModel": {
+      "MessageSenderCreateOptions": {
         "required": [
           "stream",
           "type"
@@ -20009,7 +19104,7 @@
           "metadata"
         ]
       },
-      "MessageStreamCreateModel": {
+      "MessageStreamCreateOptions": {
         "required": [
           "name",
           "type"
@@ -20128,7 +19223,7 @@
           "to"
         ]
       },
-      "MessageSuppressionCreateModel": {
+      "MessageSuppressionCreateOptions": {
         "required": [
           "stream",
           "to"
@@ -20286,7 +19381,7 @@
           "metadata"
         ]
       },
-      "MessageTemplateCreateModel": {
+      "MessageTemplateCreateOptions": {
         "required": [
           "alias",
           "body"
@@ -20380,7 +19475,7 @@
           "verification": "Templates communicating authentication/verification codes (e.g. one time passwords) that allow\nyour customers to securely access their accounts or authorize an action."
         }
       },
-      "MessageTemplateValidateModel": {
+      "MessageTemplateValidateOptions": {
         "required": [
           "body"
         ],
@@ -20804,7 +19899,7 @@
           "metadata"
         ]
       },
-      "PaymentAuthorizationApproveModel": {
+      "PaymentAuthorizationApproveOptions": {
         "type": "object",
         "properties": {
           "metadata": {
@@ -20819,7 +19914,7 @@
         "additionalProperties": false,
         "description": "Options for approving a payment authorization."
       },
-      "PaymentAuthorizationDeclineModel": {
+      "PaymentAuthorizationDeclineOptions": {
         "required": [
           "decline_reason"
         ],
@@ -20888,7 +19983,7 @@
           "failed": "Synchronous webhook delivery to the authorization webhook endpoint failed."
         }
       },
-      "PaymentCreateModel": {
+      "PaymentCreateOptions": {
         "required": [
           "amount",
           "currency"
@@ -20927,7 +20022,7 @@
           "mpesa": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/PaymentCreateModelMpesa"
+                "$ref": "#/components/schemas/PaymentCreateOptionsMpesa"
               }
             ],
             "description": "Details about initiation by MPESA's STK Push",
@@ -20943,7 +20038,7 @@
         "additionalProperties": false,
         "description": "Options for creating a payment."
       },
-      "PaymentCreateModelMpesa": {
+      "PaymentCreateOptionsMpesa": {
         "required": [
           "phone",
           "reference"
@@ -21088,7 +20183,7 @@
           "metadata"
         ]
       },
-      "PaymentMethodAttachModel": {
+      "PaymentMethodAttachOptions": {
         "required": [
           "customer"
         ],
@@ -21137,7 +20232,7 @@
         },
         "additionalProperties": false
       },
-      "PaymentMethodCreateModel": {
+      "PaymentMethodCreateOptions": {
         "required": [
           "type"
         ],
@@ -21386,7 +20481,7 @@
           "metadata"
         ]
       },
-      "PaymentRefundCreateModel": {
+      "PaymentRefundCreateOptions": {
         "required": [
           "payment",
           "reason"
@@ -21712,7 +20807,7 @@
           "metadata"
         ]
       },
-      "PriceCreateModel": {
+      "PriceCreateOptions": {
         "required": [
           "currency",
           "product",
@@ -22025,7 +21120,7 @@
           "metadata"
         ]
       },
-      "ProductCreateModel": {
+      "ProductCreateOptions": {
         "required": [
           "images",
           "name"
@@ -22089,100 +21184,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "PushRegistration": {
-        "required": [
-          "device_id",
-          "token"
-        ],
-        "type": "object",
-        "properties": {
-          "token": {
-            "minLength": 1,
-            "type": "string",
-            "description": "The Registration Token as given by the Push notification server.\nThis token is normally refreshed or changed from time to time.\nThe push server is in charge of that particular action\nbut the application must update it here when it receives an update."
-          },
-          "kind": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PushRegistrationKind"
-              }
-            ],
-            "description": "Kind of registration token."
-          },
-          "id": {
-            "type": "string",
-            "description": "Unique identifier for the object.",
-            "nullable": true,
-            "example": "pushr_0o5Fs0EELR0fUjHjbCnEtdUwQe3"
-          },
-          "created": {
-            "type": "string",
-            "description": "Time at which the object was created.",
-            "format": "date-time"
-          },
-          "updated": {
-            "type": "string",
-            "description": "Time at which the object was last updated.",
-            "format": "date-time"
-          },
-          "device_id": {
-            "minLength": 1,
-            "type": "string",
-            "description": "Unique identifier of the device."
-          },
-          "etag": {
-            "type": "string",
-            "description": "A value that validates concurrent access of this object when stored in the database.\nThis value changes with every update and can thus be used to track changes.",
-            "example": "FL9rRnlW2Qg="
-          }
-        },
-        "additionalProperties": false,
-        "description": "Represents a push registration.",
-        "x-patchable": [
-          "token",
-          "kind"
-        ]
-      },
-      "PushRegistrationCreateModel": {
-        "required": [
-          "device_id",
-          "token"
-        ],
-        "type": "object",
-        "properties": {
-          "token": {
-            "minLength": 1,
-            "type": "string",
-            "description": "The Registration Token as given by the Push notification server.\nThis token is normally refreshed or changed from time to time.\nThe push server is in charge of that particular action\nbut the application must update it here when it receives an update."
-          },
-          "kind": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PushRegistrationKind"
-              }
-            ],
-            "description": "Kind of registration token."
-          },
-          "device_id": {
-            "minLength": 1,
-            "type": "string",
-            "description": "Unique identifier of the device."
-          }
-        },
-        "additionalProperties": false
-      },
-      "PushRegistrationKind": {
-        "enum": [
-          "firebase",
-          "apns"
-        ],
-        "type": "string",
-        "description": "Represents the kind of push registration.",
-        "x-enumDescriptions": {
-          "firebase": "Firebase Cloud Messaging",
-          "apns": "Apple Push Notification Service"
-        }
       },
       "SortingOrder": {
         "enum": [
@@ -22344,7 +21345,7 @@
         ],
         "type": "string"
       },
-      "SubscriptionCancelModel": {
+      "SubscriptionCancelOptions": {
         "required": [
           "prorate"
         ],
@@ -22357,7 +21358,7 @@
         },
         "additionalProperties": false
       },
-      "SubscriptionCreateModel": {
+      "SubscriptionCreateOptions": {
         "required": [
           "customer",
           "items"
@@ -22424,14 +21425,14 @@
             "minItems": 1,
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SubscriptionCreateModelItem"
+              "$ref": "#/components/schemas/SubscriptionCreateOptionsItem"
             },
             "description": "A list of up to 5 subscription items, each with an attached price."
           }
         },
         "additionalProperties": false
       },
-      "SubscriptionCreateModelItem": {
+      "SubscriptionCreateOptionsItem": {
         "required": [
           "price"
         ],
@@ -22560,7 +21561,7 @@
           "metadata"
         ]
       },
-      "SubscriptionItemCreateModel": {
+      "SubscriptionItemCreateOptions": {
         "required": [
           "price",
           "subscription"
@@ -22628,7 +21629,7 @@
           "set": "Overwrites the usage quantity at the specified timestamp."
         }
       },
-      "SubscriptionItemReportUsageModel": {
+      "SubscriptionItemReportUsageOptions": {
         "required": [
           "quantity"
         ],
@@ -22841,7 +21842,7 @@
           "metadata"
         ]
       },
-      "TaxRateCreateModel": {
+      "TaxRateCreateOptions": {
         "required": [
           "country",
           "name",
@@ -22954,7 +21955,7 @@
         },
         "additionalProperties": false
       },
-      "TemporaryKeyCreateModel": {
+      "TemporaryKeyCreateOptions": {
         "type": "object",
         "properties": {
           "customer": {
@@ -23175,7 +22176,7 @@
           "metadata"
         ]
       },
-      "TransferCreateModel": {
+      "TransferCreateOptions": {
         "required": [
           "amount",
           "currency",
@@ -23223,7 +22224,7 @@
           "mpesa": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/TransferCreateModelMpesa"
+                "$ref": "#/components/schemas/TransferCreateOptionsMpesa"
               }
             ],
             "description": "Details about initiation of an MPESA transfer to a customer or another business.",
@@ -23238,13 +22239,13 @@
         },
         "additionalProperties": false
       },
-      "TransferCreateModelMpesa": {
+      "TransferCreateOptionsMpesa": {
         "type": "object",
         "properties": {
           "customer": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/TransferCreateModelMpesaToCustomer"
+                "$ref": "#/components/schemas/TransferCreateOptionsMpesaToCustomer"
               }
             ],
             "description": "Details about initiation of an MPESA payment to customer.\nThis is also referred to as a Business To Customer (B2C) transfer.",
@@ -23253,7 +22254,7 @@
           "business": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/TransferCreateModelMpesaToBusiness"
+                "$ref": "#/components/schemas/TransferCreateOptionsMpesaToBusiness"
               }
             ],
             "description": "Details about initiation of an MPESA payment to another business.\nThis is also referred to as a Business To Business (B2B) transfer.",
@@ -23262,7 +22263,7 @@
         },
         "additionalProperties": false
       },
-      "TransferCreateModelMpesaToBusiness": {
+      "TransferCreateOptionsMpesaToBusiness": {
         "required": [
           "destination",
           "source"
@@ -23290,7 +22291,7 @@
         },
         "additionalProperties": false
       },
-      "TransferCreateModelMpesaToCustomer": {
+      "TransferCreateOptionsMpesaToCustomer": {
         "required": [
           "phone"
         ],
@@ -23522,7 +22523,7 @@
           "metadata"
         ]
       },
-      "TransferReversalCreateModel": {
+      "TransferReversalCreateOptions": {
         "required": [
           "reason",
           "transfer"
@@ -23929,7 +22930,7 @@
             "maxLength": 512,
             "pattern": "^[a-zA-Z0-9+=/.-_~]+$",
             "type": "string",
-            "description": "The access token to be sent in the\n[Authorization](https://tools.ietf.org/html/rfc7235#section-4.2)\nrequest header field defined by HTTP/1.1.\nThis value is populated using the \"Bearer\" scheme, using the OAuth 2.0 Bearer Token\n[RFC6750](https://tools.ietf.org/html/rfc6750) model.\n\n\nWhen not present, the Authorization request header is not populated.",
+            "description": "The access token to be sent in the\n[Authorization](https://tools.ietf.org/html/rfc7235#section-4.2)\nrequest header field defined by HTTP/1.1.\nThis value is populated using the \"Bearer\" scheme, using the OAuth 2.0 Bearer Token\n[RFC6750](https://tools.ietf.org/html/rfc6750) spec.\n\n\nWhen not present, the Authorization request header is not populated.",
             "format": "password",
             "nullable": true,
             "example": "mF_9.B5f-4.1JqM"
@@ -23990,7 +22991,7 @@
           "metadata"
         ]
       },
-      "WebhookEndpointCreateModel": {
+      "WebhookEndpointCreateOptions": {
         "required": [
           "events",
           "url"
@@ -24030,7 +23031,7 @@
             "maxLength": 512,
             "pattern": "^[a-zA-Z0-9+=/.-_~]+$",
             "type": "string",
-            "description": "The access token to be sent in the\n[Authorization](https://tools.ietf.org/html/rfc7235#section-4.2)\nrequest header field defined by HTTP/1.1.\nThis value is populated using the \"Bearer\" scheme, using the OAuth 2.0 Bearer Token\n[RFC6750](https://tools.ietf.org/html/rfc6750) model.\n\n\nWhen not present, the Authorization request header is not populated.",
+            "description": "The access token to be sent in the\n[Authorization](https://tools.ietf.org/html/rfc7235#section-4.2)\nrequest header field defined by HTTP/1.1.\nThis value is populated using the \"Bearer\" scheme, using the OAuth 2.0 Bearer Token\n[RFC6750](https://tools.ietf.org/html/rfc6750) spec.\n\n\nWhen not present, the Authorization request header is not populated.",
             "format": "password",
             "nullable": true,
             "example": "mF_9.B5f-4.1JqM"
@@ -24179,7 +23180,6 @@
         "name": "X-Falu-Signature",
         "in": "header",
         "description": "A signature used to check the integrity of the webhook event request. See [docs](/docs/developers/webhooks/signatures) for more information.",
-        "style": "simple",
         "schema": {
           "type": "string"
         },
@@ -24189,7 +23189,6 @@
         "name": "X-Falu-Version",
         "in": "header",
         "required": true,
-        "style": "simple",
         "schema": {
           "$ref": "#/components/schemas/ApiVersion"
         }
