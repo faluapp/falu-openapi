@@ -17035,9 +17035,9 @@ components:
           description: |-
             The full value is only returned at creation.
             Otherwise, a secured value is returned.
-            For example: `whs_e0gNHBa90CfdKbtcWgksn52cvXoXMqCTaL` would be
+            For example: `fwhs_e0gNHBa90CfdKbtcWgksn52cvXoXMqCTaL` would be
             returned in full on creation. However, subsequent times like read/get/update,
-            would return either `null` or `whs_e0gNHBa***************************`.
+            would return either `null` or `fwhs_e0gNHBa***************************`.
           nullable: true
         workspace:
           type: string

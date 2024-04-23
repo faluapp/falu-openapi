@@ -22962,7 +22962,7 @@
           },
           "secret": {
             "type": "string",
-            "description": "The full value is only returned at creation.\nOtherwise, a secured value is returned.\nFor example: `whs_e0gNHBa90CfdKbtcWgksn52cvXoXMqCTaL` would be\nreturned in full on creation. However, subsequent times like read/get/update,\nwould return either `null` or `whs_e0gNHBa***************************`.",
+            "description": "The full value is only returned at creation.\nOtherwise, a secured value is returned.\nFor example: `fwhs_e0gNHBa90CfdKbtcWgksn52cvXoXMqCTaL` would be\nreturned in full on creation. However, subsequent times like read/get/update,\nwould return either `null` or `fwhs_e0gNHBa***************************`.",
             "nullable": true
           },
           "workspace": {
