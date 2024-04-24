@@ -453,7 +453,7 @@ tags:
         allOf:
           - $ref: '#/components/schemas/Webhook'
 paths:
-  /v1/coupons:
+  /v1/billing/coupons:
     get:
       tags:
         - Coupons
@@ -592,7 +592,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - product_not_found
-  /v1/coupons/{id}:
+  /v1/billing/coupons/{id}:
     get:
       tags:
         - Coupons
@@ -700,7 +700,7 @@ paths:
       x-error-codes:
         - coupon_not_found
         - coupon_cannot_be_modified
-  /v1/credit_notes:
+  /v1/billing/credit_notes:
     get:
       tags:
         - Credit Notes
@@ -856,7 +856,7 @@ paths:
         - invoice_invalid_data
         - invoice_item_not_found
         - credit_note_invalid_data
-  /v1/credit_notes/{id}:
+  /v1/billing/credit_notes/{id}:
     get:
       tags:
         - Credit Notes
@@ -934,7 +934,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - credit_note_not_found
-  /v1/credit_notes/{id}/void:
+  /v1/billing/credit_notes/{id}/void:
     post:
       tags:
         - Credit Notes
@@ -970,7 +970,7 @@ paths:
         - invoice_invalid_data
         - credit_note_invalid_data
         - credit_note_not_found
-  /v1/customers/balances/transactions:
+  /v1/billing/customers/balances/transactions:
     get:
       tags:
         - Customer Balance Transactions
@@ -1103,7 +1103,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - customer_not_found
-  /v1/customers/balances/transactions/{id}:
+  /v1/billing/customers/balances/transactions/{id}:
     get:
       tags:
         - Customer Balance Transactions
@@ -1181,7 +1181,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - customer_balance_transaction_not_found
-  /v1/customer_tax_ids:
+  /v1/billing/customer_tax_ids:
     get:
       tags:
         - Customer Tax Ids
@@ -1336,7 +1336,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - customer_not_found
-  /v1/customer_tax_ids/{id}:
+  /v1/billing/customer_tax_ids/{id}:
     get:
       tags:
         - Customer Tax Ids
@@ -1398,7 +1398,7 @@ paths:
       x-error-codes:
         - customer_tax_id_not_found
         - customer_tax_id_cannot_be_modified
-  /v1/customers:
+  /v1/billing/customers:
     get:
       tags:
         - Customers
@@ -1554,7 +1554,7 @@ paths:
         - coupon_not_found
         - coupon_not_active
         - coupon_expired
-  /v1/customers/{id}:
+  /v1/billing/customers/{id}:
     get:
       tags:
         - Customers
@@ -1638,7 +1638,7 @@ paths:
         - coupon_not_active
         - coupon_expired
         - coupon_already_applied
-  /v1/customers/{id}/redact:
+  /v1/billing/customers/{id}/redact:
     post:
       tags:
         - Customers
@@ -1688,7 +1688,7 @@ paths:
         - customer_not_found
         - object_cannot_be_redacted
         - object_redaction_in_progress
-  /v1/discounts:
+  /v1/billing/discounts:
     get:
       tags:
         - Discounts
@@ -1801,7 +1801,7 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-supports-pagination: true
-  /v1/discounts/{id}:
+  /v1/billing/discounts/{id}:
     get:
       tags:
         - Discounts
@@ -1833,7 +1833,7 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-  /v1/invoice_items:
+  /v1/billing/invoice_items:
     get:
       tags:
         - Invoice Items
@@ -1967,7 +1967,7 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-supports-pagination: true
-  /v1/invoice_items/{id}:
+  /v1/billing/invoice_items/{id}:
     get:
       tags:
         - Invoice Items
@@ -2045,7 +2045,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - invoice_item_not_found
-  /v1/invoices:
+  /v1/billing/invoices:
     get:
       tags:
         - Invoices
@@ -2154,7 +2154,7 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-supports-pagination: true
-  /v1/invoices/{id}:
+  /v1/billing/invoices/{id}:
     get:
       tags:
         - Invoices
@@ -2233,7 +2233,7 @@ paths:
       x-error-codes:
         - invoice_not_found
         - invoice_invalid_data
-  /v1/invoices/upcoming:
+  /v1/billing/invoices/upcoming:
     post:
       tags:
         - Invoices
@@ -2270,7 +2270,7 @@ paths:
       x-error-codes:
         - subscription_not_found
         - invoice_invalid_data
-  /v1/invoices/{id}/finalize:
+  /v1/billing/invoices/{id}/finalize:
     post:
       tags:
         - Invoices
@@ -2305,7 +2305,7 @@ paths:
       x-error-codes:
         - invoice_not_found
         - invoice_invalid_data
-  /v1/invoices/{id}/void:
+  /v1/billing/invoices/{id}/void:
     post:
       tags:
         - Invoices
@@ -2340,7 +2340,7 @@ paths:
       x-error-codes:
         - invoice_not_found
         - invoice_invalid_data
-  /v1/invoices/{id}/write_off:
+  /v1/billing/invoices/{id}/write_off:
     post:
       tags:
         - Invoices
@@ -2375,7 +2375,7 @@ paths:
       x-error-codes:
         - invoice_not_found
         - invoice_invalid_data
-  /v1/invoices/{id}/pay:
+  /v1/billing/invoices/{id}/pay:
     post:
       tags:
         - Invoices
@@ -2417,7 +2417,7 @@ paths:
       x-error-codes:
         - invoice_not_found
         - invoice_invalid_data
-  /v1/payment_methods:
+  /v1/billing/payment_methods:
     get:
       tags:
         - Payment Methods
@@ -2557,7 +2557,7 @@ paths:
       x-error-codes:
         - invalid_settings
         - insufficient_balance
-  /v1/payment_methods/{id}:
+  /v1/billing/payment_methods/{id}:
     get:
       tags:
         - Payment Methods
@@ -2635,7 +2635,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - payment_method_not_found
-  /v1/payment_methods/{id}/attach:
+  /v1/billing/payment_methods/{id}/attach:
     post:
       tags:
         - Payment Methods
@@ -2679,7 +2679,7 @@ paths:
         - customer_not_found
         - object_redacted
         - payment_method_cannot_be_modified
-  /v1/payment_methods/{id}/detach:
+  /v1/billing/payment_methods/{id}/detach:
     post:
       tags:
         - Payment Methods
@@ -2715,7 +2715,7 @@ paths:
         - payment_method_not_found
         - payment_method_cannot_be_modified
         - object_redacted
-  /v1/prices:
+  /v1/billing/prices:
     get:
       tags:
         - Prices
@@ -2874,7 +2874,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - product_not_found
-  /v1/prices/{id}:
+  /v1/billing/prices/{id}:
     get:
       tags:
         - Prices
@@ -2982,7 +2982,7 @@ paths:
       x-error-codes:
         - price_not_found
         - price_cannot_be_modified
-  /v1/products:
+  /v1/billing/products:
     get:
       tags:
         - Products
@@ -3110,7 +3110,7 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-  /v1/products/{id}:
+  /v1/billing/products/{id}:
     get:
       tags:
         - Products
@@ -3218,7 +3218,7 @@ paths:
       x-error-codes:
         - product_not_found
         - product_cannot_be_modified
-  /v1/subscription_items:
+  /v1/billing/subscription_items:
     get:
       tags:
         - Subscription Items
@@ -3370,7 +3370,7 @@ paths:
         - subscription_cannot_be_modified
         - tax_rate_not_found
         - tax_rate_not_active
-  /v1/subscription_items/{id}:
+  /v1/billing/subscription_items/{id}:
     get:
       tags:
         - Subscription Items
@@ -3455,7 +3455,7 @@ paths:
         - subscription_invalid_data
         - tax_rate_not_found
         - tax_rate_not_active
-  /v1/subscription_items/{id}/usage:
+  /v1/billing/subscription_items/{id}/usage:
     get:
       tags:
         - Subscription Usage
@@ -3607,7 +3607,7 @@ paths:
         - subscription_item_not_usage_based
         - subscription_item_edit_locked
         - subscription_item_usage_out_of_period
-  /v1/subscriptions:
+  /v1/billing/subscriptions:
     get:
       tags:
         - Subscriptions
@@ -3758,7 +3758,7 @@ paths:
         - tax_rate_not_found
         - tax_rate_not_active
         - payment_method_not_found
-  /v1/subscriptions/{id}:
+  /v1/billing/subscriptions/{id}:
     get:
       tags:
         - Subscriptions
@@ -3845,7 +3845,7 @@ paths:
         - tax_rate_not_found
         - tax_rate_not_active
         - payment_method_not_found
-  /v1/subscriptions/{id}/cancel:
+  /v1/billing/subscriptions/{id}/cancel:
     post:
       tags:
         - Subscriptions
@@ -3892,7 +3892,7 @@ paths:
       x-error-codes:
         - subscription_not_found
         - subscription_cannot_be_cancelled
-  /v1/tax_rates:
+  /v1/billing/tax_rates:
     get:
       tags:
         - Tax Rates
@@ -4020,7 +4020,7 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-  /v1/tax_rates/{id}:
+  /v1/billing/tax_rates/{id}:
     get:
       tags:
         - Tax Rates

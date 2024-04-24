@@ -596,7 +596,7 @@
     }
   ],
   "paths": {
-    "/v1/coupons": {
+    "/v1/billing/coupons": {
       "get": {
         "tags": [
           "Coupons"
@@ -809,7 +809,7 @@
         ]
       }
     },
-    "/v1/coupons/{id}": {
+    "/v1/billing/coupons/{id}": {
       "get": {
         "tags": [
           "Coupons"
@@ -982,7 +982,7 @@
         ]
       }
     },
-    "/v1/credit_notes": {
+    "/v1/billing/credit_notes": {
       "get": {
         "tags": [
           "Credit Notes"
@@ -1218,7 +1218,7 @@
         ]
       }
     },
-    "/v1/credit_notes/{id}": {
+    "/v1/billing/credit_notes/{id}": {
       "get": {
         "tags": [
           "Credit Notes"
@@ -1344,7 +1344,7 @@
         ]
       }
     },
-    "/v1/credit_notes/{id}/void": {
+    "/v1/billing/credit_notes/{id}/void": {
       "post": {
         "tags": [
           "Credit Notes"
@@ -1401,7 +1401,7 @@
         ]
       }
     },
-    "/v1/customers/balances/transactions": {
+    "/v1/billing/customers/balances/transactions": {
       "get": {
         "tags": [
           "Customer Balance Transactions"
@@ -1603,7 +1603,7 @@
         ]
       }
     },
-    "/v1/customers/balances/transactions/{id}": {
+    "/v1/billing/customers/balances/transactions/{id}": {
       "get": {
         "tags": [
           "Customer Balance Transactions"
@@ -1729,7 +1729,7 @@
         ]
       }
     },
-    "/v1/customer_tax_ids": {
+    "/v1/billing/customer_tax_ids": {
       "get": {
         "tags": [
           "Customer Tax Ids"
@@ -1964,7 +1964,7 @@
         ]
       }
     },
-    "/v1/customer_tax_ids/{id}": {
+    "/v1/billing/customer_tax_ids/{id}": {
       "get": {
         "tags": [
           "Customer Tax Ids"
@@ -2063,7 +2063,7 @@
         ]
       }
     },
-    "/v1/customers": {
+    "/v1/billing/customers": {
       "get": {
         "tags": [
           "Customers"
@@ -2298,7 +2298,7 @@
         ]
       }
     },
-    "/v1/customers/{id}": {
+    "/v1/billing/customers/{id}": {
       "get": {
         "tags": [
           "Customers"
@@ -2430,7 +2430,7 @@
         ]
       }
     },
-    "/v1/customers/{id}/redact": {
+    "/v1/billing/customers/{id}/redact": {
       "post": {
         "tags": [
           "Customers"
@@ -2488,7 +2488,7 @@
         ]
       }
     },
-    "/v1/discounts": {
+    "/v1/billing/discounts": {
       "get": {
         "tags": [
           "Discounts"
@@ -2652,7 +2652,7 @@
         "x-supports-pagination": true
       }
     },
-    "/v1/discounts/{id}": {
+    "/v1/billing/discounts/{id}": {
       "get": {
         "tags": [
           "Discounts"
@@ -2704,7 +2704,7 @@
         }
       }
     },
-    "/v1/invoice_items": {
+    "/v1/billing/invoice_items": {
       "get": {
         "tags": [
           "Invoice Items"
@@ -2898,7 +2898,7 @@
         "x-supports-pagination": true
       }
     },
-    "/v1/invoice_items/{id}": {
+    "/v1/billing/invoice_items/{id}": {
       "get": {
         "tags": [
           "Invoice Items"
@@ -3024,7 +3024,7 @@
         ]
       }
     },
-    "/v1/invoices": {
+    "/v1/billing/invoices": {
       "get": {
         "tags": [
           "Invoices"
@@ -3185,7 +3185,7 @@
         "x-supports-pagination": true
       }
     },
-    "/v1/invoices/{id}": {
+    "/v1/billing/invoices/{id}": {
       "get": {
         "tags": [
           "Invoices"
@@ -3312,7 +3312,7 @@
         ]
       }
     },
-    "/v1/invoices/upcoming": {
+    "/v1/billing/invoices/upcoming": {
       "post": {
         "tags": [
           "Invoices"
@@ -3374,7 +3374,7 @@
         ]
       }
     },
-    "/v1/invoices/{id}/finalize": {
+    "/v1/billing/invoices/{id}/finalize": {
       "post": {
         "tags": [
           "Invoices"
@@ -3430,7 +3430,7 @@
         ]
       }
     },
-    "/v1/invoices/{id}/void": {
+    "/v1/billing/invoices/{id}/void": {
       "post": {
         "tags": [
           "Invoices"
@@ -3486,7 +3486,7 @@
         ]
       }
     },
-    "/v1/invoices/{id}/write_off": {
+    "/v1/billing/invoices/{id}/write_off": {
       "post": {
         "tags": [
           "Invoices"
@@ -3542,7 +3542,7 @@
         ]
       }
     },
-    "/v1/invoices/{id}/pay": {
+    "/v1/billing/invoices/{id}/pay": {
       "post": {
         "tags": [
           "Invoices"
@@ -3612,7 +3612,7 @@
         ]
       }
     },
-    "/v1/payment_methods": {
+    "/v1/billing/payment_methods": {
       "get": {
         "tags": [
           "Payment Methods"
@@ -3825,7 +3825,7 @@
         ]
       }
     },
-    "/v1/payment_methods/{id}": {
+    "/v1/billing/payment_methods/{id}": {
       "get": {
         "tags": [
           "Payment Methods"
@@ -3951,7 +3951,7 @@
         ]
       }
     },
-    "/v1/payment_methods/{id}/attach": {
+    "/v1/billing/payment_methods/{id}/attach": {
       "post": {
         "tags": [
           "Payment Methods"
@@ -4023,7 +4023,7 @@
         ]
       }
     },
-    "/v1/payment_methods/{id}/detach": {
+    "/v1/billing/payment_methods/{id}/detach": {
       "post": {
         "tags": [
           "Payment Methods"
@@ -4080,7 +4080,7 @@
         ]
       }
     },
-    "/v1/prices": {
+    "/v1/billing/prices": {
       "get": {
         "tags": [
           "Prices"
@@ -4322,7 +4322,7 @@
         ]
       }
     },
-    "/v1/prices/{id}": {
+    "/v1/billing/prices/{id}": {
       "get": {
         "tags": [
           "Prices"
@@ -4495,7 +4495,7 @@
         ]
       }
     },
-    "/v1/products": {
+    "/v1/billing/products": {
       "get": {
         "tags": [
           "Products"
@@ -4691,7 +4691,7 @@
         }
       }
     },
-    "/v1/products/{id}": {
+    "/v1/billing/products/{id}": {
       "get": {
         "tags": [
           "Products"
@@ -4864,7 +4864,7 @@
         ]
       }
     },
-    "/v1/subscription_items": {
+    "/v1/billing/subscription_items": {
       "get": {
         "tags": [
           "Subscription Items"
@@ -5091,7 +5091,7 @@
         ]
       }
     },
-    "/v1/subscription_items/{id}": {
+    "/v1/billing/subscription_items/{id}": {
       "get": {
         "tags": [
           "Subscription Items"
@@ -5224,7 +5224,7 @@
         ]
       }
     },
-    "/v1/subscription_items/{id}/usage": {
+    "/v1/billing/subscription_items/{id}/usage": {
       "get": {
         "tags": [
           "Subscription Usage"
@@ -5449,7 +5449,7 @@
         ]
       }
     },
-    "/v1/subscriptions": {
+    "/v1/billing/subscriptions": {
       "get": {
         "tags": [
           "Subscriptions"
@@ -5673,7 +5673,7 @@
         ]
       }
     },
-    "/v1/subscriptions/{id}": {
+    "/v1/billing/subscriptions/{id}": {
       "get": {
         "tags": [
           "Subscriptions"
@@ -5808,7 +5808,7 @@
         ]
       }
     },
-    "/v1/subscriptions/{id}/cancel": {
+    "/v1/billing/subscriptions/{id}/cancel": {
       "post": {
         "tags": [
           "Subscriptions"
@@ -5879,7 +5879,7 @@
         ]
       }
     },
-    "/v1/tax_rates": {
+    "/v1/billing/tax_rates": {
       "get": {
         "tags": [
           "Tax Rates"
@@ -6075,7 +6075,7 @@
         }
       }
     },
-    "/v1/tax_rates/{id}": {
+    "/v1/billing/tax_rates/{id}": {
       "get": {
         "tags": [
           "Tax Rates"
