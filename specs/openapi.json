@@ -13,586 +13,11 @@
       "name": "Falu API",
       "url": "https://falu.io/legal/terms"
     },
-    "version": "2022-09-01"
+    "version": "2024-06-01"
   },
   "servers": [
     {
       "url": "https://api.falu.io"
-    }
-  ],
-  "security": [
-    {
-      "basicAuth": []
-    },
-    {
-      "bearerAuth": []
-    }
-  ],
-  "tags": [
-    {
-      "name": "Coupons",
-      "description": "A coupon contains information about a percent-off or amount-off discount you might want to apply for your customers.\nThey may be applied to [Subscriptions](#billing/subscriptions), [Invoices](#billing/invoices), and more.\nHowever, they do not work with one-off transactions such as [Payments](#money/payments) and [Transfers](#money/transfers).",
-      "x-object-schema": {
-        "name": "Coupon",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/Coupon"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Credit Notes",
-      "description": "Credit notes are used to adjust an invoice's amount after the invoice is finalized (not in draft mode).",
-      "x-object-schema": {
-        "name": "Credit Note",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/CreditNote"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Customer Balance Transactions",
-      "description": "This object represents the balance transactions related to a Customer(#billing/customers). These balances can be used to\nissue credit or debit adjustments. Adjustments in the credit balance could be a credit (meaning you owe them money)\nor a debit (meaning they owe you money). The adjustments can then apply to future [Invoices](#billing/invoices).",
-      "x-object-schema": {
-        "name": "Customer Balance Transaction",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/CustomerBalanceTransaction"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Customer Tax Ids",
-      "description": "This object represents the tax ids related to a Customer(#billing/customers).",
-      "x-object-schema": {
-        "name": "Customer Tax Id",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/CustomerTaxId"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Customers",
-      "description": "This object represents a customer of your business.\nIt lets you track payments, transfers, subscriptions, and messages that belong to the same customer.",
-      "x-object-schema": {
-        "name": "Customer",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/Customer"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Discounts",
-      "description": "A discount represents the actual application of a [Coupon](#billing/coupons).\nIt contains information about when the discount began, when it will end, and what it is applied to.",
-      "x-object-schema": {
-        "name": "Discount",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/Discount"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Events",
-      "description": "Events are our way of letting you know when something interesting happens in your\nworkspace. When an interesting events occurs, we create a new `Event` object. For\nexample, when a payment succeeds, we create a `payment.succeeded` event; and when\na message delivery fails, we create an `message.failed` event. Note that many API\nrequests may cause multiple events to be created. For example, if you create a new\nmessage, you will receive both a `message.sent` event and either a `message.failed`\nor `message.delivered` event.\n\nEvents occur when the state of another API resource changes. The state of that resource\nat the time of the change is embedded in the event's data field. For example, a\n`message.sent` event will contain a message, and a `payment.failed` event will contain\na payment.\n\nAs with other API resources, you can use endpoints to retrieve an\n[individual event](#events_get_event) or a [list of events](#events_get_events) from\nthe API. We also have a separate [webhooks](https://en.wikipedia.org/wiki/Webhook) API\nfor sending the `Event` objects directly to an endpoint on your server. Webhooks are\nmanaged in your [workspace](https://dashboard.falu.io/webhooks), and our\n[Using Webhooks](/docs/webhooks) guide will help you get setup.\n\n**NOTE:** Access to events through the [Retrieve Event API](#events_get_event)\nis guaranteed only for the last 30 days.",
-      "x-object-schema": {
-        "name": "Tracked Event",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/TrackedEvent"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "File Links",
-      "description": "To share the contents of an `File` object with non-Falu users, you can create an `FileLink`.\nIt contains a URL that can be used to retrieve the contents of the file without authentication.",
-      "x-object-schema": {
-        "name": "File Link",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/FileLink"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Files",
-      "description": "This is an object representing a file hosted on Falu's servers.\nThe file may have been uploaded by yourself using the [create file](#files_post_file)\nrequest (for example, when uploading an identity document) or it may have been created by Falu\n(for example, a statement of accounts).",
-      "externalDocs": {
-        "description": "Files",
-        "url": "/docs/files",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "File",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/File"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Identity Verification Reports",
-      "description": "An `IdentityVerificationReport` is the result of an attempt to collect and verify data from a user.\nYou can find the result of each verification check performed in the appropriate node: `document`, `id_number`, `tax_number`.\n\nEach `IdentityVerificationReport` contains a copy of any data collected by the user as well as reference identifiers\nwhich can be used to access collected images.\nIdentityVerificationReports are created automatically via the [IdentityVerification API](#identity_identity_verifications).",
-      "externalDocs": {
-        "description": "Accessing verification results",
-        "url": "/docs/identity/verifications#results",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Identity Verification Report",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/IdentityVerificationReport"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Identity Verifications",
-      "description": "An IdentityVerification guides you through the process of collecting and verifying the identities of your users.\nIt contains details such as what [verification check](/docs/identity/verification-checks) to perform.\nOnly create one IdentityVerification for each verification in your system.\n\nAn IdentityVerification transitions through [multiple statuses](/docs/identity/how-sessions-work) throughout\nits lifetime as it progresses through the verification flow. The IdentityVerification contains the user’s\nverified data after verification checks are complete.",
-      "externalDocs": {
-        "description": "Using Identity Verifications API",
-        "url": "/docs/identity/verifications",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Identity Verification",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/IdentityVerification"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Invoice Items",
-      "description": "Invoice items represent the component lines of an invoice.",
-      "x-object-schema": {
-        "name": "Invoice Item",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/InvoiceItem"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Invoices",
-      "description": "Invoices are statements of amounts owed by a customer, and are either generated one-off, or generated periodically from a subscription.\n\nThey contain invoice items, and proration adjustments that may be caused by subscription upgrades/downgrades (if necessary).",
-      "x-object-schema": {
-        "name": "Invoice",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/Invoice"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Message Batches",
-      "description": "To send multiple messages you create a `MessageBatch` object. You can retrieve,\ncancel, redact individual messages or the message batch.\n\nFalu supports sending messages or various types and destinations\nas described in the message types [guide](/docs/messages/types)\n\n`MessageBatch` objects expire after 45 days alongside the `Message` objects managed\nby it, after which they are forcefully purged from all our records.",
-      "externalDocs": {
-        "description": "Using batches to send messages",
-        "url": "/docs/messages/batches",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Message Batch",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/MessageBatch"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Message Senders",
-      "description": "A `MessageSender` object is a representation of a resource that you use\nto send messages for branding purposes.\n\nThis is usually an alphanumeric or numeric-only code that identifies\nyour business or its units to your customers.",
-      "externalDocs": {
-        "description": "Send branded messages",
-        "url": "/docs/messages/senders",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Message Sender",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/MessageSender"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Message Streams",
-      "description": "A `MessageStream` object allows you to manage the different kinds of messages\nthat you send or received in your workspace. You may have up to 10 streams in\nyour workspace, including the default ones. Default streams cannot be deleted.\n\n`MessageStream` objects help you categorize your messages into multiple categories\nand also allows us to maintain high delivery rates for transactional messages.\nThe messages sent via transactional streams are closely monitored to prevent abuse.",
-      "externalDocs": {
-        "description": "Sending messages using streams",
-        "url": "/docs/messages/streams",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Message Stream",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/MessageStream"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Message Suppressions",
-      "description": "A `MessageSuppression` object allows you to manage the phone number destinations\nthat are not currently active for sending to.",
-      "externalDocs": {
-        "description": "Working with message suppressions",
-        "url": "/docs/messages/suppressions",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Message Suppression",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/MessageSuppression"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Message Templates",
-      "description": "To separate the concerns in sending messages and deciding the message content,\nuse a `MessageTemplate` object. In most setups, the message content is designed\nand evolved by the marketing and operations teams whereas, the actual message\nsending is done by the developers. Message templates help reduce the friction.\n\n`MessageTemplate` objects can also be used to maintain messages in different\nlanguages/regions with much less technical debt in your system.",
-      "externalDocs": {
-        "description": "Working with message templates",
-        "url": "/docs/messages/templates",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Message Template",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/MessageTemplate"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Messages",
-      "description": "To send a message you create a `Message` object. You can retrieve and\nredact individual messages as well as list messages.\n\nFalu supports sending messages or various types and destinations\nas described in the message types [guide](/docs/messages/types)\n\n`Message` objects can also be created if your workspace supports messages\nfrom customers to your business. These are referred to inbound messages.\n\n`Message` objects expire after 45 days, after which they are forcefully\npurged from all our records.",
-      "externalDocs": {
-        "description": "Sending messages to your audiences",
-        "url": "/docs/messages",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Message",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/Message"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Money Balances",
-      "description": "Money balances are a reflection of the money available in bring-your-own provider setups.\nFor fully managed ones, check the workspace balance.",
-      "x-object-schema": {
-        "name": "Money Balances",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/MoneyBalances"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Payment Authorizations",
-      "description": "When a payment provider supports customer initiated payments and a customer initiates\na payment, a Payment `Authorization` object is created.\n[Authorizations](/docs/payments/authorizations) must be approved for the payment to\nbe completed successfully.",
-      "externalDocs": {
-        "description": "Accepting a Payment with the Payment Authorizations API",
-        "url": "/docs/payments/authorizations",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Payment Authorization",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/PaymentAuthorization"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Payment Methods",
-      "description": "`PaymentMethod` objects represent your customer's payment instruments.\nYou can use them to collect payments or attach them to customer objects to store instrument details for future payments.",
-      "x-object-schema": {
-        "name": "Payment Method",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/PaymentMethod"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Payment Refunds",
-      "description": "`PaymentRefund` object allows you to refund a payment that has been previously been\ncreated but not yet refunded. Funds will be refunded to the payment instrument\nthat was originally charged. Some payment providers have a time window after which\nrefunds cannot happen. In this case you can initiate a `Transfer` to the\ncustomer with the appropriate amount.",
-      "externalDocs": {
-        "description": "Refunding Payments",
-        "url": "/docs/payments#refunds",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Payment Refund",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/PaymentRefund"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Payments",
-      "description": "To initiate a payment from a customer, you create a `Payment` object. You can retrieve\nand refund individual payments as well as a list all payments.\n\n`Payment` objects can also be created if your workspace supports payment providers that\nallow customers to initiate the payments such as MPESA and EFT/RTGS. In this case, the\nprovider may require you to authorize the payment before it is completed. Our\n[Working with Payment Authorizations](/docs/payments/authorizations) guide will help\nyou get setup.",
-      "externalDocs": {
-        "description": "Accepting Payments",
-        "url": "/docs/payments",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Payment",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/Payment"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Prices",
-      "description": "Prices define the unit cost, currency, and billing cycle (if any) for both recurring and one-time purchases of products.",
-      "x-object-schema": {
-        "name": "Price",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/Price"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Products",
-      "description": "Subscriptions allow you to bill a customer on a recurring basis per unit, seat or based on usage.",
-      "x-object-schema": {
-        "name": "Product",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/Product"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Subscription Items",
-      "description": "Subscription items allow you to create customer subscriptions with more than one plan, making it easy to represent complex billing relationships.",
-      "x-object-schema": {
-        "name": "Subscription Item",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/SubscriptionItem"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Subscription Usage",
-      "description": "Subscription usage records allow you to report customer usage for metered billing of subscription prices.",
-      "x-object-schema": {
-        "name": "Subscription Item Usage",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/SubscriptionItemUsage"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Subscriptions",
-      "description": "Subscriptions allow you to bill a customer on a recurring basis per unit, seat or based on usage.",
-      "x-object-schema": {
-        "name": "Subscription",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/Subscription"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Tax Rates",
-      "description": "Tax rates can be applied to invoices and subscriptions to collect tax.",
-      "x-object-schema": {
-        "name": "Tax Rate",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/TaxRate"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Temporary Keys",
-      "description": "A temporary key is a special kind of API key but its is valid for 1 hour from the creation time\nand restricted to a specific object.",
-      "x-object-schema": {
-        "name": "Temporary Key",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/TemporaryKey"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Transfer Reversals",
-      "description": "`TransferReversal` object allows you to reverse a transfer that has been previously\ncreated but not yet reversed. Funds will be refunded your workspace.\n\n**NOTE:** Some providers have a time windows after which reversals cannot happen.",
-      "externalDocs": {
-        "description": "Reversing Transfers",
-        "url": "/docs/transfers#reversing-a-transfer",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Transfer Reversal",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/TransferReversal"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Transfers",
-      "description": "A `Transfer` object is created when you move money from your business either to another\nbusiness or to a customer.",
-      "externalDocs": {
-        "description": "Creating fund transfers",
-        "url": "/docs/transfers",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Transfer",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/Transfer"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Webhook Endpoints",
-      "description": "You can configure [webhook endpoints](/docs/webhooks) via the API to be notified about events that happen in your Falu workspace.\n\nMost users configure webhooks from [the dashboard](https://dashboard.falu.io/webhooks),\nwhich provides a user interface to registering and testing your webhook endpoints.",
-      "externalDocs": {
-        "description": "Setting up Webhooks",
-        "url": "/docs/developers/webhooks/go-live",
-        "x-kind": "guide"
-      },
-      "x-object-schema": {
-        "name": "Webhook Endpoint",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/WebhookEndpoint"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Webhooks",
-      "description": "Every time an event is generated and there is an enabled webhook endpoint for the event type,\nFalu server generate a `Webhook` which represents the delivery of the event to the given webhook.\nIt contains the delivery history and can be retried if failed.",
-      "x-object-schema": {
-        "name": "Webhook",
-        "schema": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/Webhook"
-            }
-          ]
-        }
-      }
     }
   ],
   "paths": {
@@ -883,20 +308,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CouponUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CouponUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -1292,20 +719,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreditNoteUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreditNoteUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -2044,20 +1473,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomerUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomerUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -2436,20 +1867,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomerBalanceTransactionUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomerBalanceTransactionUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -2972,20 +2405,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvoiceItemUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvoiceItemUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -3259,20 +2694,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvoiceUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InvoiceUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -3899,20 +3336,24 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PaymentMethodUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a payment method."
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PaymentMethodUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a payment method."
               }
             }
           }
@@ -4396,20 +3837,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PriceUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PriceUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -4765,20 +4208,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ProductUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ProductUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -5165,20 +4610,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SubscriptionItemUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SubscriptionItemUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -5747,20 +5194,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SubscriptionUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SubscriptionUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -6149,20 +5598,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TaxRateUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TaxRateUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -6797,20 +6248,24 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/FileLinkUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a file link."
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/FileLinkUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a file link."
               }
             }
           }
@@ -7754,20 +7209,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/IdentityVerificationUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/IdentityVerificationUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -8221,20 +7678,24 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/MessageBatchUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details about a message batch that can be patched."
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/MessageBatchUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details about a message batch that can be patched."
               }
             }
           }
@@ -8756,20 +8217,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/MessageSenderUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/MessageSenderUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -9139,20 +8602,24 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/MessageStreamUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details about a message stream that can be patched."
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/MessageStreamUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details about a message stream that can be patched."
               }
             }
           }
@@ -9963,20 +9430,24 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/MessageTemplateUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details about a template that can be patched."
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/MessageTemplateUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details about a template that can be patched."
               }
             }
           }
@@ -10590,20 +10061,24 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/MessageUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details about a message that can be patched."
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/MessageUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details about a message that can be patched."
               }
             }
           }
@@ -11143,20 +10618,24 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PaymentAuthorizationUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a payment authorization."
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PaymentAuthorizationUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a payment authorization."
               }
             }
           }
@@ -11376,6 +10855,16 @@
               "example": "cust_602a8dd0a54847479a874de4"
             },
             "example": "cust_602a8dd0a54847479a874de4"
+          },
+          {
+            "name": "money_provider",
+            "in": "query",
+            "description": "Filter options for `money_provider` property.",
+            "schema": {
+              "type": "string",
+              "example": "mprov_602a8dd0a54847479a874de4"
+            },
+            "example": "mprov_602a8dd0a54847479a874de4"
           },
           {
             "name": "currency",
@@ -11693,20 +11182,24 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PaymentRefundUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a payment refund."
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PaymentRefundUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a payment refund."
               }
             }
           }
@@ -11784,6 +11277,16 @@
               "example": "cust_602a8dd0a54847479a874de4"
             },
             "example": "cust_602a8dd0a54847479a874de4"
+          },
+          {
+            "name": "money_provider",
+            "in": "query",
+            "description": "Filter options for `money_provider` property.",
+            "schema": {
+              "type": "string",
+              "example": "mprov_602a8dd0a54847479a874de4"
+            },
+            "example": "mprov_602a8dd0a54847479a874de4"
           },
           {
             "name": "currency",
@@ -12101,20 +11604,24 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PaymentUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a payment."
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PaymentUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a payment."
               }
             }
           }
@@ -12488,6 +11995,16 @@
             "example": "cust_602a8dd0a54847479a874de4"
           },
           {
+            "name": "money_provider",
+            "in": "query",
+            "description": "Filter options for `money_provider` property.",
+            "schema": {
+              "type": "string",
+              "example": "mprov_602a8dd0a54847479a874de4"
+            },
+            "example": "mprov_602a8dd0a54847479a874de4"
+          },
+          {
             "name": "currency",
             "in": "query",
             "schema": {
@@ -12802,20 +12319,24 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TransferReversalUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a transfer reversal."
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TransferReversalUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a transfer reversal."
               }
             }
           }
@@ -12904,6 +12425,16 @@
               "example": "cust_602a8dd0a54847479a874de4"
             },
             "example": "cust_602a8dd0a54847479a874de4"
+          },
+          {
+            "name": "money_provider",
+            "in": "query",
+            "description": "Filter options for `money_provider` property.",
+            "schema": {
+              "type": "string",
+              "example": "mprov_602a8dd0a54847479a874de4"
+            },
+            "example": "mprov_602a8dd0a54847479a874de4"
           },
           {
             "name": "currency",
@@ -13221,20 +12752,24 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TransferUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a transfer."
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TransferUpdateOptions"
+                  }
+                ],
+                "description": "Represents the details that can be patched in a transfer."
               }
             }
           }
@@ -13759,20 +13294,22 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json-patch+json": {
+            "application/merge-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WebhookEndpointUpdateOptions"
+                  }
+                ]
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Operation"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WebhookEndpointUpdateOptions"
+                  }
+                ]
               }
             }
           }
@@ -13862,11 +13399,11 @@
     "schemas": {
       "ApiVersion": {
         "enum": [
-          "2022-09-01"
+          "2024-06-01"
         ],
         "type": "string",
         "description": "The API version to use.",
-        "example": "2022-09-01"
+        "example": "2024-06-01"
       },
       "BilledDiscountAmount": {
         "type": "object",
@@ -13934,7 +13471,7 @@
           },
           "description": {
             "type": "string",
-            "description": "An arbitrary string attached to the tax rate for your internal use only.\nIt will not be visible to your customers.",
+            "description": "An arbitrary string attached to the tax rate for your use.\nIt will not be visible to your customers.",
             "nullable": true,
             "example": "Effective 01 April 2020"
           }
@@ -14064,12 +13601,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "name",
-          "active",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "CouponCreateOptions": {
         "required": [
@@ -14180,6 +13712,31 @@
           "amount"
         ],
         "type": "string"
+      },
+      "CouponUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the coupon displayed to customers.\nWhen not supplied, the `id` is displayed instead.",
+            "nullable": true,
+            "example": "10% off"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the coupon is currently available for new usage.\nDefaults to true.",
+            "default": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "CreditNote": {
         "type": "object",
@@ -14315,11 +13872,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "description",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "CreditNoteCreateOptions": {
         "required": [
@@ -14503,6 +14056,26 @@
         ],
         "type": "string"
       },
+      "CreditNoteUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Customer-facing text that appears on the credit note PDF.",
+            "nullable": true,
+            "example": "Sponsored proof of concept"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Customer": {
         "type": "object",
         "properties": {
@@ -14640,21 +14213,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "address",
-          "description",
-          "email",
-          "name",
-          "phone",
-          "timezone",
-          "language",
-          "coupon",
-          "type",
-          "invoicing",
-          "balances",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "CustomerBalanceTransaction": {
         "type": "object",
@@ -14757,11 +14316,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "description",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "CustomerBalanceTransactionCreateOptions": {
         "required": [
@@ -14827,6 +14382,26 @@
           "invoice_too_large": "When the amount due on an invoice is greater than the maximum chargeable amount the invoice\nis debited to the customer balance and added to the amount due of the next issued invoice.",
           "unapplied_from_invoice": "Traces the reversal of an applied customer balance from a linked invoice.\nPaired with an earlier ‘applied_to_invoice’ transaction."
         }
+      },
+      "CustomerBalanceTransactionUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "An arbitrary string attached to the customer balance transaction that can be displayed to your customers.",
+            "nullable": true,
+            "example": "Migrated balance transaction from previous system."
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "CustomerCreateOptions": {
         "type": "object",
@@ -15213,6 +14788,105 @@
           "small_business"
         ],
         "type": "string"
+      },
+      "CustomerUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhysicalAddress"
+              }
+            ],
+            "description": "The customer’s primary address.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "nullable": true,
+            "example": "This is for my reference"
+          },
+          "email": {
+            "type": "string",
+            "description": "The customer’s email address.",
+            "format": "email",
+            "nullable": true,
+            "example": "user@example.com"
+          },
+          "name": {
+            "type": "string",
+            "description": "The customer’s full name or business name.",
+            "nullable": true,
+            "example": "John Kamau Onyango"
+          },
+          "phone": {
+            "type": "string",
+            "description": "The customer’s phone number.",
+            "format": "tel",
+            "nullable": true,
+            "example": "+254722000000"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "The customer’s timezone.\nWhen not provided, the server decides depending on the task at hand.",
+            "format": "timezone",
+            "nullable": true,
+            "example": "Africa/Nairobi"
+          },
+          "language": {
+            "maxLength": 3,
+            "minLength": 0,
+            "type": "string",
+            "description": "Three-letter [ISO language code](https://www.iso.org/iso-639-language-codes.html),\nin lowercase.\n\nThis determines the language to be used for communications to the customer\nincluding emails, messages, PDF documents, and hosted pages.\nWhen not provided, `eng` (English) is used.\nCurrently only `eng` is allowed.",
+            "format": "language",
+            "nullable": true,
+            "example": "eng"
+          },
+          "coupon": {
+            "type": "string",
+            "description": "The coupon attached to the customer.",
+            "nullable": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerType"
+              }
+            ],
+            "description": "Type of customer\nDefaults to `individual`.",
+            "default": "individual"
+          },
+          "invoicing": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerInvoicing"
+              }
+            ],
+            "description": "Settings for invoicing the customer.",
+            "nullable": true
+          },
+          "balances": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int64",
+              "nullable": true
+            },
+            "description": "Set of key-value pairs mapping a customer's balances in various currencies. The key is the currency while the value is the customer balance.\nNegative values are treated as credit (a reduction in the amount owed by the customer) that you can apply to the next invoice.\nPositive values are treated as a debit (an increase in the amount owed by the customer to you) that you can apply to the next invoice.",
+            "nullable": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "DataRedaction": {
         "type": "object",
@@ -15717,11 +15391,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents an unauthenticated link to a file.",
-        "x-patchable": [
-          "metadata",
-          "expires"
-        ]
+        "description": "Represents an unauthenticated link to a file."
       },
       "FileLinkCreateOptions": {
         "required": [
@@ -15751,6 +15421,27 @@
           }
         },
         "additionalProperties": false
+      },
+      "FileLinkUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          },
+          "expires": {
+            "type": "string",
+            "description": "Time at which the link expires.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the details that can be patched in a file link."
       },
       "FilePurpose": {
         "enum": [
@@ -15953,10 +15644,6 @@
           }
         },
         "additionalProperties": false,
-        "x-patchable": [
-          "description",
-          "metadata"
-        ],
         "x-pii": [
           "outputs"
         ]
@@ -17466,6 +17153,26 @@
           "document_and_video": "Requires the user to upload a verifiable identification\ndocument alongside a video recording."
         }
       },
+      "IdentityVerificationUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "nullable": true,
+            "example": "This is for my reference"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "IdentityVerificationVideoErrorCode": {
         "enum": [
           "video_document_missing_photo",
@@ -17730,12 +17437,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "default_payment_method",
-          "description",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "InvoiceAttempts": {
         "type": "object",
@@ -17967,11 +17669,30 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "description",
-          "metadata"
-        ]
+        "additionalProperties": false
+      },
+      "InvoiceItemUpdateOptions": {
+        "required": [
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "description": {
+            "minLength": 1,
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "example": "This is for my reference"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "InvoicePayOptions": {
         "required": [
@@ -17995,6 +17716,33 @@
           "written_off"
         ],
         "type": "string"
+      },
+      "InvoiceUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "default_payment_method": {
+            "type": "string",
+            "description": "Identifier of the default payment method that's attached to the customer associated with the invoice,\nto be used as the default payment method for invoice.\nIf none is set, the customer's default payment method us used.",
+            "nullable": true,
+            "example": "pm_602a8dd0a54847479a874de4"
+          },
+          "description": {
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "nullable": true,
+            "example": "This is for my reference"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "Message": {
         "type": "object",
@@ -18152,9 +17900,6 @@
         },
         "additionalProperties": false,
         "description": "Represents a message.",
-        "x-patchable": [
-          "metadata"
-        ],
         "x-pii": [
           "body"
         ]
@@ -18256,11 +18001,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents a batch of messages for tracking purposes.",
-        "x-patchable": [
-          "description",
-          "metadata"
-        ]
+        "description": "Represents a batch of messages for tracking purposes."
       },
       "MessageBatchCreateOptions": {
         "required": [
@@ -18428,6 +18169,27 @@
           }
         },
         "additionalProperties": false
+      },
+      "MessageBatchUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "nullable": true,
+            "example": "This is for my reference"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the details about a message batch that can be patched."
       },
       "MessageChannelType": {
         "enum": [
@@ -18815,11 +18577,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "description",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "MessageSenderAlphanumericDetails": {
         "type": "object",
@@ -18935,6 +18693,26 @@
         "x-enumDescriptions": {
           "alphanumeric": "A branded sender identifier that can be used for sending messages.\nIts value is shown to the recipient but they cannot reply.\nInstead, use the managed `short_code` in the sender to receive messages."
         }
+      },
+      "MessageSenderUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "nullable": true,
+            "example": "This is for my reference"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "MessageSenderWhatsAppDetails": {
         "type": "object",
@@ -19071,11 +18849,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "description",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "MessageStreamCreateOptions": {
         "required": [
@@ -19125,6 +18899,27 @@
         ],
         "type": "string",
         "description": "Represents the types of streams for messages."
+      },
+      "MessageStreamUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "nullable": true,
+            "example": "This is for my reference"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the details about a message stream that can be patched."
       },
       "MessageSuppression": {
         "type": "object",
@@ -19345,14 +19140,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents a template that can be used to send a message.",
-        "x-patchable": [
-          "alias",
-          "body",
-          "translations",
-          "description",
-          "metadata"
-        ]
+        "description": "Represents a template that can be used to send a message."
       },
       "MessageTemplateCreateOptions": {
         "required": [
@@ -19447,6 +19235,65 @@
           "marketing": "Templates for communicating promotional offers, product announcements, and more to increase awareness and engagement.",
           "verification": "Templates communicating authentication/verification codes (e.g. one time passwords) that allow\nyour customers to securely access their accounts or authorize an action."
         }
+      },
+      "MessageTemplateUpdateOptions": {
+        "required": [
+          "alias",
+          "body"
+        ],
+        "type": "object",
+        "properties": {
+          "alias": {
+            "maxLength": 100,
+            "minLength": 3,
+            "pattern": "^[a-zA-Z]([a-zA-Z0-9\\-_]+)$",
+            "type": "string",
+            "description": "A string used for easier identification of a message template.\nAllowed characters are numbers, ASCII letters, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "example": "otp-v2"
+          },
+          "body": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Content to use when this template is used to send messages.\nSee our template language documentation for more information on the syntax for this field.",
+            "example": "Your OTP code is: {{otp}}"
+          },
+          "translations": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/MessageTemplateTranslation"
+            },
+            "description": "Translations for the template.\nEach key must be a three-letter\n[ISO language code](https://www.iso.org/iso-639-language-codes.html), in lowercase.",
+            "nullable": true,
+            "example": {
+              "swa": {
+                "body": "Msimbo wako wa OTP ni: {{otp}}"
+              },
+              "spa": {
+                "body": "Su código OTP es: {{otp}}"
+              },
+              "fra": {
+                "body": "Votre code OTP est : {{otp}}"
+              }
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "nullable": true,
+            "example": "This is for my reference"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the details about a template that can be patched."
       },
       "MessageTemplateValidateOptions": {
         "required": [
@@ -19545,6 +19392,21 @@
         },
         "additionalProperties": false
       },
+      "MessageUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the details about a message that can be patched."
+      },
       "MoneyBalances": {
         "type": "object",
         "properties": {
@@ -19586,46 +19448,6 @@
         },
         "additionalProperties": false,
         "description": "Balances for money services."
-      },
-      "Operation": {
-        "type": "object",
-        "properties": {
-          "path": {
-            "type": "string"
-          },
-          "op": {
-            "$ref": "#/components/schemas/OperationType"
-          },
-          "from": {
-            "type": "string",
-            "nullable": true
-          },
-          "value": {
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "externalDocs": {
-          "description": "JSON Patch Documentation (RFC 6902)",
-          "url": "http://jsonpatch.com/"
-        },
-        "example": {
-          "op": "add",
-          "path": "/metadata/type",
-          "value": "marketing"
-        }
-      },
-      "OperationType": {
-        "enum": [
-          "add",
-          "remove",
-          "replace",
-          "move",
-          "copy",
-          "test",
-          "invalid"
-        ],
-        "type": "string"
       },
       "Payment": {
         "type": "object",
@@ -19732,6 +19554,12 @@
             "nullable": true,
             "example": "pr_602a8dd0a54847479a874de4"
           },
+          "money_provider": {
+            "type": "string",
+            "description": "Identifier of the money provider used to receive the money.",
+            "nullable": true,
+            "example": "mprov_602a8dd0a54847479a874de4"
+          },
           "workspace": {
             "type": "string",
             "description": "Unique identifier for the workspace that the object belongs to.",
@@ -19749,11 +19577,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents a payment.",
-        "x-patchable": [
-          "description",
-          "metadata"
-        ]
+        "description": "Represents a payment."
       },
       "PaymentAuthorization": {
         "type": "object",
@@ -19867,10 +19691,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents a payment authorization.",
-        "x-patchable": [
-          "metadata"
-        ]
+        "description": "Represents a payment authorization."
       },
       "PaymentAuthorizationApproveOptions": {
         "type": "object",
@@ -19955,6 +19776,21 @@
           "realtime": "Authorization webhook endpoint was used to approve or decline.",
           "failed": "Synchronous webhook delivery to the authorization webhook endpoint failed."
         }
+      },
+      "PaymentAuthorizationUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the details that can be patched in a payment authorization."
       },
       "PaymentCreateOptions": {
         "required": [
@@ -20151,11 +19987,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "billing",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "PaymentMethodAttachOptions": {
         "required": [
@@ -20274,6 +20106,30 @@
           "mpesa"
         ],
         "type": "string"
+      },
+      "PaymentMethodUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "billing": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentMethodBilling"
+              }
+            ],
+            "description": "Billing information associated with the payment method.\nIt may be used and/or required by particular types of payment methods.",
+            "nullable": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the details that can be patched in a payment method."
       },
       "PaymentMpesaDetails": {
         "type": "object",
@@ -20414,6 +20270,12 @@
             "nullable": true,
             "example": "pa_602a8dd0a54847479a874de4"
           },
+          "money_provider": {
+            "type": "string",
+            "description": "Identifier of the money provider used to receive the money being refunded.",
+            "nullable": true,
+            "example": "mprov_602a8dd0a54847479a874de4"
+          },
           "mpesa": {
             "allOf": [
               {
@@ -20449,11 +20311,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents a refund for a payment.",
-        "x-patchable": [
-          "description",
-          "metadata"
-        ]
+        "description": "Represents a refund for a payment."
       },
       "PaymentRefundCreateOptions": {
         "required": [
@@ -20566,6 +20424,27 @@
         "type": "string",
         "description": "Statuses of a payment refund."
       },
+      "PaymentRefundUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "nullable": true,
+            "example": "This is for my reference"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the details that can be patched in a payment refund."
+      },
       "PaymentStatus": {
         "enum": [
           "pending",
@@ -20581,6 +20460,27 @@
         ],
         "type": "string",
         "description": "The medium used for the payment."
+      },
+      "PaymentUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "nullable": true,
+            "example": "This is for my reference"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the details that can be patched in a payment."
       },
       "Period": {
         "type": "object",
@@ -20776,11 +20676,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "active",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "PriceCreateOptions": {
         "required": [
@@ -20990,6 +20886,25 @@
         ],
         "type": "string"
       },
+      "PriceUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "Whether the price is currently available for new purchases.\nDefaults to true.",
+            "default": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Product": {
         "required": [
           "images",
@@ -21084,18 +20999,74 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "name",
-          "description",
-          "unit_label",
-          "url",
-          "images",
-          "active",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "ProductCreateOptions": {
+        "required": [
+          "images",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "minLength": 3,
+            "type": "string",
+            "description": "The product’s name, meant to be displayable to the customer.",
+            "example": "Express Laundry"
+          },
+          "description": {
+            "type": "string",
+            "description": "The product’s description, meant to be displayable to the customer.\nUse this field to optionally store a long form explanation of the\nproduct being sold for your own rendering purposes.",
+            "nullable": true,
+            "example": "Laundry service delivered express in 12 hours."
+          },
+          "unit_label": {
+            "type": "string",
+            "description": "An optional label that represents units of the product.\nWhen set, this will be used for presentation in receipts, invoices, and other customer interactions.\n\n\nThis value should be in plural form.",
+            "nullable": true,
+            "example": "Shirts"
+          },
+          "url": {
+            "maxLength": 512,
+            "type": "string",
+            "description": "A URL of a publicly-accessible webpage for this product.",
+            "format": "uri",
+            "nullable": true,
+            "example": "https://contoso.com/products/express-laundry-12-hours"
+          },
+          "images": {
+            "maxItems": 5,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri",
+              "example": "https://example.com"
+            },
+            "description": "A list of up to 5 URLs of images for this product, meant to be displayable to the customer.",
+            "example": [
+              "https://contoso.com/images/express-laundry-12-1.jpg",
+              "https://contoso.com/images/express-laundry-12-small.png",
+              "https://contoso.com/images/express-laundry-12-large.jpg"
+            ]
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the product is currently available for purchase.\nDefaults to true.",
+            "default": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductUpdateOptions": {
         "required": [
           "images",
           "name"
@@ -21301,15 +21272,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "coupon",
-          "default_tax_rates",
-          "default_payment_method",
-          "description",
-          "auto_renew",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "SubscriptionBillingInterval": {
         "enum": [
@@ -21528,13 +21491,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "price",
-          "quantity",
-          "tax_rates",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "SubscriptionItemCreateOptions": {
         "required": [
@@ -21634,6 +21591,44 @@
         },
         "additionalProperties": false
       },
+      "SubscriptionItemUpdateOptions": {
+        "required": [
+          "price"
+        ],
+        "type": "object",
+        "properties": {
+          "price": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Identifier of the price to subscribe to.",
+            "example": "price_602a8dd0a54847479a874de4"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "The quantity of the price that to subscribed for.",
+            "format": "int32",
+            "nullable": true,
+            "example": 1
+          },
+          "tax_rates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Identifiers of the tax rates which apply to this subscription item.\nWhen set, the default tax rates on the subscription do not apply to this subscription item.",
+            "nullable": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "SubscriptionItemUsage": {
         "type": "object",
         "properties": {
@@ -21728,6 +21723,52 @@
         },
         "additionalProperties": false
       },
+      "SubscriptionUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "coupon": {
+            "type": "string",
+            "description": "Identifier of the coupon to apply to this subscription.\nA coupon applied to a subscription will only affect invoices created for that particular subscription.",
+            "nullable": true,
+            "example": "coupon_602a8dd0a54847479a874de4"
+          },
+          "default_tax_rates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The tax rates that will apply to any subscription item that does not have rax rates set.\nInvoices created from this subscription will have their default tax rates populated from here.",
+            "nullable": true
+          },
+          "default_payment_method": {
+            "type": "string",
+            "description": "Identifier of the default payment method that's attached to the customer associated with the subscription,\nto be used as the default payment method for subscription.\nIf none is set, the customer's default payment method us used.",
+            "nullable": true,
+            "example": "pm_602a8dd0a54847479a874de4"
+          },
+          "description": {
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "nullable": true,
+            "example": "This is for my reference"
+          },
+          "auto_renew": {
+            "type": "boolean",
+            "description": "Whether the subscription should auto renew at the end of the current billing period.\nWhen set totrue, the subscription will be advanced to a new billing period.\nWhen set tofalse, the subscription will be cancelled at the end of the current billing period.\nDefaults to true.",
+            "default": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "TaxRate": {
         "required": [
           "country",
@@ -21752,7 +21793,7 @@
           },
           "description": {
             "type": "string",
-            "description": "An arbitrary string attached to the tax rate for your internal use only.\nIt will not be visible to your customers.",
+            "description": "An arbitrary string attached to the tax rate for your use.\nIt will not be visible to your customers.",
             "nullable": true,
             "example": "Effective 01 April 2020"
           },
@@ -21808,14 +21849,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "country",
-          "name",
-          "description",
-          "active",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "TaxRateCreateOptions": {
         "required": [
@@ -21842,7 +21876,7 @@
           },
           "description": {
             "type": "string",
-            "description": "An arbitrary string attached to the tax rate for your internal use only.\nIt will not be visible to your customers.",
+            "description": "An arbitrary string attached to the tax rate for your use.\nIt will not be visible to your customers.",
             "nullable": true,
             "example": "Effective 01 April 2020"
           },
@@ -21867,6 +21901,51 @@
             "description": "This represents the tax rate as a percentage out of 100.",
             "format": "double",
             "example": 14
+          }
+        },
+        "additionalProperties": false
+      },
+      "TaxRateUpdateOptions": {
+        "required": [
+          "country",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "country": {
+            "maxLength": 3,
+            "minLength": 0,
+            "type": "string",
+            "description": "Three-letter [ISO country code](https://www.iso.org/iso-3166-country-codes.html),\nin lowercase, where the tax rate applies.",
+            "format": "country",
+            "example": "ken"
+          },
+          "name": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string",
+            "description": "The display name of the tax rate, which will be shown to users.",
+            "example": "VAT"
+          },
+          "description": {
+            "type": "string",
+            "description": "An arbitrary string attached to the tax rate for your use.\nIt will not be visible to your customers.",
+            "nullable": true,
+            "example": "Effective 01 April 2020"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the tax rate is currently available for new purchase.\nChanging this does not affect existing subscriptions and invoices.\nDefaults to true.",
+            "default": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -22128,6 +22207,12 @@
             "nullable": true,
             "example": "trr_602a8dd0a54847479a874de4"
           },
+          "money_provider": {
+            "type": "string",
+            "description": "Identifier of the money provider used to send the money.",
+            "nullable": true,
+            "example": "mprov_602a8dd0a54847479a874de4"
+          },
           "workspace": {
             "type": "string",
             "description": "Unique identifier for the workspace that the object belongs to.",
@@ -22145,11 +22230,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents a transfer.",
-        "x-patchable": [
-          "description",
-          "metadata"
-        ]
+        "description": "Represents a transfer."
       },
       "TransferCreateOptions": {
         "required": [
@@ -22458,6 +22539,12 @@
             "nullable": true,
             "example": "tr_602a8dd0a54847479a874de4"
           },
+          "money_provider": {
+            "type": "string",
+            "description": "Identifier of the money provider used send to money being reversed.",
+            "nullable": true,
+            "example": "mprov_602a8dd0a54847479a874de4"
+          },
           "mpesa": {
             "allOf": [
               {
@@ -22493,11 +22580,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents a reversal for a transfer.",
-        "x-patchable": [
-          "description",
-          "metadata"
-        ]
+        "description": "Represents a reversal for a transfer."
       },
       "TransferReversalCreateOptions": {
         "required": [
@@ -22609,6 +22692,27 @@
         "type": "string",
         "description": "The status of a transfer reversal."
       },
+      "TransferReversalUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "nullable": true,
+            "example": "This is for my reference"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the details that can be patched in a transfer reversal."
+      },
       "TransferStatus": {
         "enum": [
           "pending",
@@ -22625,6 +22729,27 @@
         ],
         "type": "string",
         "description": "The medium used for the transfer."
+      },
+      "TransferUpdateOptions": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "nullable": true,
+            "example": "This is for my reference"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the details that can be patched in a transfer."
       },
       "UpcomingInvoiceOptions": {
         "required": [
@@ -22959,15 +23084,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-patchable": [
-          "events",
-          "description",
-          "status",
-          "url",
-          "token",
-          "metadata"
-        ]
+        "additionalProperties": false
       },
       "WebhookEndpointCreateOptions": {
         "required": [
@@ -23038,6 +23155,64 @@
           "enabled": "Endpoint will receive events it is configured for.",
           "disabled": "Endpoint will not receive any events."
         }
+      },
+      "WebhookEndpointUpdateOptions": {
+        "required": [
+          "events",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "events": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventType"
+            },
+            "description": "The list of events this endpoint accepts."
+          },
+          "description": {
+            "type": "string",
+            "description": "An optional arbitrary string attached to the object.\nMainly used to describe the object and often useful for displaying to users.",
+            "nullable": true,
+            "example": "This is for my reference"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WebhookEndpointStatus"
+              }
+            ],
+            "description": "The status of the webhook."
+          },
+          "url": {
+            "maxLength": 512,
+            "minLength": 1,
+            "type": "string",
+            "description": "The URL of the webhook endpoint.",
+            "format": "uri",
+            "example": "https://example.com"
+          },
+          "token": {
+            "maxLength": 512,
+            "pattern": "^[a-zA-Z0-9+=/.-_~]+$",
+            "type": "string",
+            "description": "The access token to be sent in the\n[Authorization](https://tools.ietf.org/html/rfc7235#section-4.2)\nrequest header field defined by HTTP/1.1.\nThis value is populated using the \"Bearer\" scheme, using the OAuth 2.0 Bearer Token\n[RFC6750](https://tools.ietf.org/html/rfc6750) spec.\n\n\nWhen not present, the Authorization request header is not populated.",
+            "format": "password",
+            "nullable": true,
+            "example": "mF_9.B5f-4.1JqM"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "WebhookNextAttempt": {
         "type": "object",
@@ -23252,6 +23427,581 @@
       }
     }
   },
+  "security": [
+    {
+      "basicAuth": []
+    },
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Coupons",
+      "description": "A coupon contains information about a percent-off or amount-off discount you might want to apply for your customers.\nThey may be applied to [Subscriptions](#billing/subscriptions), [Invoices](#billing/invoices), and more.\nHowever, they do not work with one-off transactions such as [Payments](#money/payments) and [Transfers](#money/transfers).",
+      "x-object-schema": {
+        "name": "Coupon",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Coupon"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Credit Notes",
+      "description": "Credit notes are used to adjust an invoice's amount after the invoice is finalized (not in draft mode).",
+      "x-object-schema": {
+        "name": "Credit Note",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/CreditNote"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Customer Balance Transactions",
+      "description": "This object represents the balance transactions related to a Customer(#billing/customers). These balances can be used to\nissue credit or debit adjustments. Adjustments in the credit balance could be a credit (meaning you owe them money)\nor a debit (meaning they owe you money). The adjustments can then apply to future [Invoices](#billing/invoices).",
+      "x-object-schema": {
+        "name": "Customer Balance Transaction",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/CustomerBalanceTransaction"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Customer Tax Ids",
+      "description": "This object represents the tax ids related to a Customer(#billing/customers).",
+      "x-object-schema": {
+        "name": "Customer Tax Id",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/CustomerTaxId"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Customers",
+      "description": "This object represents a customer of your business.\nIt lets you track payments, transfers, subscriptions, and messages that belong to the same customer.",
+      "x-object-schema": {
+        "name": "Customer",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Customer"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Discounts",
+      "description": "A discount represents the actual application of a [Coupon](#billing/coupons).\nIt contains information about when the discount began, when it will end, and what it is applied to.",
+      "x-object-schema": {
+        "name": "Discount",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Discount"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Events",
+      "description": "Events are our way of letting you know when something interesting happens in your\nworkspace. When an interesting events occurs, we create a new `Event` object. For\nexample, when a payment succeeds, we create a `payment.succeeded` event; and when\na message delivery fails, we create an `message.failed` event. Note that many API\nrequests may cause multiple events to be created. For example, if you create a new\nmessage, you will receive both a `message.sent` event and either a `message.failed`\nor `message.delivered` event.\n\nEvents occur when the state of another API resource changes. The state of that resource\nat the time of the change is embedded in the event's data field. For example, a\n`message.sent` event will contain a message, and a `payment.failed` event will contain\na payment.\n\nAs with other API resources, you can use endpoints to retrieve an\n[individual event](#events_get_event) or a [list of events](#events_get_events) from\nthe API. We also have a separate [webhooks](https://en.wikipedia.org/wiki/Webhook) API\nfor sending the `Event` objects directly to an endpoint on your server. Webhooks are\nmanaged in your [workspace](https://dashboard.falu.io/webhooks), and our\n[Using Webhooks](/docs/webhooks) guide will help you get setup.\n\n**NOTE:** Access to events through the [Retrieve Event API](#events_get_event)\nis guaranteed only for the last 30 days.",
+      "x-object-schema": {
+        "name": "Tracked Event",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/TrackedEvent"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "File Links",
+      "description": "To share the contents of an `File` object with non-Falu users, you can create an `FileLink`.\nIt contains a URL that can be used to retrieve the contents of the file without authentication.",
+      "x-object-schema": {
+        "name": "File Link",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/FileLink"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Files",
+      "description": "This is an object representing a file hosted on Falu's servers.\nThe file may have been uploaded by yourself using the [create file](#files_post_file)\nrequest (for example, when uploading an identity document) or it may have been created by Falu\n(for example, a statement of accounts).",
+      "externalDocs": {
+        "description": "Files",
+        "url": "/docs/files",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "File",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/File"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Identity Verification Reports",
+      "description": "An `IdentityVerificationReport` is the result of an attempt to collect and verify data from a user.\nYou can find the result of each verification check performed in the appropriate node: `document`, `id_number`, `tax_number`.\n\nEach `IdentityVerificationReport` contains a copy of any data collected by the user as well as reference identifiers\nwhich can be used to access collected images.\nIdentityVerificationReports are created automatically via the [IdentityVerification API](#identity_identity_verifications).",
+      "externalDocs": {
+        "description": "Accessing verification results",
+        "url": "/docs/identity/verifications#results",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Identity Verification Report",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/IdentityVerificationReport"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Identity Verifications",
+      "description": "An IdentityVerification guides you through the process of collecting and verifying the identities of your users.\nIt contains details such as what [verification check](/docs/identity/verification-checks) to perform.\nOnly create one IdentityVerification for each verification in your system.\n\nAn IdentityVerification transitions through [multiple statuses](/docs/identity/how-sessions-work) throughout\nits lifetime as it progresses through the verification flow. The IdentityVerification contains the user’s\nverified data after verification checks are complete.",
+      "externalDocs": {
+        "description": "Using Identity Verifications API",
+        "url": "/docs/identity/verifications",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Identity Verification",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/IdentityVerification"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Invoice Items",
+      "description": "Invoice items represent the component lines of an invoice.",
+      "x-object-schema": {
+        "name": "Invoice Item",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/InvoiceItem"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Invoices",
+      "description": "Invoices are statements of amounts owed by a customer, and are either generated one-off, or generated periodically from a subscription.\n\nThey contain invoice items, and proration adjustments that may be caused by subscription upgrades/downgrades (if necessary).",
+      "x-object-schema": {
+        "name": "Invoice",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Invoice"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Message Batches",
+      "description": "To send multiple messages you create a `MessageBatch` object. You can retrieve,\ncancel, redact individual messages or the message batch.\n\nFalu supports sending messages or various types and destinations\nas described in the message types [guide](/docs/messages/types)\n\n`MessageBatch` objects expire after 45 days alongside the `Message` objects managed\nby it, after which they are forcefully purged from all our records.",
+      "externalDocs": {
+        "description": "Using batches to send messages",
+        "url": "/docs/messages/batches",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Message Batch",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/MessageBatch"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Message Senders",
+      "description": "A `MessageSender` object is a representation of a resource that you use\nto send messages for branding purposes.\n\nThis is usually an alphanumeric or numeric-only code that identifies\nyour business or its units to your customers.",
+      "externalDocs": {
+        "description": "Send branded messages",
+        "url": "/docs/messages/senders",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Message Sender",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/MessageSender"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Message Streams",
+      "description": "A `MessageStream` object allows you to manage the different kinds of messages\nthat you send or received in your workspace. You may have up to 10 streams in\nyour workspace, including the default ones. Default streams cannot be deleted.\n\n`MessageStream` objects help you categorize your messages into multiple categories\nand also allows us to maintain high delivery rates for transactional messages.\nThe messages sent via transactional streams are closely monitored to prevent abuse.",
+      "externalDocs": {
+        "description": "Sending messages using streams",
+        "url": "/docs/messages/streams",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Message Stream",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/MessageStream"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Message Suppressions",
+      "description": "A `MessageSuppression` object allows you to manage the phone number destinations\nthat are not currently active for sending to.",
+      "externalDocs": {
+        "description": "Working with message suppressions",
+        "url": "/docs/messages/suppressions",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Message Suppression",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/MessageSuppression"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Message Templates",
+      "description": "To separate the concerns in sending messages and deciding the message content,\nuse a `MessageTemplate` object. In most setups, the message content is designed\nand evolved by the marketing and operations teams whereas, the actual message\nsending is done by the developers. Message templates help reduce the friction.\n\n`MessageTemplate` objects can also be used to maintain messages in different\nlanguages/regions with much less technical debt in your system.",
+      "externalDocs": {
+        "description": "Working with message templates",
+        "url": "/docs/messages/templates",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Message Template",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/MessageTemplate"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Messages",
+      "description": "To send a message you create a `Message` object. You can retrieve and\nredact individual messages as well as list messages.\n\nFalu supports sending messages or various types and destinations\nas described in the message types [guide](/docs/messages/types)\n\n`Message` objects can also be created if your workspace supports messages\nfrom customers to your business. These are referred to inbound messages.\n\n`Message` objects expire after 45 days, after which they are forcefully\npurged from all our records.",
+      "externalDocs": {
+        "description": "Sending messages to your audiences",
+        "url": "/docs/messages",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Message",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Message"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Money Balances",
+      "description": "Money balances are a reflection of the money available in bring-your-own provider setups.\nFor fully managed ones, check the workspace balance.",
+      "x-object-schema": {
+        "name": "Money Balances",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/MoneyBalances"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Payment Authorizations",
+      "description": "When a payment provider supports customer initiated payments and a customer initiates\na payment, a Payment `Authorization` object is created.\n[Authorizations](/docs/payments/authorizations) must be approved for the payment to\nbe completed successfully.",
+      "externalDocs": {
+        "description": "Accepting a Payment with the Payment Authorizations API",
+        "url": "/docs/payments/authorizations",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Payment Authorization",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/PaymentAuthorization"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Payment Methods",
+      "description": "`PaymentMethod` objects represent your customer's payment instruments.\nYou can use them to collect payments or attach them to customer objects to store instrument details for future payments.",
+      "x-object-schema": {
+        "name": "Payment Method",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/PaymentMethod"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Payment Refunds",
+      "description": "`PaymentRefund` object allows you to refund a payment that has been previously been\ncreated but not yet refunded. Funds will be refunded to the payment instrument\nthat was originally charged. Some payment providers have a time window after which\nrefunds cannot happen. In this case you can initiate a `Transfer` to the\ncustomer with the appropriate amount.",
+      "externalDocs": {
+        "description": "Refunding Payments",
+        "url": "/docs/payments#refunds",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Payment Refund",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/PaymentRefund"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Payments",
+      "description": "To initiate a payment from a customer, you create a `Payment` object. You can retrieve\nand refund individual payments as well as a list all payments.\n\n`Payment` objects can also be created if your workspace supports payment providers that\nallow customers to initiate the payments such as MPESA and EFT/RTGS. In this case, the\nprovider may require you to authorize the payment before it is completed. Our\n[Working with Payment Authorizations](/docs/payments/authorizations) guide will help\nyou get setup.",
+      "externalDocs": {
+        "description": "Accepting Payments",
+        "url": "/docs/payments",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Payment",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Payment"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Prices",
+      "description": "Prices define the unit cost, currency, and billing cycle (if any) for both recurring and one-time purchases of products.",
+      "x-object-schema": {
+        "name": "Price",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Price"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Products",
+      "description": "Subscriptions allow you to bill a customer on a recurring basis per unit, seat or based on usage.",
+      "x-object-schema": {
+        "name": "Product",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Product"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Subscription Items",
+      "description": "Subscription items allow you to create customer subscriptions with more than one plan, making it easy to represent complex billing relationships.",
+      "x-object-schema": {
+        "name": "Subscription Item",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/SubscriptionItem"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Subscription Usage",
+      "description": "Subscription usage records allow you to report customer usage for metered billing of subscription prices.",
+      "x-object-schema": {
+        "name": "Subscription Item Usage",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/SubscriptionItemUsage"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Subscriptions",
+      "description": "Subscriptions allow you to bill a customer on a recurring basis per unit, seat or based on usage.",
+      "x-object-schema": {
+        "name": "Subscription",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Subscription"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Tax Rates",
+      "description": "Tax rates can be applied to invoices and subscriptions to collect tax.",
+      "x-object-schema": {
+        "name": "Tax Rate",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/TaxRate"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Temporary Keys",
+      "description": "A temporary key is a special kind of API key but its is valid for 1 hour from the creation time\nand restricted to a specific object.",
+      "x-object-schema": {
+        "name": "Temporary Key",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/TemporaryKey"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Transfer Reversals",
+      "description": "`TransferReversal` object allows you to reverse a transfer that has been previously\ncreated but not yet reversed. Funds will be refunded your workspace.\n\n**NOTE:** Some providers have a time windows after which reversals cannot happen.",
+      "externalDocs": {
+        "description": "Reversing Transfers",
+        "url": "/docs/transfers#reversing-a-transfer",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Transfer Reversal",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/TransferReversal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Transfers",
+      "description": "A `Transfer` object is created when you move money from your business either to another\nbusiness or to a customer.",
+      "externalDocs": {
+        "description": "Creating fund transfers",
+        "url": "/docs/transfers",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Transfer",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Transfer"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Webhook Endpoints",
+      "description": "You can configure [webhook endpoints](/docs/webhooks) via the API to be notified about events that happen in your Falu workspace.\n\nMost users configure webhooks from [the dashboard](https://dashboard.falu.io/webhooks),\nwhich provides a user interface to registering and testing your webhook endpoints.",
+      "externalDocs": {
+        "description": "Setting up Webhooks",
+        "url": "/docs/developers/webhooks/go-live",
+        "x-kind": "guide"
+      },
+      "x-object-schema": {
+        "name": "Webhook Endpoint",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/WebhookEndpoint"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Webhooks",
+      "description": "Every time an event is generated and there is an enabled webhook endpoint for the event type,\nFalu server generate a `Webhook` which represents the delivery of the event to the given webhook.\nIt contains the delivery history and can be retried if failed.",
+      "x-object-schema": {
+        "name": "Webhook",
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Webhook"
+            }
+          ]
+        }
+      }
+    }
+  ],
   "x-tagGroups": [
     {
       "name": "Identity",
