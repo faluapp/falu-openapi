@@ -1,7 +1,7 @@
-openapi: 3.0.1
+﻿openapi: 3.0.1
 info:
   title: Falu API Reference
-  description: The Falu REST API. For more information, check https://falu.io/docs/api
+  description: 'The Falu REST API. For more information, check https://falu.io/docs/api'
   termsOfService: https://falu.io/legal/terms
   contact:
     name: API Support
@@ -10,448 +10,9 @@ info:
   license:
     name: Falu API
     url: https://falu.io/legal/terms
-  version: '2022-09-01'
+  version: '2024-06-01'
 servers:
   - url: https://api.falu.io
-security:
-  - basicAuth: []
-  - bearerAuth: []
-tags:
-  - name: Coupons
-    description: |-
-      A coupon contains information about a percent-off or amount-off discount you might want to apply for your customers.
-      They may be applied to [Subscriptions](#billing/subscriptions), [Invoices](#billing/invoices), and more.
-      However, they do not work with one-off transactions such as [Payments](#money/payments) and [Transfers](#money/transfers).
-    x-object-schema:
-      name: Coupon
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/Coupon'
-  - name: Credit Notes
-    description: Credit notes are used to adjust an invoice's amount after the invoice is finalized (not in draft mode).
-    x-object-schema:
-      name: Credit Note
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/CreditNote'
-  - name: Customer Balance Transactions
-    description: |-
-      This object represents the balance transactions related to a Customer(#billing/customers). These balances can be used to
-      issue credit or debit adjustments. Adjustments in the credit balance could be a credit (meaning you owe them money)
-      or a debit (meaning they owe you money). The adjustments can then apply to future [Invoices](#billing/invoices).
-    x-object-schema:
-      name: Customer Balance Transaction
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/CustomerBalanceTransaction'
-  - name: Customer Tax Ids
-    description: This object represents the tax ids related to a Customer(#billing/customers).
-    x-object-schema:
-      name: Customer Tax Id
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/CustomerTaxId'
-  - name: Customers
-    description: |-
-      This object represents a customer of your business.
-      It lets you track payments, transfers, subscriptions, and messages that belong to the same customer.
-    x-object-schema:
-      name: Customer
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/Customer'
-  - name: Discounts
-    description: |-
-      A discount represents the actual application of a [Coupon](#billing/coupons).
-      It contains information about when the discount began, when it will end, and what it is applied to.
-    x-object-schema:
-      name: Discount
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/Discount'
-  - name: Events
-    description: |-
-      Events are our way of letting you know when something interesting happens in your
-      workspace. When an interesting events occurs, we create a new `Event` object. For
-      example, when a payment succeeds, we create a `payment.succeeded` event; and when
-      a message delivery fails, we create an `message.failed` event. Note that many API
-      requests may cause multiple events to be created. For example, if you create a new
-      message, you will receive both a `message.sent` event and either a `message.failed`
-      or `message.delivered` event.
-
-      Events occur when the state of another API resource changes. The state of that resource
-      at the time of the change is embedded in the event's data field. For example, a
-      `message.sent` event will contain a message, and a `payment.failed` event will contain
-      a payment.
-
-      As with other API resources, you can use endpoints to retrieve an
-      [individual event](#events_get_event) or a [list of events](#events_get_events) from
-      the API. We also have a separate [webhooks](https://en.wikipedia.org/wiki/Webhook) API
-      for sending the `Event` objects directly to an endpoint on your server. Webhooks are
-      managed in your [workspace](https://dashboard.falu.io/webhooks), and our
-      [Using Webhooks](/docs/webhooks) guide will help you get setup.
-
-      **NOTE:** Access to events through the [Retrieve Event API](#events_get_event)
-      is guaranteed only for the last 30 days.
-    x-object-schema:
-      name: Tracked Event
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/TrackedEvent'
-  - name: File Links
-    description: |-
-      To share the contents of an `File` object with non-Falu users, you can create an `FileLink`.
-      It contains a URL that can be used to retrieve the contents of the file without authentication.
-    x-object-schema:
-      name: File Link
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/FileLink'
-  - name: Files
-    description: |-
-      This is an object representing a file hosted on Falu's servers.
-      The file may have been uploaded by yourself using the [create file](#files_post_file)
-      request (for example, when uploading an identity document) or it may have been created by Falu
-      (for example, a statement of accounts).
-    externalDocs:
-      description: Files
-      url: /docs/files
-      x-kind: guide
-    x-object-schema:
-      name: File
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/File'
-  - name: Identity Verification Reports
-    description: |-
-      An `IdentityVerificationReport` is the result of an attempt to collect and verify data from a user.
-      You can find the result of each verification check performed in the appropriate node: `document`, `id_number`, `tax_number`.
-
-      Each `IdentityVerificationReport` contains a copy of any data collected by the user as well as reference identifiers
-      which can be used to access collected images.
-      IdentityVerificationReports are created automatically via the [IdentityVerification API](#identity_identity_verifications).
-    externalDocs:
-      description: Accessing verification results
-      url: /docs/identity/verifications#results
-      x-kind: guide
-    x-object-schema:
-      name: Identity Verification Report
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/IdentityVerificationReport'
-  - name: Identity Verifications
-    description: |-
-      An IdentityVerification guides you through the process of collecting and verifying the identities of your users.
-      It contains details such as what [verification check](/docs/identity/verification-checks) to perform.
-      Only create one IdentityVerification for each verification in your system.
-
-      An IdentityVerification transitions through [multiple statuses](/docs/identity/how-sessions-work) throughout
-      its lifetime as it progresses through the verification flow. The IdentityVerification contains the user’s
-      verified data after verification checks are complete.
-    externalDocs:
-      description: Using Identity Verifications API
-      url: /docs/identity/verifications
-      x-kind: guide
-    x-object-schema:
-      name: Identity Verification
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/IdentityVerification'
-  - name: Invoice Items
-    description: Invoice items represent the component lines of an invoice.
-    x-object-schema:
-      name: Invoice Item
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/InvoiceItem'
-  - name: Invoices
-    description: |-
-      Invoices are statements of amounts owed by a customer, and are either generated one-off, or generated periodically from a subscription.
-
-      They contain invoice items, and proration adjustments that may be caused by subscription upgrades/downgrades (if necessary).
-    x-object-schema:
-      name: Invoice
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/Invoice'
-  - name: Message Batches
-    description: |-
-      To send multiple messages you create a `MessageBatch` object. You can retrieve,
-      cancel, redact individual messages or the message batch.
-
-      Falu supports sending messages or various types and destinations
-      as described in the message types [guide](/docs/messages/types)
-
-      `MessageBatch` objects expire after 45 days alongside the `Message` objects managed
-      by it, after which they are forcefully purged from all our records.
-    externalDocs:
-      description: Using batches to send messages
-      url: /docs/messages/batches
-      x-kind: guide
-    x-object-schema:
-      name: Message Batch
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/MessageBatch'
-  - name: Message Senders
-    description: |-
-      A `MessageSender` object is a representation of a resource that you use
-      to send messages for branding purposes.
-
-      This is usually an alphanumeric or numeric-only code that identifies
-      your business or its units to your customers.
-    externalDocs:
-      description: Send branded messages
-      url: /docs/messages/senders
-      x-kind: guide
-    x-object-schema:
-      name: Message Sender
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/MessageSender'
-  - name: Message Streams
-    description: |-
-      A `MessageStream` object allows you to manage the different kinds of messages
-      that you send or received in your workspace. You may have up to 10 streams in
-      your workspace, including the default ones. Default streams cannot be deleted.
-
-      `MessageStream` objects help you categorize your messages into multiple categories
-      and also allows us to maintain high delivery rates for transactional messages.
-      The messages sent via transactional streams are closely monitored to prevent abuse.
-    externalDocs:
-      description: Sending messages using streams
-      url: /docs/messages/streams
-      x-kind: guide
-    x-object-schema:
-      name: Message Stream
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/MessageStream'
-  - name: Message Suppressions
-    description: |-
-      A `MessageSuppression` object allows you to manage the phone number destinations
-      that are not currently active for sending to.
-    externalDocs:
-      description: Working with message suppressions
-      url: /docs/messages/suppressions
-      x-kind: guide
-    x-object-schema:
-      name: Message Suppression
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/MessageSuppression'
-  - name: Message Templates
-    description: |-
-      To separate the concerns in sending messages and deciding the message content,
-      use a `MessageTemplate` object. In most setups, the message content is designed
-      and evolved by the marketing and operations teams whereas, the actual message
-      sending is done by the developers. Message templates help reduce the friction.
-
-      `MessageTemplate` objects can also be used to maintain messages in different
-      languages/regions with much less technical debt in your system.
-    externalDocs:
-      description: Working with message templates
-      url: /docs/messages/templates
-      x-kind: guide
-    x-object-schema:
-      name: Message Template
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/MessageTemplate'
-  - name: Messages
-    description: |-
-      To send a message you create a `Message` object. You can retrieve and
-      redact individual messages as well as list messages.
-
-      Falu supports sending messages or various types and destinations
-      as described in the message types [guide](/docs/messages/types)
-
-      `Message` objects can also be created if your workspace supports messages
-      from customers to your business. These are referred to inbound messages.
-
-      `Message` objects expire after 45 days, after which they are forcefully
-      purged from all our records.
-    externalDocs:
-      description: Sending messages to your audiences
-      url: /docs/messages
-      x-kind: guide
-    x-object-schema:
-      name: Message
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/Message'
-  - name: Money Balances
-    description: |-
-      Money balances are a reflection of the money available in bring-your-own provider setups.
-      For fully managed ones, check the workspace balance.
-    x-object-schema:
-      name: Money Balances
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/MoneyBalances'
-  - name: Payment Authorizations
-    description: |-
-      When a payment provider supports customer initiated payments and a customer initiates
-      a payment, a Payment `Authorization` object is created.
-      [Authorizations](/docs/payments/authorizations) must be approved for the payment to
-      be completed successfully.
-    externalDocs:
-      description: Accepting a Payment with the Payment Authorizations API
-      url: /docs/payments/authorizations
-      x-kind: guide
-    x-object-schema:
-      name: Payment Authorization
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/PaymentAuthorization'
-  - name: Payment Methods
-    description: |-
-      `PaymentMethod` objects represent your customer's payment instruments.
-      You can use them to collect payments or attach them to customer objects to store instrument details for future payments.
-    x-object-schema:
-      name: Payment Method
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/PaymentMethod'
-  - name: Payment Refunds
-    description: |-
-      `PaymentRefund` object allows you to refund a payment that has been previously been
-      created but not yet refunded. Funds will be refunded to the payment instrument
-      that was originally charged. Some payment providers have a time window after which
-      refunds cannot happen. In this case you can initiate a `Transfer` to the
-      customer with the appropriate amount.
-    externalDocs:
-      description: Refunding Payments
-      url: /docs/payments#refunds
-      x-kind: guide
-    x-object-schema:
-      name: Payment Refund
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/PaymentRefund'
-  - name: Payments
-    description: |-
-      To initiate a payment from a customer, you create a `Payment` object. You can retrieve
-      and refund individual payments as well as a list all payments.
-
-      `Payment` objects can also be created if your workspace supports payment providers that
-      allow customers to initiate the payments such as MPESA and EFT/RTGS. In this case, the
-      provider may require you to authorize the payment before it is completed. Our
-      [Working with Payment Authorizations](/docs/payments/authorizations) guide will help
-      you get setup.
-    externalDocs:
-      description: Accepting Payments
-      url: /docs/payments
-      x-kind: guide
-    x-object-schema:
-      name: Payment
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/Payment'
-  - name: Prices
-    description: Prices define the unit cost, currency, and billing cycle (if any) for both recurring and one-time purchases of products.
-    x-object-schema:
-      name: Price
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/Price'
-  - name: Products
-    description: Subscriptions allow you to bill a customer on a recurring basis per unit, seat or based on usage.
-    x-object-schema:
-      name: Product
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/Product'
-  - name: Subscription Items
-    description: Subscription items allow you to create customer subscriptions with more than one plan, making it easy to represent complex billing relationships.
-    x-object-schema:
-      name: Subscription Item
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/SubscriptionItem'
-  - name: Subscription Usage
-    description: Subscription usage records allow you to report customer usage for metered billing of subscription prices.
-    x-object-schema:
-      name: Subscription Item Usage
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/SubscriptionItemUsage'
-  - name: Subscriptions
-    description: Subscriptions allow you to bill a customer on a recurring basis per unit, seat or based on usage.
-    x-object-schema:
-      name: Subscription
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/Subscription'
-  - name: Tax Rates
-    description: Tax rates can be applied to invoices and subscriptions to collect tax.
-    x-object-schema:
-      name: Tax Rate
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/TaxRate'
-  - name: Temporary Keys
-    description: |-
-      A temporary key is a special kind of API key but its is valid for 1 hour from the creation time
-      and restricted to a specific object.
-    x-object-schema:
-      name: Temporary Key
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/TemporaryKey'
-  - name: Transfer Reversals
-    description: |-
-      `TransferReversal` object allows you to reverse a transfer that has been previously
-      created but not yet reversed. Funds will be refunded your workspace.
-
-      **NOTE:** Some providers have a time windows after which reversals cannot happen.
-    externalDocs:
-      description: Reversing Transfers
-      url: /docs/transfers#reversing-a-transfer
-      x-kind: guide
-    x-object-schema:
-      name: Transfer Reversal
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/TransferReversal'
-  - name: Transfers
-    description: |-
-      A `Transfer` object is created when you move money from your business either to another
-      business or to a customer.
-    externalDocs:
-      description: Creating fund transfers
-      url: /docs/transfers
-      x-kind: guide
-    x-object-schema:
-      name: Transfer
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/Transfer'
-  - name: Webhook Endpoints
-    description: |-
-      You can configure [webhook endpoints](/docs/webhooks) via the API to be notified about events that happen in your Falu workspace.
-
-      Most users configure webhooks from [the dashboard](https://dashboard.falu.io/webhooks),
-      which provides a user interface to registering and testing your webhook endpoints.
-    externalDocs:
-      description: Setting up Webhooks
-      url: /docs/developers/webhooks/go-live
-      x-kind: guide
-    x-object-schema:
-      name: Webhook Endpoint
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/WebhookEndpoint'
-  - name: Webhooks
-    description: |-
-      Every time an event is generated and there is an enabled webhook endpoint for the event type,
-      Falu server generate a `Webhook` which represents the delivery of the event to the given webhook.
-      It contains the delivery history and can be retried if failed.
-    x-object-schema:
-      name: Webhook
-      schema:
-        allOf:
-          - $ref: '#/components/schemas/Webhook'
 paths:
   /v1/billing/coupons:
     get:
@@ -592,7 +153,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - product_not_found
-  /v1/billing/coupons/{id}:
+  '/v1/billing/coupons/{id}':
     get:
       tags:
         - Coupons
@@ -640,16 +201,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/CouponUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/CouponUpdateOptions'
       responses:
         '200':
           description: OK
@@ -856,7 +415,7 @@ paths:
         - invoice_invalid_data
         - invoice_item_not_found
         - credit_note_invalid_data
-  /v1/billing/credit_notes/{id}:
+  '/v1/billing/credit_notes/{id}':
     get:
       tags:
         - Credit Notes
@@ -904,16 +463,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/CreditNoteUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/CreditNoteUpdateOptions'
       responses:
         '200':
           description: OK
@@ -934,7 +491,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - credit_note_not_found
-  /v1/billing/credit_notes/{id}/void:
+  '/v1/billing/credit_notes/{id}/void':
     post:
       tags:
         - Credit Notes
@@ -1125,7 +682,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - customer_not_found
-  /v1/billing/customer_tax_ids/{id}:
+  '/v1/billing/customer_tax_ids/{id}':
     get:
       tags:
         - Customer Tax Ids
@@ -1343,7 +900,7 @@ paths:
         - coupon_not_found
         - coupon_not_active
         - coupon_expired
-  /v1/billing/customers/{id}:
+  '/v1/billing/customers/{id}':
     get:
       tags:
         - Customers
@@ -1391,16 +948,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/CustomerUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/CustomerUpdateOptions'
       responses:
         '200':
           description: OK
@@ -1427,7 +982,7 @@ paths:
         - coupon_not_active
         - coupon_expired
         - coupon_already_applied
-  /v1/billing/customers/{id}/redact:
+  '/v1/billing/customers/{id}/redact':
     post:
       tags:
         - Customers
@@ -1610,7 +1165,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - customer_not_found
-  /v1/billing/customers/balances/transactions/{id}:
+  '/v1/billing/customers/balances/transactions/{id}':
     get:
       tags:
         - Customer Balance Transactions
@@ -1658,16 +1213,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/CustomerBalanceTransactionUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/CustomerBalanceTransactionUpdateOptions'
       responses:
         '200':
           description: OK
@@ -1801,7 +1354,7 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-supports-pagination: true
-  /v1/billing/discounts/{id}:
+  '/v1/billing/discounts/{id}':
     get:
       tags:
         - Discounts
@@ -1967,7 +1520,7 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-supports-pagination: true
-  /v1/billing/invoice_items/{id}:
+  '/v1/billing/invoice_items/{id}':
     get:
       tags:
         - Invoice Items
@@ -2015,16 +1568,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/InvoiceItemUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/InvoiceItemUpdateOptions'
       responses:
         '200':
           description: OK
@@ -2154,7 +1705,7 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-supports-pagination: true
-  /v1/billing/invoices/{id}:
+  '/v1/billing/invoices/{id}':
     get:
       tags:
         - Invoices
@@ -2202,16 +1753,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/InvoiceUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/InvoiceUpdateOptions'
       responses:
         '200':
           description: OK
@@ -2233,7 +1782,7 @@ paths:
       x-error-codes:
         - invoice_not_found
         - invoice_invalid_data
-  /v1/billing/invoices/{id}/finalize:
+  '/v1/billing/invoices/{id}/finalize':
     post:
       tags:
         - Invoices
@@ -2268,7 +1817,7 @@ paths:
       x-error-codes:
         - invoice_not_found
         - invoice_invalid_data
-  /v1/billing/invoices/{id}/pay:
+  '/v1/billing/invoices/{id}/pay':
     post:
       tags:
         - Invoices
@@ -2310,7 +1859,7 @@ paths:
       x-error-codes:
         - invoice_not_found
         - invoice_invalid_data
-  /v1/billing/invoices/{id}/void:
+  '/v1/billing/invoices/{id}/void':
     post:
       tags:
         - Invoices
@@ -2345,7 +1894,7 @@ paths:
       x-error-codes:
         - invoice_not_found
         - invoice_invalid_data
-  /v1/billing/invoices/{id}/write_off:
+  '/v1/billing/invoices/{id}/write_off':
     post:
       tags:
         - Invoices
@@ -2557,7 +2106,7 @@ paths:
       x-error-codes:
         - invalid_settings
         - insufficient_balance
-  /v1/billing/payment_methods/{id}:
+  '/v1/billing/payment_methods/{id}':
     get:
       tags:
         - Payment Methods
@@ -2605,16 +2154,16 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/PaymentMethodUpdateOptions'
+              description: Represents the details that can be patched in a payment method.
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/PaymentMethodUpdateOptions'
+              description: Represents the details that can be patched in a payment method.
       responses:
         '200':
           description: OK
@@ -2635,7 +2184,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - payment_method_not_found
-  /v1/billing/payment_methods/{id}/attach:
+  '/v1/billing/payment_methods/{id}/attach':
     post:
       tags:
         - Payment Methods
@@ -2679,7 +2228,7 @@ paths:
         - customer_not_found
         - object_redacted
         - payment_method_cannot_be_modified
-  /v1/billing/payment_methods/{id}/detach:
+  '/v1/billing/payment_methods/{id}/detach':
     post:
       tags:
         - Payment Methods
@@ -2874,7 +2423,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - product_not_found
-  /v1/billing/prices/{id}:
+  '/v1/billing/prices/{id}':
     get:
       tags:
         - Prices
@@ -2922,16 +2471,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/PriceUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/PriceUpdateOptions'
       responses:
         '200':
           description: OK
@@ -3110,7 +2657,7 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-  /v1/billing/products/{id}:
+  '/v1/billing/products/{id}':
     get:
       tags:
         - Products
@@ -3158,16 +2705,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/ProductUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/ProductUpdateOptions'
       responses:
         '200':
           description: OK
@@ -3370,7 +2915,7 @@ paths:
         - subscription_cannot_be_modified
         - tax_rate_not_found
         - tax_rate_not_active
-  /v1/billing/subscription_items/{id}:
+  '/v1/billing/subscription_items/{id}':
     get:
       tags:
         - Subscription Items
@@ -3418,16 +2963,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/SubscriptionItemUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/SubscriptionItemUpdateOptions'
       responses:
         '200':
           description: OK
@@ -3455,7 +2998,7 @@ paths:
         - subscription_invalid_data
         - tax_rate_not_found
         - tax_rate_not_active
-  /v1/billing/subscription_items/{id}/usage:
+  '/v1/billing/subscription_items/{id}/usage':
     get:
       tags:
         - Subscription Usage
@@ -3758,7 +3301,7 @@ paths:
         - tax_rate_not_found
         - tax_rate_not_active
         - payment_method_not_found
-  /v1/billing/subscriptions/{id}:
+  '/v1/billing/subscriptions/{id}':
     get:
       tags:
         - Subscriptions
@@ -3806,16 +3349,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/SubscriptionUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/SubscriptionUpdateOptions'
       responses:
         '200':
           description: OK
@@ -3845,7 +3386,7 @@ paths:
         - tax_rate_not_found
         - tax_rate_not_active
         - payment_method_not_found
-  /v1/billing/subscriptions/{id}/cancel:
+  '/v1/billing/subscriptions/{id}/cancel':
     post:
       tags:
         - Subscriptions
@@ -4020,7 +3561,7 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-  /v1/billing/tax_rates/{id}:
+  '/v1/billing/tax_rates/{id}':
     get:
       tags:
         - Tax Rates
@@ -4068,16 +3609,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/TaxRateUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/TaxRateUpdateOptions'
       responses:
         '200':
           description: OK
@@ -4234,7 +3773,7 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-supports-pagination: true
-  /v1/events/{id}:
+  '/v1/events/{id}':
     get:
       tags:
         - Events
@@ -4266,7 +3805,7 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-  /v1/events/{id}/redact:
+  '/v1/events/{id}/redact':
     post:
       tags:
         - Events
@@ -4454,7 +3993,7 @@ paths:
         - file_expired
         - object_redacted
         - file_cannot_be_downloaded
-  /v1/file_links/{id}:
+  '/v1/file_links/{id}':
     get:
       tags:
         - File Links
@@ -4502,16 +4041,16 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/FileLinkUpdateOptions'
+              description: Represents the details that can be patched in a file link.
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/FileLinkUpdateOptions'
+              description: Represents the details that can be patched in a file link.
       responses:
         '200':
           description: OK
@@ -4694,7 +4233,7 @@ paths:
       x-error-codes:
         - file_type_not_allowed
         - file_invalid
-  /v1/files/{id}:
+  '/v1/files/{id}':
     get:
       tags:
         - Files
@@ -4726,7 +4265,7 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-  /v1/files/{id}/contents:
+  '/v1/files/{id}/contents':
     get:
       tags:
         - Files
@@ -4773,7 +4312,7 @@ paths:
         - file_expired
         - object_redacted
         - file_cannot_be_downloaded
-  /v1/files/{id}/redact:
+  '/v1/files/{id}/redact':
     post:
       tags:
         - Files
@@ -5061,7 +4600,7 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-supports-pagination: true
-  /v1/identity/verifications_reports/{id}:
+  '/v1/identity/verifications_reports/{id}':
     get:
       tags:
         - Identity Verification Reports
@@ -5093,7 +4632,7 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-  /v1/identity/verifications/{id}:
+  '/v1/identity/verifications/{id}':
     get:
       tags:
         - Identity Verifications
@@ -5141,16 +4680,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/IdentityVerificationUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/IdentityVerificationUpdateOptions'
       responses:
         '200':
           description: OK
@@ -5173,7 +4710,7 @@ paths:
         - identity_verification_not_found
         - identity_verification_cannot_be_modified
         - object_redacted
-  /v1/identity/verifications/{id}/cancel:
+  '/v1/identity/verifications/{id}/cancel':
     post:
       tags:
         - Identity Verifications
@@ -5212,7 +4749,7 @@ paths:
       x-error-codes:
         - identity_verification_not_found
         - identity_verification_cannot_be_cancelled
-  /v1/identity/verifications/{id}/redact:
+  '/v1/identity/verifications/{id}/redact':
     post:
       tags:
         - Identity Verifications
@@ -5378,7 +4915,7 @@ paths:
       tags:
         - Message Batches
       summary: Create a message batch
-      description: You can send up to 1,000 messages in one API request.
+      description: 'You can send up to 1,000 messages in one API request.'
       operationId: message-batches-create
       parameters:
         - $ref: '#/components/parameters/X-Falu-Version'
@@ -5417,7 +4954,7 @@ paths:
         - file_invalid
         - file_expired
         - object_redacted
-  /v1/message_batches/{id}:
+  '/v1/message_batches/{id}':
     get:
       tags:
         - Message Batches
@@ -5465,16 +5002,16 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/MessageBatchUpdateOptions'
+              description: Represents the details about a message batch that can be patched.
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/MessageBatchUpdateOptions'
+              description: Represents the details about a message batch that can be patched.
       responses:
         '200':
           description: OK
@@ -5496,7 +5033,7 @@ paths:
       x-error-codes:
         - message_batch_not_found
         - object_redacted
-  /v1/message_batches/{id}/cancel:
+  '/v1/message_batches/{id}/cancel':
     post:
       tags:
         - Message Batches
@@ -5532,7 +5069,7 @@ paths:
       x-error-codes:
         - message_batch_not_found
         - message_batch_cannot_be_cancelled
-  /v1/message_batches/{id}/redact:
+  '/v1/message_batches/{id}/redact':
     post:
       tags:
         - Message Batches
@@ -5585,7 +5122,7 @@ paths:
         - message_batch_not_found
         - object_cannot_be_redacted
         - object_redaction_in_progress
-  /v1/message_batches/{id}/status:
+  '/v1/message_batches/{id}/status':
     get:
       tags:
         - Message Batches
@@ -5777,7 +5314,7 @@ paths:
       x-error-codes:
         - message_stream_not_found
         - message_sender_alphanumeric_in_use
-  /v1/message_senders/{id}:
+  '/v1/message_senders/{id}':
     get:
       tags:
         - Message Senders
@@ -5825,16 +5362,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/MessageSenderUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/MessageSenderUpdateOptions'
       responses:
         '200':
           description: OK
@@ -6022,7 +5557,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - message_stream_name_in_use
-  /v1/message_streams/{id}:
+  '/v1/message_streams/{id}':
     get:
       tags:
         - Message Streams
@@ -6070,16 +5605,16 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/MessageStreamUpdateOptions'
+              description: Represents the details about a message stream that can be patched.
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/MessageStreamUpdateOptions'
+              description: Represents the details about a message stream that can be patched.
       responses:
         '200':
           description: OK
@@ -6131,7 +5666,7 @@ paths:
       x-error-codes:
         - message_stream_not_found
         - message_stream_cannot_be_modified
-  /v1/message_streams/{id}/archive:
+  '/v1/message_streams/{id}/archive':
     post:
       tags:
         - Message Streams
@@ -6165,7 +5700,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - message_stream_not_found
-  /v1/message_streams/{id}/unarchive:
+  '/v1/message_streams/{id}/unarchive':
     post:
       tags:
         - Message Streams
@@ -6357,7 +5892,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - message_stream_not_found
-  /v1/message_suppressions/{id}:
+  '/v1/message_suppressions/{id}':
     get:
       tags:
         - Message Suppressions
@@ -6555,7 +6090,7 @@ paths:
       x-error-codes:
         - message_template_content_is_invalid
         - message_template_alias_in_use
-  /v1/message_templates/{id}:
+  '/v1/message_templates/{id}':
     get:
       tags:
         - Message Templates
@@ -6603,16 +6138,16 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/MessageTemplateUpdateOptions'
+              description: Represents the details about a template that can be patched.
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/MessageTemplateUpdateOptions'
+              description: Represents the details about a template that can be patched.
       responses:
         '200':
           description: OK
@@ -6969,7 +6504,7 @@ paths:
         - file_invalid
         - file_expired
         - object_redacted
-  /v1/messages/{id}:
+  '/v1/messages/{id}':
     get:
       tags:
         - Messages
@@ -7017,16 +6552,16 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/MessageUpdateOptions'
+              description: Represents the details about a message that can be patched.
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/MessageUpdateOptions'
+              description: Represents the details about a message that can be patched.
       responses:
         '200':
           description: OK
@@ -7048,7 +6583,7 @@ paths:
       x-error-codes:
         - message_not_found
         - object_redacted
-  /v1/messages/{id}/cancel:
+  '/v1/messages/{id}/cancel':
     post:
       tags:
         - Messages
@@ -7084,7 +6619,7 @@ paths:
       x-error-codes:
         - message_not_found
         - message_cannot_be_cancelled
-  /v1/messages/{id}/redact:
+  '/v1/messages/{id}/redact':
     post:
       tags:
         - Messages
@@ -7343,7 +6878,7 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-supports-pagination: true
-  /v1/payment_authorizations/{id}:
+  '/v1/payment_authorizations/{id}':
     get:
       tags:
         - Payment Authorizations
@@ -7391,16 +6926,16 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/PaymentAuthorizationUpdateOptions'
+              description: Represents the details that can be patched in a payment authorization.
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/PaymentAuthorizationUpdateOptions'
+              description: Represents the details that can be patched in a payment authorization.
       responses:
         '200':
           description: OK
@@ -7421,7 +6956,7 @@ paths:
           $ref: '#/components/responses/403'
       x-error-codes:
         - payment_authorization_not_found
-  /v1/payment_authorizations/{id}/approve:
+  '/v1/payment_authorizations/{id}/approve':
     post:
       tags:
         - Payment Authorizations
@@ -7464,7 +6999,7 @@ paths:
       x-error-codes:
         - payment_authorization_not_found
         - payment_authorization_closed
-  /v1/payment_authorizations/{id}/decline:
+  '/v1/payment_authorizations/{id}/decline':
     post:
       tags:
         - Payment Authorizations
@@ -7535,6 +7070,13 @@ paths:
             type: string
             example: cust_602a8dd0a54847479a874de4
           example: cust_602a8dd0a54847479a874de4
+        - name: money_provider
+          in: query
+          description: Filter options for `money_provider` property.
+          schema:
+            type: string
+            example: mprov_602a8dd0a54847479a874de4
+          example: mprov_602a8dd0a54847479a874de4
         - name: currency
           in: query
           schema:
@@ -7696,7 +7238,7 @@ paths:
         - invalid_settings
         - payment_not_found
         - payment_cannot_be_refunded
-  /v1/payment_refunds/{id}:
+  '/v1/payment_refunds/{id}':
     get:
       tags:
         - Payment Refunds
@@ -7744,16 +7286,16 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/PaymentRefundUpdateOptions'
+              description: Represents the details that can be patched in a payment refund.
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/PaymentRefundUpdateOptions'
+              description: Represents the details that can be patched in a payment refund.
       responses:
         '200':
           description: OK
@@ -7802,6 +7344,13 @@ paths:
             type: string
             example: cust_602a8dd0a54847479a874de4
           example: cust_602a8dd0a54847479a874de4
+        - name: money_provider
+          in: query
+          description: Filter options for `money_provider` property.
+          schema:
+            type: string
+            example: mprov_602a8dd0a54847479a874de4
+          example: mprov_602a8dd0a54847479a874de4
         - name: currency
           in: query
           schema:
@@ -7963,7 +7512,7 @@ paths:
         - invalid_settings
         - customer_not_found
         - object_redacted
-  /v1/payments/{id}:
+  '/v1/payments/{id}':
     get:
       tags:
         - Payments
@@ -8011,16 +7560,16 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/PaymentUpdateOptions'
+              description: Represents the details that can be patched in a payment.
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/PaymentUpdateOptions'
+              description: Represents the details that can be patched in a payment.
       responses:
         '200':
           description: OK
@@ -8171,7 +7720,7 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-  /v1/temporary_keys/{id}:
+  '/v1/temporary_keys/{id}':
     get:
       tags:
         - Temporary Keys
@@ -8259,6 +7808,13 @@ paths:
             type: string
             example: cust_602a8dd0a54847479a874de4
           example: cust_602a8dd0a54847479a874de4
+        - name: money_provider
+          in: query
+          description: Filter options for `money_provider` property.
+          schema:
+            type: string
+            example: mprov_602a8dd0a54847479a874de4
+          example: mprov_602a8dd0a54847479a874de4
         - name: currency
           in: query
           schema:
@@ -8419,7 +7975,7 @@ paths:
         - invalid_settings
         - transfer_not_found
         - transfer_cannot_be_reversed
-  /v1/transfer_reversals/{id}:
+  '/v1/transfer_reversals/{id}':
     get:
       tags:
         - Transfer Reversals
@@ -8467,16 +8023,16 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/TransferReversalUpdateOptions'
+              description: Represents the details that can be patched in a transfer reversal.
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/TransferReversalUpdateOptions'
+              description: Represents the details that can be patched in a transfer reversal.
       responses:
         '200':
           description: OK
@@ -8532,6 +8088,13 @@ paths:
             type: string
             example: cust_602a8dd0a54847479a874de4
           example: cust_602a8dd0a54847479a874de4
+        - name: money_provider
+          in: query
+          description: Filter options for `money_provider` property.
+          schema:
+            type: string
+            example: mprov_602a8dd0a54847479a874de4
+          example: mprov_602a8dd0a54847479a874de4
         - name: currency
           in: query
           schema:
@@ -8693,7 +8256,7 @@ paths:
         - insufficient_balance
         - customer_not_found
         - object_redacted
-  /v1/transfers/{id}:
+  '/v1/transfers/{id}':
     get:
       tags:
         - Transfers
@@ -8741,16 +8304,16 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/TransferUpdateOptions'
+              description: Represents the details that can be patched in a transfer.
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/TransferUpdateOptions'
+              description: Represents the details that can be patched in a transfer.
       responses:
         '200':
           description: OK
@@ -8880,7 +8443,7 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-supports-pagination: true
-  /v1/webhooks/{id}:
+  '/v1/webhooks/{id}':
     get:
       tags:
         - Webhooks
@@ -9042,7 +8605,7 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-  /v1/webhooks/endpoints/{id}:
+  '/v1/webhooks/endpoints/{id}':
     get:
       tags:
         - Webhook Endpoints
@@ -9090,16 +8653,14 @@ paths:
       requestBody:
         description: ''
         content:
-          application/json-patch+json:
+          application/merge-patch+json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/WebhookEndpointUpdateOptions'
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Operation'
+              allOf:
+                - $ref: '#/components/schemas/WebhookEndpointUpdateOptions'
       responses:
         '200':
           description: OK
@@ -9153,10 +8714,10 @@ components:
   schemas:
     ApiVersion:
       enum:
-        - '2022-09-01'
+        - '2024-06-01'
       type: string
       description: The API version to use.
-      example: '2022-09-01'
+      example: '2024-06-01'
     BilledDiscountAmount:
       type: object
       properties:
@@ -9208,13 +8769,13 @@ components:
           example: ken
         name:
           type: string
-          description: The display name of the tax rate, which will be shown to users.
+          description: 'The display name of the tax rate, which will be shown to users.'
           nullable: true
           example: VAT
         description:
           type: string
           description: |-
-            An arbitrary string attached to the tax rate for your internal use only.
+            An arbitrary string attached to the tax rate for your use.
             It will not be visible to your customers.
           nullable: true
           example: Effective 01 April 2020
@@ -9336,10 +8897,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - name
-        - active
-        - metadata
     CouponCreateOptions:
       required:
         - frequency
@@ -9447,6 +9004,33 @@ components:
         - percentage
         - amount
       type: string
+    CouponUpdateOptions:
+      type: object
+      properties:
+        name:
+          type: string
+          description: |-
+            Name of the coupon displayed to customers.
+            When not supplied, the `id` is displayed instead.
+          nullable: true
+          example: 10% off
+        active:
+          type: boolean
+          description: |-
+            Whether the coupon is currently available for new usage.
+            Defaults to true.
+          default: true
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
     CreditNote:
       type: object
       properties:
@@ -9540,7 +9124,7 @@ components:
           format: int64
         total:
           type: integer
-          description: Total amount (in the smallest unit of the specified `currency`) of the credit note, including tax and all discounts.
+          description: 'Total amount (in the smallest unit of the specified `currency`) of the credit note, including tax and all discounts.'
           format: int64
           example: 5800
         pdf_url:
@@ -9564,9 +9148,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - description
-        - metadata
     CreditNoteCreateOptions:
       required:
         - invoice
@@ -9717,6 +9298,25 @@ components:
         - issued
         - voided
       type: string
+    CreditNoteUpdateOptions:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Customer-facing text that appears on the credit note PDF.
+          nullable: true
+          example: Sponsored proof of concept
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
     Customer:
       type: object
       properties:
@@ -9845,19 +9445,6 @@ components:
             If the object is not redacted, this field will be null.
           nullable: true
       additionalProperties: false
-      x-patchable:
-        - address
-        - description
-        - email
-        - name
-        - phone
-        - timezone
-        - language
-        - coupon
-        - type
-        - invoicing
-        - balances
-        - metadata
     CustomerBalanceTransaction:
       type: object
       properties:
@@ -9910,7 +9497,7 @@ components:
           example: inv_602a8dd0a54847479a874de4
         amount:
           type: integer
-          description: The amount for the transaction, in the smallest currency unit.
+          description: 'The amount for the transaction, in the smallest currency unit.'
           format: int64
         currency:
           maxLength: 3
@@ -9951,9 +9538,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - description
-        - metadata
     CustomerBalanceTransactionCreateOptions:
       required:
         - amount
@@ -9983,7 +9567,7 @@ components:
           example: cust_602a8dd0a54847479a874de4
         amount:
           type: integer
-          description: The amount for the transaction, in the smallest currency unit.
+          description: 'The amount for the transaction, in the smallest currency unit.'
           format: int64
         currency:
           maxLength: 3
@@ -10022,6 +9606,25 @@ components:
         unapplied_from_invoice: |-
           Traces the reversal of an applied customer balance from a linked invoice.
           Paired with an earlier ‘applied_to_invoice’ transaction.
+    CustomerBalanceTransactionUpdateOptions:
+      type: object
+      properties:
+        description:
+          type: string
+          description: An arbitrary string attached to the customer balance transaction that can be displayed to your customers.
+          nullable: true
+          example: Migrated balance transaction from previous system.
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
     CustomerCreateOptions:
       type: object
       properties:
@@ -10123,7 +9726,7 @@ components:
       properties:
         prefix:
           minLength: 1
-          pattern: ^[A-Z0-9]{3,12}$
+          pattern: '^[A-Z0-9]{3,12}$'
           type: string
           description: |-
             Prefix used to generate unique invoice numbers for the customer.
@@ -10335,6 +9938,100 @@ components:
         - corporate
         - small_business
       type: string
+    CustomerUpdateOptions:
+      type: object
+      properties:
+        address:
+          allOf:
+            - $ref: '#/components/schemas/PhysicalAddress'
+          description: The customer’s primary address.
+          nullable: true
+        description:
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          nullable: true
+          example: This is for my reference
+        email:
+          type: string
+          description: The customer’s email address.
+          format: email
+          nullable: true
+          example: user@example.com
+        name:
+          type: string
+          description: The customer’s full name or business name.
+          nullable: true
+          example: John Kamau Onyango
+        phone:
+          type: string
+          description: The customer’s phone number.
+          format: tel
+          nullable: true
+          example: '+254722000000'
+        timezone:
+          type: string
+          description: |-
+            The customer’s timezone.
+            When not provided, the server decides depending on the task at hand.
+          format: timezone
+          nullable: true
+          example: Africa/Nairobi
+        language:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: |-
+            Three-letter [ISO language code](https://www.iso.org/iso-639-language-codes.html),
+            in lowercase.
+
+            This determines the language to be used for communications to the customer
+            including emails, messages, PDF documents, and hosted pages.
+            When not provided, `eng` (English) is used.
+            Currently only `eng` is allowed.
+          format: language
+          nullable: true
+          example: eng
+        coupon:
+          type: string
+          description: The coupon attached to the customer.
+          nullable: true
+        type:
+          allOf:
+            - $ref: '#/components/schemas/CustomerType'
+          description: |-
+            Type of customer
+            Defaults to `individual`.
+          default: individual
+        invoicing:
+          allOf:
+            - $ref: '#/components/schemas/CustomerInvoicing'
+          description: Settings for invoicing the customer.
+          nullable: true
+        balances:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+            nullable: true
+          description: |-
+            Set of key-value pairs mapping a customer's balances in various currencies. The key is the currency while the value is the customer balance.
+            Negative values are treated as credit (a reduction in the amount owed by the customer) that you can apply to the next invoice.
+            Positive values are treated as a debit (an increase in the amount owed by the customer to you) that you can apply to the next invoice.
+          nullable: true
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
     DataRedaction:
       type: object
       properties:
@@ -10409,12 +10106,12 @@ components:
           example: cust_602a8dd0a54847479a874de4
         subscription:
           type: string
-          description: Identifier of the subscription that the coupon is applied to, if any.
+          description: 'Identifier of the subscription that the coupon is applied to, if any.'
           nullable: true
           example: sub_602a8dd0a54847479a874de4
         invoice:
           type: string
-          description: Identifier of the invoice this discount's coupon was applied to, if it was applied directly to a particular invoice.
+          description: 'Identifier of the invoice this discount''s coupon was applied to, if it was applied directly to a particular invoice.'
           nullable: true
           example: inv_602a8dd0a54847479a874de4
         workspace:
@@ -10437,14 +10134,14 @@ components:
       properties:
         object:
           type: object
-          additionalProperties: {}
+          additionalProperties: { }
           description: |-
             Object containing the API resource relevant to the event.
             For example, a `money_balances.updated` event will have a full payment balances object.
           nullable: true
         previous:
           type: object
-          additionalProperties: {}
+          additionalProperties: { }
           description: |-
             Object containing the names of the properties that have changed, and their previous
             values (sent along only with `*.updated` events).
@@ -10464,7 +10161,7 @@ components:
           example: req_0o5Fs0EELR0fUjHjbCnEtdUwQe3
         idempotency_key:
           type: string
-          description: The idempotency key transmitted during the request, if any.
+          description: 'The idempotency key transmitted during the request, if any.'
           nullable: true
       additionalProperties: false
     EventType:
@@ -10631,7 +10328,7 @@ components:
         identity_verification.verified: |-
           Occurs whenever processing of all the verification checks have completed
           and they’re all successfully verified.
-        identity_verification.input_required: Occurs whenever processing of all the verification checks have completed, and at least one of the checks failed.
+        identity_verification.input_required: 'Occurs whenever processing of all the verification checks have completed, and at least one of the checks failed.'
         identity_verification.cancelled: |-
           Occurs whenever an identity verification has been cancelled and future
           submission attempts have been disabled.
@@ -10646,7 +10343,7 @@ components:
         - unavailable
         - other
       type: string
-      description: Reason for failure of a payment, transfer or reversal.
+      description: 'Reason for failure of a payment, transfer or reversal.'
       x-enumDescriptions:
         unavailable: |-
           The user is not reachable either because the mobile device
@@ -10731,11 +10428,11 @@ components:
       properties:
         md5:
           type: string
-          description: Plain hash using [MD5](https://en.wikipedia.org/wiki/MD5) in hex.
+          description: 'Plain hash using [MD5](https://en.wikipedia.org/wiki/MD5) in hex.'
           nullable: true
         sha256:
           type: string
-          description: Plain hash using [SHA256](https://en.wikipedia.org/wiki/SHA-2) in hex.
+          description: 'Plain hash using [SHA256](https://en.wikipedia.org/wiki/SHA-2) in hex.'
           nullable: true
       additionalProperties: false
       description: Represents various hashes of a file.
@@ -10800,9 +10497,6 @@ components:
           example: FL9rRnlW2Qg=
       additionalProperties: false
       description: Represents an unauthenticated link to a file.
-      x-patchable:
-        - metadata
-        - expires
     FileLinkCreateOptions:
       required:
         - file
@@ -10829,6 +10523,26 @@ components:
           description: Unique identifier of the file.
           example: file_602a8dd0a54847479a874de4
       additionalProperties: false
+    FileLinkUpdateOptions:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+        expires:
+          type: string
+          description: Time at which the link expires.
+          format: date-time
+          nullable: true
+      additionalProperties: false
+      description: Represents the details that can be patched in a file link.
     FilePurpose:
       enum:
         - business.icon
@@ -10979,7 +10693,7 @@ components:
         error:
           allOf:
             - $ref: '#/components/schemas/IdentityVerificationLastError'
-          description: If present, this property tells you the last error encountered when processing the identity verification.
+          description: 'If present, this property tells you the last error encountered when processing the identity verification.'
           nullable: true
         outputs:
           allOf:
@@ -11009,9 +10723,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - description
-        - metadata
       x-pii:
         - outputs
     IdentityVerificationCreateOptions:
@@ -11070,7 +10781,7 @@ components:
           description: A short machine-readable string giving the reason for the failure.
         timestamp:
           type: string
-          description: Time at which failure occurred, if any.
+          description: 'Time at which failure occurred, if any.'
           format: date-time
           nullable: true
         description:
@@ -11102,7 +10813,7 @@ components:
           description: A short machine-readable string giving the reason for the failure.
         timestamp:
           type: string
-          description: Time at which failure occurred, if any.
+          description: 'Time at which failure occurred, if any.'
           format: date-time
           nullable: true
         description:
@@ -11197,7 +10908,7 @@ components:
           description: A short machine-readable string giving the reason for the failure.
         timestamp:
           type: string
-          description: Time at which failure occurred, if any.
+          description: 'Time at which failure occurred, if any.'
           format: date-time
           nullable: true
         description:
@@ -11225,7 +10936,7 @@ components:
           description: A short machine-readable string giving the reason for the failure.
         timestamp:
           type: string
-          description: Time at which failure occurred, if any.
+          description: 'Time at which failure occurred, if any.'
           format: date-time
           nullable: true
         description:
@@ -11567,7 +11278,7 @@ components:
           type: string
           description: User agent of the device from which the verification was done.
           nullable: true
-          example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36
+          example: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
         client_type:
           allOf:
             - $ref: '#/components/schemas/IdentityVerificationReportDeviceClientType'
@@ -11660,7 +11371,7 @@ components:
           type: string
           description: Version of the SDK.
           nullable: true
-          example: 2.2.11
+          example: '2.2.11'
       additionalProperties: false
     IdentityVerificationReportDeviceType:
       enum:
@@ -11921,13 +11632,13 @@ components:
           example: Kenya
         longitude:
           type: number
-          description: Longitudinal measurement (east or west), if available.
+          description: 'Longitudinal measurement (east or west), if available.'
           format: double
           nullable: true
           example: 36.8155
         latitude:
           type: number
-          description: Latitudinal measurement (north or south), if available.
+          description: 'Latitudinal measurement (north or south), if available.'
           format: double
           nullable: true
           example: -1.2841
@@ -11951,7 +11662,7 @@ components:
           nullable: true
         asn:
           type: string
-          description: The `ip`'s Autonomous System Number (ASN), if available.
+          description: 'The `ip`''s Autonomous System Number (ASN), if available.'
           nullable: true
       additionalProperties: false
     IdentityVerificationReportSelfie:
@@ -12041,7 +11752,7 @@ components:
           description: A short machine-readable string giving the reason for the failure.
         timestamp:
           type: string
-          description: Time at which failure occurred, if any.
+          description: 'Time at which failure occurred, if any.'
           format: date-time
           nullable: true
         description:
@@ -12102,7 +11813,7 @@ components:
           description: A short machine-readable string giving the reason for the failure.
         timestamp:
           type: string
-          description: Time at which failure occurred, if any.
+          description: 'Time at which failure occurred, if any.'
           format: date-time
           nullable: true
         description:
@@ -12207,6 +11918,27 @@ components:
         document_and_video: |-
           Requires the user to upload a verifiable identification
           document alongside a video recording.
+    IdentityVerificationUpdateOptions:
+      type: object
+      properties:
+        description:
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          nullable: true
+          example: This is for my reference
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
     IdentityVerificationVideoErrorCode:
       enum:
         - video_document_missing_photo
@@ -12228,7 +11960,7 @@ components:
           description: A short machine-readable string giving the reason for the failure.
         timestamp:
           type: string
-          description: Time at which failure occurred, if any.
+          description: 'Time at which failure occurred, if any.'
           format: date-time
           nullable: true
         description:
@@ -12312,7 +12044,7 @@ components:
           nullable: true
         subscription:
           type: string
-          description: Identifier of the subscription this invoice was prepared for, if any.
+          description: 'Identifier of the subscription this invoice was prepared for, if any.'
           nullable: true
           example: sub_602a8dd0a54847479a874de4
         number:
@@ -12454,10 +12186,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - default_payment_method
-        - description
-        - metadata
     InvoiceAttempts:
       type: object
       properties:
@@ -12580,12 +12308,12 @@ components:
           example: price_602a8dd0a54847479a874de4
         subscription:
           type: string
-          description: Identifier of the subscription that this invoice item has been created for, if any.
+          description: 'Identifier of the subscription that this invoice item has been created for, if any.'
           nullable: true
           example: sub_602a8dd0a54847479a874de4
         subscription_item:
           type: string
-          description: Identifier of the subscription item that this invoice item has been created for, if any.
+          description: 'Identifier of the subscription item that this invoice item has been created for, if any.'
           nullable: true
           example: subi_602a8dd0a54847479a874de4
         period:
@@ -12664,9 +12392,29 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
+    InvoiceItemUpdateOptions:
+      required:
         - description
-        - metadata
+      type: object
+      properties:
+        description:
+          minLength: 1
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          example: This is for my reference
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
     InvoicePayOptions:
       required:
         - paid_externally
@@ -12684,6 +12432,36 @@ components:
         - ready
         - written_off
       type: string
+    InvoiceUpdateOptions:
+      type: object
+      properties:
+        default_payment_method:
+          type: string
+          description: |-
+            Identifier of the default payment method that's attached to the customer associated with the invoice,
+            to be used as the default payment method for invoice.
+            If none is set, the customer's default payment method us used.
+          nullable: true
+          example: pm_602a8dd0a54847479a874de4
+        description:
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          nullable: true
+          example: This is for my reference
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
     Message:
       type: object
       properties:
@@ -12757,7 +12535,7 @@ components:
           example: msdr_602a8dd0a54847479a874de4
         batch:
           type: string
-          description: Batch that the message belongs to, if any.
+          description: 'Batch that the message belongs to, if any.'
           nullable: true
           example: msba_602a8dd0a54847479a874de4
         segments:
@@ -12790,12 +12568,12 @@ components:
           nullable: true
         delivered:
           type: string
-          description: Time at which the message was delivered, where available.
+          description: 'Time at which the message was delivered, where available.'
           format: date-time
           nullable: true
         read:
           type: string
-          description: Time at which the message was read, where available.
+          description: 'Time at which the message was read, where available.'
           format: date-time
           nullable: true
         redaction:
@@ -12821,8 +12599,6 @@ components:
           example: FL9rRnlW2Qg=
       additionalProperties: false
       description: Represents a message.
-      x-patchable:
-        - metadata
       x-pii:
         - body
     MessageBatch:
@@ -12911,9 +12687,6 @@ components:
           example: FL9rRnlW2Qg=
       additionalProperties: false
       description: Represents a batch of messages for tracking purposes.
-      x-patchable:
-        - description
-        - metadata
     MessageBatchCreateOptions:
       required:
         - messages
@@ -13063,6 +12836,28 @@ components:
           description: Number of messages in the `cancelled` status.
           format: int32
       additionalProperties: false
+    MessageBatchUpdateOptions:
+      type: object
+      properties:
+        description:
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          nullable: true
+          example: This is for my reference
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
+      description: Represents the details about a message batch that can be patched.
     MessageChannelType:
       enum:
         - sms
@@ -13104,7 +12899,7 @@ components:
         to:
           minLength: 1
           type: string
-          description: Destination phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+          description: 'Destination phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).'
           format: tel
           example: '+254722000000'
           x-pii: true
@@ -13227,7 +13022,7 @@ components:
           example: eng
         model:
           type: object
-          additionalProperties: {}
+          additionalProperties: { }
           description: Model applied when rendering the template.
           nullable: true
           x-pii: true
@@ -13243,7 +13038,7 @@ components:
           description: A short machine-readable string giving the reason for the failure.
         timestamp:
           type: string
-          description: Time at which failure occurred, if any.
+          description: 'Time at which failure occurred, if any.'
           format: date-time
           nullable: true
         description:
@@ -13359,32 +13154,32 @@ components:
         phone_number:
           allOf:
             - $ref: '#/components/schemas/MessageSenderPhoneNumberDetails'
-          description: For `phone_number`senders, this contains details about the phone number.
+          description: 'For `phone_number`senders, this contains details about the phone number.'
           nullable: true
         short_code:
           allOf:
             - $ref: '#/components/schemas/MessageSenderShortCodeDetails'
-          description: For `short_code`senders, this contains details about the ShortCode.
+          description: 'For `short_code`senders, this contains details about the ShortCode.'
           nullable: true
         alphanumeric:
           allOf:
             - $ref: '#/components/schemas/MessageSenderAlphanumericDetails'
-          description: For `alphanumeric`senders, this contains details about the Alphanumeric configuration.
+          description: 'For `alphanumeric`senders, this contains details about the Alphanumeric configuration.'
           nullable: true
         whatsapp:
           allOf:
             - $ref: '#/components/schemas/MessageSenderWhatsAppDetails'
-          description: For `whatsapp`senders, this contains details about the WhatsApp setup.
+          description: 'For `whatsapp`senders, this contains details about the WhatsApp setup.'
           nullable: true
         google:
           allOf:
             - $ref: '#/components/schemas/MessageSenderGoogleDetails'
-          description: For `whatsapp`senders, this contains details about the Google RCS setup.
+          description: 'For `whatsapp`senders, this contains details about the Google RCS setup.'
           nullable: true
         apple:
           allOf:
             - $ref: '#/components/schemas/MessageSenderAppleDetails'
-          description: For `whatsapp`senders, this contains details about the Apple Business Chat setup.
+          description: 'For `whatsapp`senders, this contains details about the Apple Business Chat setup.'
           nullable: true
         workspace:
           type: string
@@ -13401,9 +13196,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - description
-        - metadata
     MessageSenderAlphanumericDetails:
       type: object
       properties:
@@ -13463,7 +13255,7 @@ components:
             - $ref: '#/components/schemas/MessageSenderType'
           description: Type of sender.
         alphanumeric:
-          pattern: ^[a-zA-Z0-9_\-+& ]{5,11}$
+          pattern: '^[a-zA-Z0-9_\-+& ]{5,11}$'
           type: string
           description: |-
             Alphanumeric code for sending messages, up to 11 characters.
@@ -13519,6 +13311,27 @@ components:
           A branded sender identifier that can be used for sending messages.
           Its value is shown to the recipient but they cannot reply.
           Instead, use the managed `short_code` in the sender to receive messages.
+    MessageSenderUpdateOptions:
+      type: object
+      properties:
+        description:
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          nullable: true
+          example: This is for my reference
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
     MessageSenderWhatsAppDetails:
       type: object
       properties:
@@ -13553,7 +13366,7 @@ components:
           example: eng
         model:
           type: object
-          additionalProperties: {}
+          additionalProperties: { }
           description: Model applied when rendering the template.
           nullable: true
           x-pii: true
@@ -13574,8 +13387,8 @@ components:
       x-enumDescriptions:
         accepted: Falu has received your API request to send a message and a sender is being dynamically selected.
         sent: The nearest upstream carrier accepted the message.
-        delivered: Falu has received confirmation of message delivery from the upstream provider, where available.
-        read: Falu has received a message read receipt from the upstream provider, where available.
+        delivered: 'Falu has received confirmation of message delivery from the upstream provider, where available.'
+        read: 'Falu has received a message read receipt from the upstream provider, where available.'
     MessageStream:
       type: object
       properties:
@@ -13642,9 +13455,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - description
-        - metadata
     MessageStreamCreateOptions:
       required:
         - name
@@ -13671,7 +13481,7 @@ components:
         name:
           maxLength: 50
           minLength: 3
-          pattern: ^[a-z]([a-z0-9\-_]+)$
+          pattern: '^[a-z]([a-z0-9\-_]+)$'
           type: string
           description: |-
             A string used for easier identification.
@@ -13691,6 +13501,28 @@ components:
         - marketing
       type: string
       description: Represents the types of streams for messages.
+    MessageStreamUpdateOptions:
+      type: object
+      properties:
+        description:
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          nullable: true
+          example: This is for my reference
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
+      description: Represents the details about a message stream that can be patched.
     MessageSuppression:
       type: object
       properties:
@@ -13714,7 +13546,7 @@ components:
           example: mstr_602a8dd0a54847479a874de4
         to:
           type: string
-          description: Destination phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+          description: 'Destination phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).'
           format: tel
           nullable: true
           example: '+254722000000'
@@ -13753,7 +13585,7 @@ components:
         to:
           minLength: 1
           type: string
-          description: Destination phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+          description: 'Destination phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).'
           format: tel
           example: '+254722000000'
           x-pii: true
@@ -13800,7 +13632,7 @@ components:
         alias:
           maxLength: 100
           minLength: 3
-          pattern: ^[a-zA-Z]([a-zA-Z0-9\-_]+)$
+          pattern: '^[a-zA-Z]([a-zA-Z0-9\-_]+)$'
           type: string
           description: |-
             A string used for easier identification of a message template.
@@ -13881,12 +13713,6 @@ components:
           example: FL9rRnlW2Qg=
       additionalProperties: false
       description: Represents a template that can be used to send a message.
-      x-patchable:
-        - alias
-        - body
-        - translations
-        - description
-        - metadata
     MessageTemplateCreateOptions:
       required:
         - alias
@@ -13896,7 +13722,7 @@ components:
         alias:
           maxLength: 100
           minLength: 3
-          pattern: ^[a-zA-Z]([a-zA-Z0-9\-_]+)$
+          pattern: '^[a-zA-Z]([a-zA-Z0-9\-_]+)$'
           type: string
           description: |-
             A string used for easier identification of a message template.
@@ -13971,11 +13797,70 @@ components:
         - verification
       type: string
       x-enumDescriptions:
-        transactional: Templates communicating important information such as account updates, order updates, and other alerts.
-        marketing: Templates for communicating promotional offers, product announcements, and more to increase awareness and engagement.
+        transactional: 'Templates communicating important information such as account updates, order updates, and other alerts.'
+        marketing: 'Templates for communicating promotional offers, product announcements, and more to increase awareness and engagement.'
         verification: |-
           Templates communicating authentication/verification codes (e.g. one time passwords) that allow
           your customers to securely access their accounts or authorize an action.
+    MessageTemplateUpdateOptions:
+      required:
+        - alias
+        - body
+      type: object
+      properties:
+        alias:
+          maxLength: 100
+          minLength: 3
+          pattern: '^[a-zA-Z]([a-zA-Z0-9\-_]+)$'
+          type: string
+          description: |-
+            A string used for easier identification of a message template.
+            Allowed characters are numbers, ASCII letters, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          example: otp-v2
+        body:
+          minLength: 1
+          type: string
+          description: |-
+            Content to use when this template is used to send messages.
+            See our template language documentation for more information on the syntax for this field.
+          example: 'Your OTP code is: {{otp}}'
+        translations:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/MessageTemplateTranslation'
+          description: |-
+            Translations for the template.
+            Each key must be a three-letter
+            [ISO language code](https://www.iso.org/iso-639-language-codes.html), in lowercase.
+          nullable: true
+          example:
+            swa:
+              body: 'Msimbo wako wa OTP ni: {{otp}}'
+            spa:
+              body: 'Su código OTP es: {{otp}}'
+            fra:
+              body: 'Votre code OTP est : {{otp}}'
+        description:
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          nullable: true
+          example: This is for my reference
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
+      description: Represents the details about a template that can be patched.
     MessageTemplateValidateOptions:
       required:
         - body
@@ -14013,7 +13898,7 @@ components:
               body: 'Votre code OTP est : {{otp}}'
         model:
           type: object
-          additionalProperties: {}
+          additionalProperties: { }
           description: The template model to be used when rendering test content.
           nullable: true
       additionalProperties: false
@@ -14045,7 +13930,7 @@ components:
               rendered: 'Votre code OTP est : 123456'
         model:
           type: object
-          additionalProperties: {}
+          additionalProperties: { }
           description: |-
             A JSON object structure that will provide information
             for all keys found in the template content submitted.
@@ -14061,6 +13946,21 @@ components:
           description: Text content that would be produced by the template for the given language using the `model`.
           nullable: true
       additionalProperties: false
+    MessageUpdateOptions:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
+      description: Represents the details about a message that can be patched.
     MoneyBalances:
       type: object
       properties:
@@ -14098,36 +13998,6 @@ components:
           example: FL9rRnlW2Qg=
       additionalProperties: false
       description: Balances for money services.
-    Operation:
-      type: object
-      properties:
-        path:
-          type: string
-        op:
-          $ref: '#/components/schemas/OperationType'
-        from:
-          type: string
-          nullable: true
-        value:
-          nullable: true
-      additionalProperties: false
-      externalDocs:
-        description: JSON Patch Documentation (RFC 6902)
-        url: http://jsonpatch.com/
-      example:
-        op: add
-        path: /metadata/type
-        value: marketing
-    OperationType:
-      enum:
-        - add
-        - remove
-        - replace
-        - move
-        - copy
-        - test
-        - invalid
-      type: string
     Payment:
       type: object
       properties:
@@ -14186,12 +14056,12 @@ components:
           nullable: true
         customer:
           type: string
-          description: Identifier of the Customer this Payment belongs to, if one exists.
+          description: 'Identifier of the Customer this Payment belongs to, if one exists.'
           nullable: true
           example: cust_602a8dd0a54847479a874de4
         authorization:
           type: string
-          description: Identifier of the payment authorization, if the payment passed through a flow requiring authorization.
+          description: 'Identifier of the payment authorization, if the payment passed through a flow requiring authorization.'
           nullable: true
           example: pauth_602a8dd0a54847479a874de4
         type:
@@ -14204,7 +14074,7 @@ components:
         mpesa:
           allOf:
             - $ref: '#/components/schemas/PaymentMpesaDetails'
-          description: If this is an MPESA payment, this contains details about the MPESA payment.
+          description: 'If this is an MPESA payment, this contains details about the MPESA payment.'
           nullable: true
         error:
           allOf:
@@ -14215,9 +14085,14 @@ components:
           nullable: true
         payment_refund:
           type: string
-          description: Identifier of the payment refund, if the payment has been refunded.
+          description: 'Identifier of the payment refund, if the payment has been refunded.'
           nullable: true
           example: pr_602a8dd0a54847479a874de4
+        money_provider:
+          type: string
+          description: Identifier of the money provider used to receive the money.
+          nullable: true
+          example: mprov_602a8dd0a54847479a874de4
         workspace:
           type: string
           description: Unique identifier for the workspace that the object belongs to.
@@ -14234,9 +14109,6 @@ components:
           example: FL9rRnlW2Qg=
       additionalProperties: false
       description: Represents a payment.
-      x-patchable:
-        - description
-        - metadata
     PaymentAuthorization:
       type: object
       properties:
@@ -14257,7 +14129,7 @@ components:
           example: pauth_0o5Fs0EELR0fUjHjbCnEtdUwQe3
         amount:
           type: integer
-          description: Amount that was authorized or rejected, in smallest currency unit.
+          description: 'Amount that was authorized or rejected, in smallest currency unit.'
           format: int64
         currency:
           maxLength: 3
@@ -14307,7 +14179,7 @@ components:
         mpesa:
           allOf:
             - $ref: '#/components/schemas/PaymentMpesaDetails'
-          description: If this is an MPESA payment authorization, this contains details about the MPESA payment authorization.
+          description: 'If this is an MPESA payment authorization, this contains details about the MPESA payment authorization.'
           nullable: true
         payment:
           type: string
@@ -14330,8 +14202,6 @@ components:
           example: FL9rRnlW2Qg=
       additionalProperties: false
       description: Represents a payment authorization.
-      x-patchable:
-        - metadata
     PaymentAuthorizationApproveOptions:
       type: object
       properties:
@@ -14405,6 +14275,21 @@ components:
         invalid: Authorization webhook endpoint is invalid.
         realtime: Authorization webhook endpoint was used to approve or decline.
         failed: Synchronous webhook delivery to the authorization webhook endpoint failed.
+    PaymentAuthorizationUpdateOptions:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
+      description: Represents the details that can be patched in a payment authorization.
     PaymentCreateOptions:
       required:
         - amount
@@ -14450,7 +14335,7 @@ components:
           nullable: true
         customer:
           type: string
-          description: Identifier of the Customer this Payment belongs to, if one exists.
+          description: 'Identifier of the Customer this Payment belongs to, if one exists.'
           nullable: true
           example: cust_602a8dd0a54847479a874de4
       additionalProperties: false
@@ -14464,14 +14349,14 @@ components:
         phone:
           minLength: 1
           type: string
-          description: Phone number representing the account to be charged, in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+          description: 'Phone number representing the account to be charged, in [E.164 format](https://en.wikipedia.org/wiki/E.164).'
           format: tel
           example: '+254722000000'
           x-pii: true
         reference:
           maxLength: 50
           minLength: 1
-          pattern: ^[a-zA-Z0-9-_]+$
+          pattern: '^[a-zA-Z0-9-_]+$'
           type: string
           description: |-
             Reference that the payment will be made in.
@@ -14507,10 +14392,10 @@ components:
         code:
           allOf:
             - $ref: '#/components/schemas/FailureReason'
-          description: Reason for failure of a payment, transfer or reversal.
+          description: 'Reason for failure of a payment, transfer or reversal.'
         timestamp:
           type: string
-          description: Time at which failure occurred, if any.
+          description: 'Time at which failure occurred, if any.'
           format: date-time
           nullable: true
         description:
@@ -14565,7 +14450,7 @@ components:
         mpesa:
           allOf:
             - $ref: '#/components/schemas/PaymentMethodMpesa'
-          description: If this is an MPESA payment method, this contains details about the MPESA payment method.
+          description: 'If this is an MPESA payment method, this contains details about the MPESA payment method.'
           nullable: true
         workspace:
           type: string
@@ -14582,9 +14467,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - billing
-        - metadata
     PaymentMethodAttachOptions:
       required:
         - customer
@@ -14653,7 +14535,7 @@ components:
         mpesa:
           allOf:
             - $ref: '#/components/schemas/PaymentMethodMpesa'
-          description: If this is an MPESA payment method, this contains details about the MPESA payment method.
+          description: 'If this is an MPESA payment method, this contains details about the MPESA payment method.'
           nullable: true
       additionalProperties: false
     PaymentMethodMpesa:
@@ -14675,6 +14557,28 @@ components:
       enum:
         - mpesa
       type: string
+    PaymentMethodUpdateOptions:
+      type: object
+      properties:
+        billing:
+          allOf:
+            - $ref: '#/components/schemas/PaymentMethodBilling'
+          description: |-
+            Billing information associated with the payment method.
+            It may be used and/or required by particular types of payment methods.
+          nullable: true
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
+      description: Represents the details that can be patched in a payment method.
     PaymentMpesaDetails:
       type: object
       properties:
@@ -14714,7 +14618,7 @@ components:
           x-pii: true
         phone:
           type: string
-          description: Phone number that made the payment, in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+          description: 'Phone number that made the payment, in [E.164 format](https://en.wikipedia.org/wiki/E.164).'
           format: tel
           nullable: true
           example: '+254722000000'
@@ -14793,7 +14697,7 @@ components:
           nullable: true
         customer:
           type: string
-          description: Identifier of the Customer this Payment Refund belongs to, if one exists.
+          description: 'Identifier of the Customer this Payment Refund belongs to, if one exists.'
           nullable: true
           example: cust_602a8dd0a54847479a874de4
         payment:
@@ -14801,6 +14705,11 @@ components:
           description: Identifier of the payment refunded.
           nullable: true
           example: pa_602a8dd0a54847479a874de4
+        money_provider:
+          type: string
+          description: Identifier of the money provider used to receive the money being refunded.
+          nullable: true
+          example: mprov_602a8dd0a54847479a874de4
         mpesa:
           allOf:
             - $ref: '#/components/schemas/PaymentRefundMpesaDetails'
@@ -14831,9 +14740,6 @@ components:
           example: FL9rRnlW2Qg=
       additionalProperties: false
       description: Represents a refund for a payment.
-      x-patchable:
-        - description
-        - metadata
     PaymentRefundCreateOptions:
       required:
         - payment
@@ -14874,10 +14780,10 @@ components:
         code:
           allOf:
             - $ref: '#/components/schemas/FailureReason'
-          description: Reason for failure of a payment, transfer or reversal.
+          description: 'Reason for failure of a payment, transfer or reversal.'
         timestamp:
           type: string
-          description: Time at which failure occurred, if any.
+          description: 'Time at which failure occurred, if any.'
           format: date-time
           nullable: true
         description:
@@ -14933,6 +14839,28 @@ components:
         - failed
       type: string
       description: Statuses of a payment refund.
+    PaymentRefundUpdateOptions:
+      type: object
+      properties:
+        description:
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          nullable: true
+          example: This is for my reference
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
+      description: Represents the details that can be patched in a payment refund.
     PaymentStatus:
       enum:
         - pending
@@ -14945,6 +14873,28 @@ components:
         - mpesa
       type: string
       description: The medium used for the payment.
+    PaymentUpdateOptions:
+      type: object
+      properties:
+        description:
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          nullable: true
+          example: This is for my reference
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
+      description: Represents the details that can be patched in a payment.
     Period:
       type: object
       properties:
@@ -14982,7 +14932,7 @@ components:
             The second line.
             Also referred to as the `apt, building, suite no. etc.`
           nullable: true
-          example: Block B3, Suite 1Z3
+          example: 'Block B3, Suite 1Z3'
         city:
           maxLength: 100
           minLength: 4
@@ -15121,9 +15071,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - active
-        - metadata
     PriceCreateOptions:
       required:
         - currency
@@ -15276,7 +15223,7 @@ components:
         flat_amount:
           minimum: 0
           type: integer
-          description: Price for the entire tier, regardless of the number of units in the tier.
+          description: 'Price for the entire tier, regardless of the number of units in the tier.'
           format: int64
           nullable: true
         unit_amount:
@@ -15301,6 +15248,26 @@ components:
         - once
         - recurring
       type: string
+    PriceUpdateOptions:
+      type: object
+      properties:
+        active:
+          type: boolean
+          description: |-
+            Whether the price is currently available for new purchases.
+            Defaults to true.
+          default: true
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
     Product:
       required:
         - images
@@ -15310,7 +15277,7 @@ components:
         name:
           minLength: 3
           type: string
-          description: The product’s name, meant to be displayable to the customer.
+          description: 'The product’s name, meant to be displayable to the customer.'
           example: Express Laundry
         description:
           type: string
@@ -15344,7 +15311,7 @@ components:
             type: string
             format: uri
             example: https://example.com
-          description: A list of up to 5 URLs of images for this product, meant to be displayable to the customer.
+          description: 'A list of up to 5 URLs of images for this product, meant to be displayable to the customer.'
           example:
             - https://contoso.com/images/express-laundry-12-1.jpg
             - https://contoso.com/images/express-laundry-12-small.png
@@ -15394,14 +15361,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - name
-        - description
-        - unit_label
-        - url
-        - images
-        - active
-        - metadata
     ProductCreateOptions:
       required:
         - images
@@ -15411,7 +15370,7 @@ components:
         name:
           minLength: 3
           type: string
-          description: The product’s name, meant to be displayable to the customer.
+          description: 'The product’s name, meant to be displayable to the customer.'
           example: Express Laundry
         description:
           type: string
@@ -15445,7 +15404,73 @@ components:
             type: string
             format: uri
             example: https://example.com
-          description: A list of up to 5 URLs of images for this product, meant to be displayable to the customer.
+          description: 'A list of up to 5 URLs of images for this product, meant to be displayable to the customer.'
+          example:
+            - https://contoso.com/images/express-laundry-12-1.jpg
+            - https://contoso.com/images/express-laundry-12-small.png
+            - https://contoso.com/images/express-laundry-12-large.jpg
+        active:
+          type: boolean
+          description: |-
+            Whether the product is currently available for purchase.
+            Defaults to true.
+          default: true
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
+    ProductUpdateOptions:
+      required:
+        - images
+        - name
+      type: object
+      properties:
+        name:
+          minLength: 3
+          type: string
+          description: 'The product’s name, meant to be displayable to the customer.'
+          example: Express Laundry
+        description:
+          type: string
+          description: |-
+            The product’s description, meant to be displayable to the customer.
+            Use this field to optionally store a long form explanation of the
+            product being sold for your own rendering purposes.
+          nullable: true
+          example: Laundry service delivered express in 12 hours.
+        unit_label:
+          type: string
+          description: |-
+            An optional label that represents units of the product.
+            When set, this will be used for presentation in receipts, invoices, and other customer interactions.
+
+
+            This value should be in plural form.
+          nullable: true
+          example: Shirts
+        url:
+          maxLength: 512
+          type: string
+          description: A URL of a publicly-accessible webpage for this product.
+          format: uri
+          nullable: true
+          example: https://contoso.com/products/express-laundry-12-hours
+        images:
+          maxItems: 5
+          type: array
+          items:
+            type: string
+            format: uri
+            example: https://example.com
+          description: 'A list of up to 5 URLs of images for this product, meant to be displayable to the customer.'
           example:
             - https://contoso.com/images/express-laundry-12-1.jpg
             - https://contoso.com/images/express-laundry-12-small.png
@@ -15596,13 +15621,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - coupon
-        - default_tax_rates
-        - default_payment_method
-        - description
-        - auto_renew
-        - metadata
     SubscriptionBillingInterval:
       enum:
         - year
@@ -15690,7 +15708,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SubscriptionCreateOptionsItem'
-          description: A list of up to 5 subscription items, each with an attached price.
+          description: 'A list of up to 5 subscription items, each with an attached price.'
       additionalProperties: false
     SubscriptionCreateOptionsItem:
       required:
@@ -15810,11 +15828,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - price
-        - quantity
-        - tax_rates
-        - metadata
     SubscriptionItemCreateOptions:
       required:
         - price
@@ -15915,6 +15928,41 @@ components:
           format: date-time
           nullable: true
       additionalProperties: false
+    SubscriptionItemUpdateOptions:
+      required:
+        - price
+      type: object
+      properties:
+        price:
+          minLength: 1
+          type: string
+          description: Identifier of the price to subscribe to.
+          example: price_602a8dd0a54847479a874de4
+        quantity:
+          type: integer
+          description: The quantity of the price that to subscribed for.
+          format: int32
+          nullable: true
+          example: 1
+        tax_rates:
+          type: array
+          items:
+            type: string
+          description: |-
+            Identifiers of the tax rates which apply to this subscription item.
+            When set, the default tax rates on the subscription do not apply to this subscription item.
+          nullable: true
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
     SubscriptionItemUsage:
       type: object
       properties:
@@ -15990,6 +16038,59 @@ components:
           format: date-time
           nullable: true
       additionalProperties: false
+    SubscriptionUpdateOptions:
+      type: object
+      properties:
+        coupon:
+          type: string
+          description: |-
+            Identifier of the coupon to apply to this subscription.
+            A coupon applied to a subscription will only affect invoices created for that particular subscription.
+          nullable: true
+          example: coupon_602a8dd0a54847479a874de4
+        default_tax_rates:
+          type: array
+          items:
+            type: string
+          description: |-
+            The tax rates that will apply to any subscription item that does not have rax rates set.
+            Invoices created from this subscription will have their default tax rates populated from here.
+          nullable: true
+        default_payment_method:
+          type: string
+          description: |-
+            Identifier of the default payment method that's attached to the customer associated with the subscription,
+            to be used as the default payment method for subscription.
+            If none is set, the customer's default payment method us used.
+          nullable: true
+          example: pm_602a8dd0a54847479a874de4
+        description:
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          nullable: true
+          example: This is for my reference
+        auto_renew:
+          type: boolean
+          description: |-
+            Whether the subscription should auto renew at the end of the current billing period.
+            When set totrue, the subscription will be advanced to a new billing period.
+            When set tofalse, the subscription will be cancelled at the end of the current billing period.
+            Defaults to true.
+          default: true
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
     TaxRate:
       required:
         - country
@@ -16009,12 +16110,12 @@ components:
           maxLength: 10
           minLength: 1
           type: string
-          description: The display name of the tax rate, which will be shown to users.
+          description: 'The display name of the tax rate, which will be shown to users.'
           example: VAT
         description:
           type: string
           description: |-
-            An arbitrary string attached to the tax rate for your internal use only.
+            An arbitrary string attached to the tax rate for your use.
             It will not be visible to your customers.
           nullable: true
           example: Effective 01 April 2020
@@ -16069,12 +16170,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - country
-        - name
-        - description
-        - active
-        - metadata
     TaxRateCreateOptions:
       required:
         - country
@@ -16095,12 +16190,12 @@ components:
           maxLength: 10
           minLength: 1
           type: string
-          description: The display name of the tax rate, which will be shown to users.
+          description: 'The display name of the tax rate, which will be shown to users.'
           example: VAT
         description:
           type: string
           description: |-
-            An arbitrary string attached to the tax rate for your internal use only.
+            An arbitrary string attached to the tax rate for your use.
             It will not be visible to your customers.
           nullable: true
           example: Effective 01 April 2020
@@ -16129,6 +16224,53 @@ components:
           description: This represents the tax rate as a percentage out of 100.
           format: double
           example: 14
+      additionalProperties: false
+    TaxRateUpdateOptions:
+      required:
+        - country
+        - name
+      type: object
+      properties:
+        country:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: |-
+            Three-letter [ISO country code](https://www.iso.org/iso-3166-country-codes.html),
+            in lowercase, where the tax rate applies.
+          format: country
+          example: ken
+        name:
+          maxLength: 10
+          minLength: 1
+          type: string
+          description: 'The display name of the tax rate, which will be shown to users.'
+          example: VAT
+        description:
+          type: string
+          description: |-
+            An arbitrary string attached to the tax rate for your use.
+            It will not be visible to your customers.
+          nullable: true
+          example: Effective 01 April 2020
+        active:
+          type: boolean
+          description: |-
+            Whether the tax rate is currently available for new purchase.
+            Changing this does not affect existing subscriptions and invoices.
+            Defaults to true.
+          default: true
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
       additionalProperties: false
     TemporaryKey:
       required:
@@ -16216,7 +16358,7 @@ components:
         type:
           allOf:
             - $ref: '#/components/schemas/EventType'
-          description: Type of the event (e.g. money_balances.updated, message.delivered, etc.).
+          description: 'Type of the event (e.g. money_balances.updated, message.delivered, etc.).'
         request:
           allOf:
             - $ref: '#/components/schemas/EventRequest'
@@ -16301,7 +16443,7 @@ components:
           nullable: true
         customer:
           type: string
-          description: Identifier of the Customer this Transfer belongs to, if one exists.
+          description: 'Identifier of the Customer this Transfer belongs to, if one exists.'
           nullable: true
           example: cust_602a8dd0a54847479a874de4
         type:
@@ -16318,7 +16460,7 @@ components:
         mpesa:
           allOf:
             - $ref: '#/components/schemas/TransferMpesaDetails'
-          description: If this is an MPESA transfer, this contains details about the MPESA transfer.
+          description: 'If this is an MPESA transfer, this contains details about the MPESA transfer.'
           nullable: true
         error:
           allOf:
@@ -16329,9 +16471,14 @@ components:
           nullable: true
         transfer_reversal:
           type: string
-          description: Identifier of the transfer reversal, if the transfer has been reversed.
+          description: 'Identifier of the transfer reversal, if the transfer has been reversed.'
           nullable: true
           example: trr_602a8dd0a54847479a874de4
+        money_provider:
+          type: string
+          description: Identifier of the money provider used to send the money.
+          nullable: true
+          example: mprov_602a8dd0a54847479a874de4
         workspace:
           type: string
           description: Unique identifier for the workspace that the object belongs to.
@@ -16348,9 +16495,6 @@ components:
           example: FL9rRnlW2Qg=
       additionalProperties: false
       description: Represents a transfer.
-      x-patchable:
-        - description
-        - metadata
     TransferCreateOptions:
       required:
         - amount
@@ -16401,7 +16545,7 @@ components:
           nullable: true
         customer:
           type: string
-          description: Identifier of the Customer this Transfer belongs to, if one exists.
+          description: 'Identifier of the Customer this Transfer belongs to, if one exists.'
           nullable: true
           example: cust_602a8dd0a54847479a874de4
       additionalProperties: false
@@ -16467,7 +16611,7 @@ components:
         phone:
           minLength: 1
           type: string
-          description: Phone number to which the money is to be sent, in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+          description: 'Phone number to which the money is to be sent, in [E.164 format](https://en.wikipedia.org/wiki/E.164).'
           format: tel
           example: '+254722000000'
           x-pii: true
@@ -16480,10 +16624,10 @@ components:
         code:
           allOf:
             - $ref: '#/components/schemas/FailureReason'
-          description: Reason for failure of a payment, transfer or reversal.
+          description: 'Reason for failure of a payment, transfer or reversal.'
         timestamp:
           type: string
-          description: Time at which failure occurred, if any.
+          description: 'Time at which failure occurred, if any.'
           format: date-time
           nullable: true
         description:
@@ -16611,7 +16755,7 @@ components:
           nullable: true
         customer:
           type: string
-          description: Identifier of the Customer this Transfer Reversal belongs to, if one exists.
+          description: 'Identifier of the Customer this Transfer Reversal belongs to, if one exists.'
           nullable: true
           example: cust_602a8dd0a54847479a874de4
         transfer:
@@ -16619,6 +16763,11 @@ components:
           description: Identifier of the transfer reversed.
           nullable: true
           example: tr_602a8dd0a54847479a874de4
+        money_provider:
+          type: string
+          description: Identifier of the money provider used send to money being reversed.
+          nullable: true
+          example: mprov_602a8dd0a54847479a874de4
         mpesa:
           allOf:
             - $ref: '#/components/schemas/TransferReversalMpesaDetails'
@@ -16649,9 +16798,6 @@ components:
           example: FL9rRnlW2Qg=
       additionalProperties: false
       description: Represents a reversal for a transfer.
-      x-patchable:
-        - description
-        - metadata
     TransferReversalCreateOptions:
       required:
         - reason
@@ -16691,10 +16837,10 @@ components:
         code:
           allOf:
             - $ref: '#/components/schemas/FailureReason'
-          description: Reason for failure of a payment, transfer or reversal.
+          description: 'Reason for failure of a payment, transfer or reversal.'
         timestamp:
           type: string
-          description: Time at which failure occurred, if any.
+          description: 'Time at which failure occurred, if any.'
           format: date-time
           nullable: true
         description:
@@ -16750,6 +16896,28 @@ components:
         - failed
       type: string
       description: The status of a transfer reversal.
+    TransferReversalUpdateOptions:
+      type: object
+      properties:
+        description:
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          nullable: true
+          example: This is for my reference
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
+      description: Represents the details that can be patched in a transfer reversal.
     TransferStatus:
       enum:
         - pending
@@ -16763,6 +16931,28 @@ components:
         - mpesa
       type: string
       description: The medium used for the transfer.
+    TransferUpdateOptions:
+      type: object
+      properties:
+        description:
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          nullable: true
+          example: This is for my reference
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
+      description: Represents the details that can be patched in a transfer.
     UpcomingInvoiceOptions:
       required:
         - subscription
@@ -16791,7 +16981,7 @@ components:
           type: string
           description: User agent of the device (e.g. browser) from which the user gave consent.
           nullable: true
-          example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36
+          example: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
       additionalProperties: false
       description: Represents details about user content for a process or anything really.
     ValidationProblemDetails:
@@ -16799,15 +16989,15 @@ components:
       properties:
         type:
           type: string
-          description: A URI reference [RFC3986] that identifies the problem type. This specification encourages that, when dereferenced, it provide human-readable documentation for the problem type (e.g., using HTML [W3C.REC-html5-20141028]). When this member is not present, its value is assumed to be "about:blank".
+          description: 'A URI reference [RFC3986] that identifies the problem type. This specification encourages that, when dereferenced, it provide human-readable documentation for the problem type (e.g., using HTML [W3C.REC-html5-20141028]). When this member is not present, its value is assumed to be "about:blank".'
           nullable: true
         title:
           type: string
-          description: A short, human-readable summary of the problem type.It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization (e.g., using proactive content negotiation; see [RFC9110], Section 3.4).
+          description: 'A short, human-readable summary of the problem type.It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization (e.g., using proactive content negotiation; see [RFC9110], Section 3.4).'
           nullable: true
         status:
           type: integer
-          description: The HTTP status code ([RFC9110], Section 6) generated by the origin server for this occurrence of the problem.
+          description: 'The HTTP status code ([RFC9110], Section 6) generated by the origin server for this occurrence of the problem.'
           format: int32
           nullable: true
         detail:
@@ -16835,7 +17025,7 @@ components:
           description: The documentation URL containing more information about the error.
           format: uri
           nullable: true
-      additionalProperties: {}
+      additionalProperties: { }
       externalDocs:
         description: Problem Details Documentation (RFC 7807)
         url: https://tools.ietf.org/html/rfc7807
@@ -16866,7 +17056,7 @@ components:
         type:
           allOf:
             - $ref: '#/components/schemas/EventType'
-          description: Type of the event (e.g. money_balances.updated, message.delivered, etc.).
+          description: 'Type of the event (e.g. money_balances.updated, message.delivered, etc.).'
         event:
           type: string
           description: Unique identifier for the event.
@@ -16886,7 +17076,7 @@ components:
         next:
           allOf:
             - $ref: '#/components/schemas/WebhookNextAttempt'
-          description: Next attempt scheduled for this webhook, if any.
+          description: 'Next attempt scheduled for this webhook, if any.'
           nullable: true
         redaction:
           allOf:
@@ -16981,7 +17171,7 @@ components:
           example: https://example.com
         token:
           maxLength: 512
-          pattern: ^[a-zA-Z0-9+=/.-_~]+$
+          pattern: '^[a-zA-Z0-9+=/.-_~]+$'
           type: string
           description: |-
             The access token to be sent in the
@@ -17043,13 +17233,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-patchable:
-        - events
-        - description
-        - status
-        - url
-        - token
-        - metadata
     WebhookEndpointCreateOptions:
       required:
         - events
@@ -17082,7 +17265,7 @@ components:
           example: https://example.com
         token:
           maxLength: 512
-          pattern: ^[a-zA-Z0-9+=/.-_~]+$
+          pattern: '^[a-zA-Z0-9+=/.-_~]+$'
           type: string
           description: |-
             The access token to be sent in the
@@ -17117,6 +17300,64 @@ components:
       x-enumDescriptions:
         enabled: Endpoint will receive events it is configured for.
         disabled: Endpoint will not receive any events.
+    WebhookEndpointUpdateOptions:
+      required:
+        - events
+        - url
+      type: object
+      properties:
+        events:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/EventType'
+          description: The list of events this endpoint accepts.
+        description:
+          type: string
+          description: |-
+            An optional arbitrary string attached to the object.
+            Mainly used to describe the object and often useful for displaying to users.
+          nullable: true
+          example: This is for my reference
+        status:
+          allOf:
+            - $ref: '#/components/schemas/WebhookEndpointStatus'
+          description: The status of the webhook.
+        url:
+          maxLength: 512
+          minLength: 1
+          type: string
+          description: The URL of the webhook endpoint.
+          format: uri
+          example: https://example.com
+        token:
+          maxLength: 512
+          pattern: '^[a-zA-Z0-9+=/.-_~]+$'
+          type: string
+          description: |-
+            The access token to be sent in the
+            [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2)
+            request header field defined by HTTP/1.1.
+            This value is populated using the "Bearer" scheme, using the OAuth 2.0 Bearer Token
+            [RFC6750](https://tools.ietf.org/html/rfc6750) spec.
+
+
+            When not present, the Authorization request header is not populated.
+          format: password
+          nullable: true
+          example: mF_9.B5f-4.1JqM
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: |-
+            Set of key-value pairs that you can attach to an object. This can be useful
+            for storing additional information about the object in a structured format.
+            The key can only contain alphanumeric, and ‘-’, ‘_’ characters,
+            and the string has to start with a letter.
+          nullable: true
+      additionalProperties: false
     WebhookNextAttempt:
       type: object
       properties:
@@ -17130,14 +17371,14 @@ components:
       properties:
         object:
           type: object
-          additionalProperties: {}
+          additionalProperties: { }
           description: |-
             Object containing the API resource relevant to the event.
             For example, a `money_balances.updated` event will have a full payment balances object.
           nullable: true
         previous:
           type: object
-          additionalProperties: {}
+          additionalProperties: { }
           description: |-
             Object containing the names of the properties that have changed, and their previous
             values (sent along only with `*.updated` events).
@@ -17170,7 +17411,7 @@ components:
             idempotency_key: 9d4d4045-d581-47fe-acfe-c7d000dc90d2
   responses:
     '400':
-      description: The request is invalid, see response for more details.
+      description: 'The request is invalid, see response for more details.'
       headers:
         X-Trace-Id:
           $ref: '#/components/headers/X-Trace-Id'
@@ -17203,10 +17444,10 @@ components:
     X-Falu-Signature:
       name: X-Falu-Signature
       in: header
-      description: A signature used to check the integrity of the webhook event request. See [docs](/docs/developers/webhooks/signatures) for more information.
+      description: 'A signature used to check the integrity of the webhook event request. See [docs](/docs/developers/webhooks/signatures) for more information.'
       schema:
         type: string
-      example: t=1599629923,sha256=be82575aba7e8790c00f92f8200b9464bab59ef6ccce224351ecd5c9f94d8584
+      example: 't=1599629923,sha256=be82575aba7e8790c00f92f8200b9464bab59ef6ccce224351ecd5c9f94d8584'
     X-Falu-Version:
       name: X-Falu-Version
       in: header
@@ -17253,7 +17494,7 @@ components:
       https://your-server-url:
         post:
           summary: Webhook notification
-          description: Webhook notifications are based on standardized events as governed by the [Cloud Native Computing Foundation (CNCF)](https://cncf.io/).For more information see the [Cloud Events website](https://cloudevents.io/) and the [official spec](https://github.com/cloudevents/spec)
+          description: 'Webhook notifications are based on standardized events as governed by the [Cloud Native Computing Foundation (CNCF)](https://cncf.io/).For more information see the [Cloud Events website](https://cloudevents.io/) and the [official spec](https://github.com/cloudevents/spec)'
           operationId: webhook-notification
           parameters:
             - $ref: '#/components/parameters/X-Falu-Signature'
@@ -17266,6 +17507,445 @@ components:
               description: Your server implementation should return the 4xx range of HTTP status codes to indicate it does not understand the format of the payload. The delivery will be treated as a failure and no retries are attempted.
             '500':
               description: Your server implementation should return the 5xx range of HTTP status codes to indicate a server-side error. The delivery will be treated as a failure retries shall be attempted.
+security:
+  - basicAuth: [ ]
+  - bearerAuth: [ ]
+tags:
+  - name: Coupons
+    description: |-
+      A coupon contains information about a percent-off or amount-off discount you might want to apply for your customers.
+      They may be applied to [Subscriptions](#billing/subscriptions), [Invoices](#billing/invoices), and more.
+      However, they do not work with one-off transactions such as [Payments](#money/payments) and [Transfers](#money/transfers).
+    x-object-schema:
+      name: Coupon
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/Coupon'
+  - name: Credit Notes
+    description: Credit notes are used to adjust an invoice's amount after the invoice is finalized (not in draft mode).
+    x-object-schema:
+      name: Credit Note
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/CreditNote'
+  - name: Customer Balance Transactions
+    description: |-
+      This object represents the balance transactions related to a Customer(#billing/customers). These balances can be used to
+      issue credit or debit adjustments. Adjustments in the credit balance could be a credit (meaning you owe them money)
+      or a debit (meaning they owe you money). The adjustments can then apply to future [Invoices](#billing/invoices).
+    x-object-schema:
+      name: Customer Balance Transaction
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/CustomerBalanceTransaction'
+  - name: Customer Tax Ids
+    description: This object represents the tax ids related to a Customer(#billing/customers).
+    x-object-schema:
+      name: Customer Tax Id
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/CustomerTaxId'
+  - name: Customers
+    description: |-
+      This object represents a customer of your business.
+      It lets you track payments, transfers, subscriptions, and messages that belong to the same customer.
+    x-object-schema:
+      name: Customer
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/Customer'
+  - name: Discounts
+    description: |-
+      A discount represents the actual application of a [Coupon](#billing/coupons).
+      It contains information about when the discount began, when it will end, and what it is applied to.
+    x-object-schema:
+      name: Discount
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/Discount'
+  - name: Events
+    description: |-
+      Events are our way of letting you know when something interesting happens in your
+      workspace. When an interesting events occurs, we create a new `Event` object. For
+      example, when a payment succeeds, we create a `payment.succeeded` event; and when
+      a message delivery fails, we create an `message.failed` event. Note that many API
+      requests may cause multiple events to be created. For example, if you create a new
+      message, you will receive both a `message.sent` event and either a `message.failed`
+      or `message.delivered` event.
+
+      Events occur when the state of another API resource changes. The state of that resource
+      at the time of the change is embedded in the event's data field. For example, a
+      `message.sent` event will contain a message, and a `payment.failed` event will contain
+      a payment.
+
+      As with other API resources, you can use endpoints to retrieve an
+      [individual event](#events_get_event) or a [list of events](#events_get_events) from
+      the API. We also have a separate [webhooks](https://en.wikipedia.org/wiki/Webhook) API
+      for sending the `Event` objects directly to an endpoint on your server. Webhooks are
+      managed in your [workspace](https://dashboard.falu.io/webhooks), and our
+      [Using Webhooks](/docs/webhooks) guide will help you get setup.
+
+      **NOTE:** Access to events through the [Retrieve Event API](#events_get_event)
+      is guaranteed only for the last 30 days.
+    x-object-schema:
+      name: Tracked Event
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/TrackedEvent'
+  - name: File Links
+    description: |-
+      To share the contents of an `File` object with non-Falu users, you can create an `FileLink`.
+      It contains a URL that can be used to retrieve the contents of the file without authentication.
+    x-object-schema:
+      name: File Link
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/FileLink'
+  - name: Files
+    description: |-
+      This is an object representing a file hosted on Falu's servers.
+      The file may have been uploaded by yourself using the [create file](#files_post_file)
+      request (for example, when uploading an identity document) or it may have been created by Falu
+      (for example, a statement of accounts).
+    externalDocs:
+      description: Files
+      url: /docs/files
+      x-kind: guide
+    x-object-schema:
+      name: File
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/File'
+  - name: Identity Verification Reports
+    description: |-
+      An `IdentityVerificationReport` is the result of an attempt to collect and verify data from a user.
+      You can find the result of each verification check performed in the appropriate node: `document`, `id_number`, `tax_number`.
+
+      Each `IdentityVerificationReport` contains a copy of any data collected by the user as well as reference identifiers
+      which can be used to access collected images.
+      IdentityVerificationReports are created automatically via the [IdentityVerification API](#identity_identity_verifications).
+    externalDocs:
+      description: Accessing verification results
+      url: /docs/identity/verifications#results
+      x-kind: guide
+    x-object-schema:
+      name: Identity Verification Report
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/IdentityVerificationReport'
+  - name: Identity Verifications
+    description: |-
+      An IdentityVerification guides you through the process of collecting and verifying the identities of your users.
+      It contains details such as what [verification check](/docs/identity/verification-checks) to perform.
+      Only create one IdentityVerification for each verification in your system.
+
+      An IdentityVerification transitions through [multiple statuses](/docs/identity/how-sessions-work) throughout
+      its lifetime as it progresses through the verification flow. The IdentityVerification contains the user’s
+      verified data after verification checks are complete.
+    externalDocs:
+      description: Using Identity Verifications API
+      url: /docs/identity/verifications
+      x-kind: guide
+    x-object-schema:
+      name: Identity Verification
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/IdentityVerification'
+  - name: Invoice Items
+    description: Invoice items represent the component lines of an invoice.
+    x-object-schema:
+      name: Invoice Item
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/InvoiceItem'
+  - name: Invoices
+    description: |-
+      Invoices are statements of amounts owed by a customer, and are either generated one-off, or generated periodically from a subscription.
+
+      They contain invoice items, and proration adjustments that may be caused by subscription upgrades/downgrades (if necessary).
+    x-object-schema:
+      name: Invoice
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/Invoice'
+  - name: Message Batches
+    description: |-
+      To send multiple messages you create a `MessageBatch` object. You can retrieve,
+      cancel, redact individual messages or the message batch.
+
+      Falu supports sending messages or various types and destinations
+      as described in the message types [guide](/docs/messages/types)
+
+      `MessageBatch` objects expire after 45 days alongside the `Message` objects managed
+      by it, after which they are forcefully purged from all our records.
+    externalDocs:
+      description: Using batches to send messages
+      url: /docs/messages/batches
+      x-kind: guide
+    x-object-schema:
+      name: Message Batch
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/MessageBatch'
+  - name: Message Senders
+    description: |-
+      A `MessageSender` object is a representation of a resource that you use
+      to send messages for branding purposes.
+
+      This is usually an alphanumeric or numeric-only code that identifies
+      your business or its units to your customers.
+    externalDocs:
+      description: Send branded messages
+      url: /docs/messages/senders
+      x-kind: guide
+    x-object-schema:
+      name: Message Sender
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/MessageSender'
+  - name: Message Streams
+    description: |-
+      A `MessageStream` object allows you to manage the different kinds of messages
+      that you send or received in your workspace. You may have up to 10 streams in
+      your workspace, including the default ones. Default streams cannot be deleted.
+
+      `MessageStream` objects help you categorize your messages into multiple categories
+      and also allows us to maintain high delivery rates for transactional messages.
+      The messages sent via transactional streams are closely monitored to prevent abuse.
+    externalDocs:
+      description: Sending messages using streams
+      url: /docs/messages/streams
+      x-kind: guide
+    x-object-schema:
+      name: Message Stream
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/MessageStream'
+  - name: Message Suppressions
+    description: |-
+      A `MessageSuppression` object allows you to manage the phone number destinations
+      that are not currently active for sending to.
+    externalDocs:
+      description: Working with message suppressions
+      url: /docs/messages/suppressions
+      x-kind: guide
+    x-object-schema:
+      name: Message Suppression
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/MessageSuppression'
+  - name: Message Templates
+    description: |-
+      To separate the concerns in sending messages and deciding the message content,
+      use a `MessageTemplate` object. In most setups, the message content is designed
+      and evolved by the marketing and operations teams whereas, the actual message
+      sending is done by the developers. Message templates help reduce the friction.
+
+      `MessageTemplate` objects can also be used to maintain messages in different
+      languages/regions with much less technical debt in your system.
+    externalDocs:
+      description: Working with message templates
+      url: /docs/messages/templates
+      x-kind: guide
+    x-object-schema:
+      name: Message Template
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/MessageTemplate'
+  - name: Messages
+    description: |-
+      To send a message you create a `Message` object. You can retrieve and
+      redact individual messages as well as list messages.
+
+      Falu supports sending messages or various types and destinations
+      as described in the message types [guide](/docs/messages/types)
+
+      `Message` objects can also be created if your workspace supports messages
+      from customers to your business. These are referred to inbound messages.
+
+      `Message` objects expire after 45 days, after which they are forcefully
+      purged from all our records.
+    externalDocs:
+      description: Sending messages to your audiences
+      url: /docs/messages
+      x-kind: guide
+    x-object-schema:
+      name: Message
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/Message'
+  - name: Money Balances
+    description: |-
+      Money balances are a reflection of the money available in bring-your-own provider setups.
+      For fully managed ones, check the workspace balance.
+    x-object-schema:
+      name: Money Balances
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/MoneyBalances'
+  - name: Payment Authorizations
+    description: |-
+      When a payment provider supports customer initiated payments and a customer initiates
+      a payment, a Payment `Authorization` object is created.
+      [Authorizations](/docs/payments/authorizations) must be approved for the payment to
+      be completed successfully.
+    externalDocs:
+      description: Accepting a Payment with the Payment Authorizations API
+      url: /docs/payments/authorizations
+      x-kind: guide
+    x-object-schema:
+      name: Payment Authorization
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/PaymentAuthorization'
+  - name: Payment Methods
+    description: |-
+      `PaymentMethod` objects represent your customer's payment instruments.
+      You can use them to collect payments or attach them to customer objects to store instrument details for future payments.
+    x-object-schema:
+      name: Payment Method
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/PaymentMethod'
+  - name: Payment Refunds
+    description: |-
+      `PaymentRefund` object allows you to refund a payment that has been previously been
+      created but not yet refunded. Funds will be refunded to the payment instrument
+      that was originally charged. Some payment providers have a time window after which
+      refunds cannot happen. In this case you can initiate a `Transfer` to the
+      customer with the appropriate amount.
+    externalDocs:
+      description: Refunding Payments
+      url: /docs/payments#refunds
+      x-kind: guide
+    x-object-schema:
+      name: Payment Refund
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/PaymentRefund'
+  - name: Payments
+    description: |-
+      To initiate a payment from a customer, you create a `Payment` object. You can retrieve
+      and refund individual payments as well as a list all payments.
+
+      `Payment` objects can also be created if your workspace supports payment providers that
+      allow customers to initiate the payments such as MPESA and EFT/RTGS. In this case, the
+      provider may require you to authorize the payment before it is completed. Our
+      [Working with Payment Authorizations](/docs/payments/authorizations) guide will help
+      you get setup.
+    externalDocs:
+      description: Accepting Payments
+      url: /docs/payments
+      x-kind: guide
+    x-object-schema:
+      name: Payment
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/Payment'
+  - name: Prices
+    description: 'Prices define the unit cost, currency, and billing cycle (if any) for both recurring and one-time purchases of products.'
+    x-object-schema:
+      name: Price
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/Price'
+  - name: Products
+    description: 'Subscriptions allow you to bill a customer on a recurring basis per unit, seat or based on usage.'
+    x-object-schema:
+      name: Product
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/Product'
+  - name: Subscription Items
+    description: 'Subscription items allow you to create customer subscriptions with more than one plan, making it easy to represent complex billing relationships.'
+    x-object-schema:
+      name: Subscription Item
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/SubscriptionItem'
+  - name: Subscription Usage
+    description: Subscription usage records allow you to report customer usage for metered billing of subscription prices.
+    x-object-schema:
+      name: Subscription Item Usage
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/SubscriptionItemUsage'
+  - name: Subscriptions
+    description: 'Subscriptions allow you to bill a customer on a recurring basis per unit, seat or based on usage.'
+    x-object-schema:
+      name: Subscription
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/Subscription'
+  - name: Tax Rates
+    description: Tax rates can be applied to invoices and subscriptions to collect tax.
+    x-object-schema:
+      name: Tax Rate
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/TaxRate'
+  - name: Temporary Keys
+    description: |-
+      A temporary key is a special kind of API key but its is valid for 1 hour from the creation time
+      and restricted to a specific object.
+    x-object-schema:
+      name: Temporary Key
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/TemporaryKey'
+  - name: Transfer Reversals
+    description: |-
+      `TransferReversal` object allows you to reverse a transfer that has been previously
+      created but not yet reversed. Funds will be refunded your workspace.
+
+      **NOTE:** Some providers have a time windows after which reversals cannot happen.
+    externalDocs:
+      description: Reversing Transfers
+      url: /docs/transfers#reversing-a-transfer
+      x-kind: guide
+    x-object-schema:
+      name: Transfer Reversal
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/TransferReversal'
+  - name: Transfers
+    description: |-
+      A `Transfer` object is created when you move money from your business either to another
+      business or to a customer.
+    externalDocs:
+      description: Creating fund transfers
+      url: /docs/transfers
+      x-kind: guide
+    x-object-schema:
+      name: Transfer
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/Transfer'
+  - name: Webhook Endpoints
+    description: |-
+      You can configure [webhook endpoints](/docs/webhooks) via the API to be notified about events that happen in your Falu workspace.
+
+      Most users configure webhooks from [the dashboard](https://dashboard.falu.io/webhooks),
+      which provides a user interface to registering and testing your webhook endpoints.
+    externalDocs:
+      description: Setting up Webhooks
+      url: /docs/developers/webhooks/go-live
+      x-kind: guide
+    x-object-schema:
+      name: Webhook Endpoint
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/WebhookEndpoint'
+  - name: Webhooks
+    description: |-
+      Every time an event is generated and there is an enabled webhook endpoint for the event type,
+      Falu server generate a `Webhook` which represents the delivery of the event to the given webhook.
+      It contains the delivery history and can be retried if failed.
+    x-object-schema:
+      name: Webhook
+      schema:
+        allOf:
+          - $ref: '#/components/schemas/Webhook'
 x-tagGroups:
   - name: Identity
     tags:
