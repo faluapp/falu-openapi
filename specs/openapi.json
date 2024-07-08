@@ -6726,6 +6726,202 @@
         ]
       }
     },
+    "/v1/identity/verification_reports": {
+      "get": {
+        "tags": [
+          "Identity Verification Reports"
+        ],
+        "summary": "List identity verification reports",
+        "operationId": "identity-verification-reports-list",
+        "parameters": [
+          {
+            "name": "verification",
+            "in": "query",
+            "description": "Unique identifier of the Identity Verification to filter for.",
+            "schema": {
+              "type": "string",
+              "example": "idv_602a8dd0a54847479a874de4"
+            },
+            "example": "idv_602a8dd0a54847479a874de4"
+          },
+          {
+            "name": "created.eq",
+            "in": "query",
+            "description": "Option for equal (=).\nRecommended only for fixed integral values.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "created.lt",
+            "in": "query",
+            "description": "Option for less than (<).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "created.lte",
+            "in": "query",
+            "description": "Option for less than or equal to (<=).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "created.gt",
+            "in": "query",
+            "description": "Option for greater than (>).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "created.gte",
+            "in": "query",
+            "description": "Option for greater than or equal to (>=).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/SortingOrder"
+                }
+              ],
+              "default": "desc"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Maximum number of objects to return. Defaults to `10`.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "ct",
+            "in": "query",
+            "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
+            "schema": {
+              "type": "string",
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Int64ContinuationToken"
+                }
+              ],
+              "format": "opaque"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/X-Falu-Version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Trace-Id": {
+                "$ref": "#/components/headers/X-Trace-Id"
+              },
+              "X-Request-Id": {
+                "$ref": "#/components/headers/X-Request-Id"
+              },
+              "X-Continuation-Token": {
+                "$ref": "#/components/headers/X-Continuation-Token"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IdentityVerificationReport"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          }
+        },
+        "x-supports-pagination": true
+      }
+    },
+    "/v1/identity/verification_reports/{id}": {
+      "get": {
+        "tags": [
+          "Identity Verification Reports"
+        ],
+        "summary": "Retrieve an identity verification report",
+        "operationId": "identity-verification-reports-get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique identifier for the identity verification report",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/X-Falu-Version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Trace-Id": {
+                "$ref": "#/components/headers/X-Trace-Id"
+              },
+              "X-Request-Id": {
+                "$ref": "#/components/headers/X-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityVerificationReport"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          }
+        }
+      }
+    },
     "/v1/identity/verifications": {
       "get": {
         "tags": [
@@ -6937,202 +7133,6 @@
         "x-error-codes": [
           "features_disabled"
         ]
-      }
-    },
-    "/v1/identity/verifications_reports": {
-      "get": {
-        "tags": [
-          "Identity Verification Reports"
-        ],
-        "summary": "List identity verification reports",
-        "operationId": "identity-verification-reports-list",
-        "parameters": [
-          {
-            "name": "verification",
-            "in": "query",
-            "description": "Unique identifier of the Identity Verification to filter for.",
-            "schema": {
-              "type": "string",
-              "example": "idv_602a8dd0a54847479a874de4"
-            },
-            "example": "idv_602a8dd0a54847479a874de4"
-          },
-          {
-            "name": "created.eq",
-            "in": "query",
-            "description": "Option for equal (=).\nRecommended only for fixed integral values.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "created.lt",
-            "in": "query",
-            "description": "Option for less than (<).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "created.lte",
-            "in": "query",
-            "description": "Option for less than or equal to (<=).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "created.gt",
-            "in": "query",
-            "description": "Option for greater than (>).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "created.gte",
-            "in": "query",
-            "description": "Option for greater than or equal to (>=).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "description": "Order to use for sorting the objects returned. Defaults to `desc`.",
-            "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/SortingOrder"
-                }
-              ],
-              "default": "desc"
-            }
-          },
-          {
-            "name": "count",
-            "in": "query",
-            "description": "Maximum number of objects to return. Defaults to `10`.",
-            "schema": {
-              "maximum": 100,
-              "minimum": 1,
-              "type": "integer",
-              "format": "int32",
-              "default": 10
-            }
-          },
-          {
-            "name": "ct",
-            "in": "query",
-            "description": "A cursor for use in pagination.\nThe token from a previous request as gotten from the header of it's response.\nFor instance, if you make a request and receive 10 objects, the response contain\na `X-Continuation-Token` header with value `bravo`, your subsequent\ncall can include `ct=bravo`.",
-            "schema": {
-              "type": "string",
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/Int64ContinuationToken"
-                }
-              ],
-              "format": "opaque"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/X-Falu-Version"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "X-Trace-Id": {
-                "$ref": "#/components/headers/X-Trace-Id"
-              },
-              "X-Request-Id": {
-                "$ref": "#/components/headers/X-Request-Id"
-              },
-              "X-Continuation-Token": {
-                "$ref": "#/components/headers/X-Continuation-Token"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/IdentityVerificationReport"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
-          },
-          "403": {
-            "$ref": "#/components/responses/403"
-          }
-        },
-        "x-supports-pagination": true
-      }
-    },
-    "/v1/identity/verifications_reports/{id}": {
-      "get": {
-        "tags": [
-          "Identity Verification Reports"
-        ],
-        "summary": "Retrieve an identity verification report",
-        "operationId": "identity-verification-reports-get",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the identity verification report",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/X-Falu-Version"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "X-Trace-Id": {
-                "$ref": "#/components/headers/X-Trace-Id"
-              },
-              "X-Request-Id": {
-                "$ref": "#/components/headers/X-Request-Id"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IdentityVerificationReport"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
-          },
-          "403": {
-            "$ref": "#/components/responses/403"
-          }
-        }
       }
     },
     "/v1/identity/verifications/{id}": {
