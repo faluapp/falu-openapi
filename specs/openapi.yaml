@@ -1,7 +1,7 @@
 ﻿openapi: 3.0.1
 info:
   title: Falu API Reference
-  description: 'The Falu REST API. For more information, check https://falu.io/docs/api'
+  description: 'The Falu REST API. For more information, check https://docs.falu.io/api-reference'
   termsOfService: https://falu.io/legal/terms
   contact:
     name: API Support
@@ -3395,7 +3395,7 @@ paths:
         A subscription can be cancelled when it is in `active` or `in_trial` status.
         Once cancelled, future submission attempts are disabled. This cannot be undone. A final
         invoice will be generated for any un-invoiced metered usage and new/pending proration invoice items.
-        [Learn more.](/docs/subscriptions#cancel)
+        [Learn more.](/subscriptions#cancel)
       operationId: subscriptions-cancel
       parameters:
         - name: id
@@ -4718,7 +4718,7 @@ paths:
       description: |-
         An identity verification can be cancelled when it is in `input_required` status.
         Once cancelled, future submission attempts are disabled. This cannot be undone.
-        [Learn more.](/docs/identity/sessions#cancel)
+        [Learn more.](/identity/verifications#cancel)
       operationId: identity-verifications-cancel
       parameters:
         - name: id
@@ -10637,12 +10637,12 @@ components:
             - $ref: '#/components/schemas/IdentityVerificationStatus'
           description: |-
             Status of the verification.
-            [Learn more about the lifecycle of verifications](/docs/identity/how-verifications-work).
+            [Learn more about the lifecycle of verifications](/identity/how-verifications-work).
         type:
           allOf:
             - $ref: '#/components/schemas/IdentityVerificationType'
           description: |-
-            The type of [verification check](/docs/identity/verification-checks)
+            The type of [verification check](/identity/verification-checks)
             to be performed.
         options:
           allOf:
@@ -10664,7 +10664,7 @@ components:
             Don’t store it, log it, embed it in a URL, or expose it to anyone other than the user.
             Make sure that you have TLS enabled on any page that includes the client secret.
             Refer to our docs on
-            [passing the client secret to the frontend](/docs/identity/sessions#client-secret)
+            [passing the client secret to the frontend](/identity/verifications#client-secret)
             to learn more.
           nullable: true
           example: idv_0o5Fs0EELR0fUjHjbCnEtdUwQe3_secret_test_1dhDoi1oJYTsZSA8tblyEEXqXz11IMV3mx
@@ -10677,7 +10677,7 @@ components:
 
 
             Refer to the
-            [verifying identity documents](/docs/identity/verify-identity-documents?platform=web&type=redirect)
+            [verifying identity documents](/identity/verify-documents?platform=web&type=redirect)
             guide to learn how to redirect users to Falu.
           format: uri
           nullable: true
@@ -10751,7 +10751,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/IdentityVerificationType'
           description: |-
-            The type of [verification check](/docs/identity/verification-checks)
+            The type of [verification check](/identity/verification-checks)
             to be performed.
         options:
           allOf:
@@ -15915,7 +15915,7 @@ components:
             Use `set` to overwrite the usage quantity at the specified timestamp.
             <!--
             `set` is not allowed for subscriptions with
-            [billing thresholds](/docs/api/subscriptions/object#subscription_object-thresholds).
+            [billing thresholds](/api-reference/subscriptions/object#subscription_object-thresholds).
             -->
 
             Defaults to `increment`.
@@ -17030,7 +17030,7 @@ components:
         description: Problem Details Documentation (RFC 7807)
         url: https://tools.ietf.org/html/rfc7807
       example:
-        type: https://falu.io/docs/error-codes#invalid_settings
+        type: https://docs.falu.io/error-codes#invalid_settings
         title: Bad Request
         status: 400
         traceId: 00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00
@@ -17444,7 +17444,7 @@ components:
     X-Falu-Signature:
       name: X-Falu-Signature
       in: header
-      description: 'A signature used to check the integrity of the webhook event request. See [docs](/docs/developers/webhooks/signatures) for more information.'
+      description: 'A signature used to check the integrity of the webhook event request. See [docs](/developers/webhooks/signatures) for more information.'
       schema:
         type: string
       example: 't=1599629923,sha256=be82575aba7e8790c00f92f8200b9464bab59ef6ccce224351ecd5c9f94d8584'
@@ -17583,7 +17583,7 @@ tags:
       the API. We also have a separate [webhooks](https://en.wikipedia.org/wiki/Webhook) API
       for sending the `Event` objects directly to an endpoint on your server. Webhooks are
       managed in your [workspace](https://dashboard.falu.io/webhooks), and our
-      [Using Webhooks](/docs/webhooks) guide will help you get setup.
+      [Using Webhooks](/developers/webhooks) guide will help you get setup.
 
       **NOTE:** Access to events through the [Retrieve Event API](#events_get_event)
       is guaranteed only for the last 30 days.
@@ -17609,7 +17609,7 @@ tags:
       (for example, a statement of accounts).
     externalDocs:
       description: Files
-      url: /docs/files
+      url: /files
       x-kind: guide
     x-object-schema:
       name: File
@@ -17626,7 +17626,7 @@ tags:
       IdentityVerificationReports are created automatically via the [IdentityVerification API](#identity_identity_verifications).
     externalDocs:
       description: Accessing verification results
-      url: /docs/identity/verifications#results
+      url: /identity/verifications#results
       x-kind: guide
     x-object-schema:
       name: Identity Verification Report
@@ -17636,15 +17636,15 @@ tags:
   - name: Identity Verifications
     description: |-
       An IdentityVerification guides you through the process of collecting and verifying the identities of your users.
-      It contains details such as what [verification check](/docs/identity/verification-checks) to perform.
+      It contains details such as what [verification check](/identity/verification-checks) to perform.
       Only create one IdentityVerification for each verification in your system.
 
-      An IdentityVerification transitions through [multiple statuses](/docs/identity/how-sessions-work) throughout
+      An IdentityVerification transitions through [multiple statuses](/identity/how-verifications-work) throughout
       its lifetime as it progresses through the verification flow. The IdentityVerification contains the user’s
       verified data after verification checks are complete.
     externalDocs:
       description: Using Identity Verifications API
-      url: /docs/identity/verifications
+      url: /identity/verifications
       x-kind: guide
     x-object-schema:
       name: Identity Verification
@@ -17674,13 +17674,13 @@ tags:
       cancel, redact individual messages or the message batch.
 
       Falu supports sending messages or various types and destinations
-      as described in the message types [guide](/docs/messages/types)
+      as described in the message types [guide](/messages/types)
 
       `MessageBatch` objects expire after 45 days alongside the `Message` objects managed
       by it, after which they are forcefully purged from all our records.
     externalDocs:
       description: Using batches to send messages
-      url: /docs/messages/batches
+      url: /messages/batches
       x-kind: guide
     x-object-schema:
       name: Message Batch
@@ -17696,7 +17696,7 @@ tags:
       your business or its units to your customers.
     externalDocs:
       description: Send branded messages
-      url: /docs/messages/senders
+      url: /messages/senders
       x-kind: guide
     x-object-schema:
       name: Message Sender
@@ -17714,7 +17714,7 @@ tags:
       The messages sent via transactional streams are closely monitored to prevent abuse.
     externalDocs:
       description: Sending messages using streams
-      url: /docs/messages/streams
+      url: /messages/streams
       x-kind: guide
     x-object-schema:
       name: Message Stream
@@ -17727,7 +17727,7 @@ tags:
       that are not currently active for sending to.
     externalDocs:
       description: Working with message suppressions
-      url: /docs/messages/suppressions
+      url: /messages/suppressions
       x-kind: guide
     x-object-schema:
       name: Message Suppression
@@ -17745,7 +17745,7 @@ tags:
       languages/regions with much less technical debt in your system.
     externalDocs:
       description: Working with message templates
-      url: /docs/messages/templates
+      url: /messages/templates
       x-kind: guide
     x-object-schema:
       name: Message Template
@@ -17758,7 +17758,7 @@ tags:
       redact individual messages as well as list messages.
 
       Falu supports sending messages or various types and destinations
-      as described in the message types [guide](/docs/messages/types)
+      as described in the message types [guide](/messages/types)
 
       `Message` objects can also be created if your workspace supports messages
       from customers to your business. These are referred to inbound messages.
@@ -17767,7 +17767,7 @@ tags:
       purged from all our records.
     externalDocs:
       description: Sending messages to your audiences
-      url: /docs/messages
+      url: /messages
       x-kind: guide
     x-object-schema:
       name: Message
@@ -17787,11 +17787,11 @@ tags:
     description: |-
       When a payment provider supports customer initiated payments and a customer initiates
       a payment, a Payment `Authorization` object is created.
-      [Authorizations](/docs/payments/authorizations) must be approved for the payment to
+      [Authorizations](/payments/authorizations) must be approved for the payment to
       be completed successfully.
     externalDocs:
       description: Accepting a Payment with the Payment Authorizations API
-      url: /docs/payments/authorizations
+      url: /payments/authorizations
       x-kind: guide
     x-object-schema:
       name: Payment Authorization
@@ -17816,7 +17816,7 @@ tags:
       customer with the appropriate amount.
     externalDocs:
       description: Refunding Payments
-      url: /docs/payments#refunds
+      url: /payments#refunds
       x-kind: guide
     x-object-schema:
       name: Payment Refund
@@ -17831,11 +17831,11 @@ tags:
       `Payment` objects can also be created if your workspace supports payment providers that
       allow customers to initiate the payments such as MPESA and EFT/RTGS. In this case, the
       provider may require you to authorize the payment before it is completed. Our
-      [Working with Payment Authorizations](/docs/payments/authorizations) guide will help
+      [Working with Payment Authorizations](/payments/authorizations) guide will help
       you get setup.
     externalDocs:
       description: Accepting Payments
-      url: /docs/payments
+      url: /payments
       x-kind: guide
     x-object-schema:
       name: Payment
@@ -17901,7 +17901,7 @@ tags:
       **NOTE:** Some providers have a time windows after which reversals cannot happen.
     externalDocs:
       description: Reversing Transfers
-      url: /docs/transfers#reversing-a-transfer
+      url: /transfers#reversing-a-transfer
       x-kind: guide
     x-object-schema:
       name: Transfer Reversal
@@ -17914,7 +17914,7 @@ tags:
       business or to a customer.
     externalDocs:
       description: Creating fund transfers
-      url: /docs/transfers
+      url: /transfers
       x-kind: guide
     x-object-schema:
       name: Transfer
@@ -17923,13 +17923,13 @@ tags:
           - $ref: '#/components/schemas/Transfer'
   - name: Webhook Endpoints
     description: |-
-      You can configure [webhook endpoints](/docs/webhooks) via the API to be notified about events that happen in your Falu workspace.
+      You can configure [webhook endpoints](/developers/webhooks) via the API to be notified about events that happen in your Falu workspace.
 
       Most users configure webhooks from [the dashboard](https://dashboard.falu.io/webhooks),
       which provides a user interface to registering and testing your webhook endpoints.
     externalDocs:
       description: Setting up Webhooks
-      url: /docs/developers/webhooks/go-live
+      url: /developers/webhooks/go-live
       x-kind: guide
     x-object-schema:
       name: Webhook Endpoint

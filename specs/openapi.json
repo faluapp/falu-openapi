@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Falu API Reference",
-    "description": "The Falu REST API. For more information, check https://falu.io/docs/api",
+    "description": "The Falu REST API. For more information, check https://docs.falu.io/api-reference",
     "termsOfService": "https://falu.io/legal/terms",
     "contact": {
       "name": "API Support",
@@ -5263,7 +5263,7 @@
           "Subscriptions"
         ],
         "summary": "Cancel a subscription",
-        "description": "A subscription can be cancelled when it is in `active` or `in_trial` status.\nOnce cancelled, future submission attempts are disabled. This cannot be undone. A final\ninvoice will be generated for any un-invoiced metered usage and new/pending proration invoice items.\n[Learn more.](/docs/subscriptions#cancel)",
+        "description": "A subscription can be cancelled when it is in `active` or `in_trial` status.\nOnce cancelled, future submission attempts are disabled. This cannot be undone. A final\ninvoice will be generated for any un-invoiced metered usage and new/pending proration invoice items.\n[Learn more.](/subscriptions#cancel)",
         "operationId": "subscriptions-cancel",
         "parameters": [
           {
@@ -7271,7 +7271,7 @@
           "Identity Verifications"
         ],
         "summary": "Cancel an identity verification",
-        "description": "An identity verification can be cancelled when it is in `input_required` status.\nOnce cancelled, future submission attempts are disabled. This cannot be undone.\n[Learn more.](/docs/identity/sessions#cancel)",
+        "description": "An identity verification can be cancelled when it is in `input_required` status.\nOnce cancelled, future submission attempts are disabled. This cannot be undone.\n[Learn more.](/identity/verifications#cancel)",
         "operationId": "identity-verifications-cancel",
         "parameters": [
           {
@@ -15548,7 +15548,7 @@
                 "$ref": "#/components/schemas/IdentityVerificationStatus"
               }
             ],
-            "description": "Status of the verification.\n[Learn more about the lifecycle of verifications](/docs/identity/how-verifications-work)."
+            "description": "Status of the verification.\n[Learn more about the lifecycle of verifications](/identity/how-verifications-work)."
           },
           "type": {
             "allOf": [
@@ -15556,7 +15556,7 @@
                 "$ref": "#/components/schemas/IdentityVerificationType"
               }
             ],
-            "description": "The type of [verification check](/docs/identity/verification-checks)\nto be performed."
+            "description": "The type of [verification check](/identity/verification-checks)\nto be performed."
           },
           "options": {
             "allOf": [
@@ -15577,13 +15577,13 @@
           },
           "client_secret": {
             "type": "string",
-            "description": "The short-lived client secret used by front-end libraries to show a verification modal inside your app.\nThis client secret expires after 24 hours and can only be used once.\nDon’t store it, log it, embed it in a URL, or expose it to anyone other than the user.\nMake sure that you have TLS enabled on any page that includes the client secret.\nRefer to our docs on\n[passing the client secret to the frontend](/docs/identity/sessions#client-secret)\nto learn more.",
+            "description": "The short-lived client secret used by front-end libraries to show a verification modal inside your app.\nThis client secret expires after 24 hours and can only be used once.\nDon’t store it, log it, embed it in a URL, or expose it to anyone other than the user.\nMake sure that you have TLS enabled on any page that includes the client secret.\nRefer to our docs on\n[passing the client secret to the frontend](/identity/verifications#client-secret)\nto learn more.",
             "nullable": true,
             "example": "idv_0o5Fs0EELR0fUjHjbCnEtdUwQe3_secret_test_1dhDoi1oJYTsZSA8tblyEEXqXz11IMV3mx"
           },
           "url": {
             "type": "string",
-            "description": "The short-lived URL that you use to redirect a user to Falu to submit their identity information.\nThis link expires after 24 hours and can only be used once.\nDon’t store it, log it, send it in emails or expose it to anyone other than the target user.\n\n\nRefer to the\n[verifying identity documents](/docs/identity/verify-identity-documents?platform=web&type=redirect)\nguide to learn how to redirect users to Falu.",
+            "description": "The short-lived URL that you use to redirect a user to Falu to submit their identity information.\nThis link expires after 24 hours and can only be used once.\nDon’t store it, log it, send it in emails or expose it to anyone other than the target user.\n\n\nRefer to the\n[verifying identity documents](/identity/verify-documents?platform=web&type=redirect)\nguide to learn how to redirect users to Falu.",
             "format": "uri",
             "nullable": true,
             "example": "https://verify.falu.io/start/test_1dhDoi1oJYTsZSA8tblyEEXqXz11IMV3mx"
@@ -15674,7 +15674,7 @@
                 "$ref": "#/components/schemas/IdentityVerificationType"
               }
             ],
-            "description": "The type of [verification check](/docs/identity/verification-checks)\nto be performed."
+            "description": "The type of [verification check](/identity/verification-checks)\nto be performed."
           },
           "options": {
             "allOf": [
@@ -21580,7 +21580,7 @@
                 "$ref": "#/components/schemas/SubscriptionItemReportUsageAction"
               }
             ],
-            "description": "Use `increment` to add the specified quantity to the usage at the specified timestamp.\nUse `decrement` to subtract the specified quantity to the usage at the specified timestamp.\nUse `set` to overwrite the usage quantity at the specified timestamp.\n<!--\n`set` is not allowed for subscriptions with\n[billing thresholds](/docs/api/subscriptions/object#subscription_object-thresholds).\n-->\n\nDefaults to `increment`."
+            "description": "Use `increment` to add the specified quantity to the usage at the specified timestamp.\nUse `decrement` to subtract the specified quantity to the usage at the specified timestamp.\nUse `set` to overwrite the usage quantity at the specified timestamp.\n<!--\n`set` is not allowed for subscriptions with\n[billing thresholds](/api-reference/subscriptions/object#subscription_object-thresholds).\n-->\n\nDefaults to `increment`."
           },
           "time": {
             "type": "string",
@@ -22849,7 +22849,7 @@
           "url": "https://tools.ietf.org/html/rfc7807"
         },
         "example": {
-          "type": "https://falu.io/docs/error-codes#invalid_settings",
+          "type": "https://docs.falu.io/error-codes#invalid_settings",
           "title": "Bad Request",
           "status": 400,
           "traceId": "00-982607166a542147b435be3a847ddd71-fc75498eb9f09d48-00",
@@ -23333,7 +23333,7 @@
       "X-Falu-Signature": {
         "name": "X-Falu-Signature",
         "in": "header",
-        "description": "A signature used to check the integrity of the webhook event request. See [docs](/docs/developers/webhooks/signatures) for more information.",
+        "description": "A signature used to check the integrity of the webhook event request. See [docs](/developers/webhooks/signatures) for more information.",
         "schema": {
           "type": "string"
         },
@@ -23522,7 +23522,7 @@
     },
     {
       "name": "Events",
-      "description": "Events are our way of letting you know when something interesting happens in your\nworkspace. When an interesting events occurs, we create a new `Event` object. For\nexample, when a payment succeeds, we create a `payment.succeeded` event; and when\na message delivery fails, we create an `message.failed` event. Note that many API\nrequests may cause multiple events to be created. For example, if you create a new\nmessage, you will receive both a `message.sent` event and either a `message.failed`\nor `message.delivered` event.\n\nEvents occur when the state of another API resource changes. The state of that resource\nat the time of the change is embedded in the event's data field. For example, a\n`message.sent` event will contain a message, and a `payment.failed` event will contain\na payment.\n\nAs with other API resources, you can use endpoints to retrieve an\n[individual event](#events_get_event) or a [list of events](#events_get_events) from\nthe API. We also have a separate [webhooks](https://en.wikipedia.org/wiki/Webhook) API\nfor sending the `Event` objects directly to an endpoint on your server. Webhooks are\nmanaged in your [workspace](https://dashboard.falu.io/webhooks), and our\n[Using Webhooks](/docs/webhooks) guide will help you get setup.\n\n**NOTE:** Access to events through the [Retrieve Event API](#events_get_event)\nis guaranteed only for the last 30 days.",
+      "description": "Events are our way of letting you know when something interesting happens in your\nworkspace. When an interesting events occurs, we create a new `Event` object. For\nexample, when a payment succeeds, we create a `payment.succeeded` event; and when\na message delivery fails, we create an `message.failed` event. Note that many API\nrequests may cause multiple events to be created. For example, if you create a new\nmessage, you will receive both a `message.sent` event and either a `message.failed`\nor `message.delivered` event.\n\nEvents occur when the state of another API resource changes. The state of that resource\nat the time of the change is embedded in the event's data field. For example, a\n`message.sent` event will contain a message, and a `payment.failed` event will contain\na payment.\n\nAs with other API resources, you can use endpoints to retrieve an\n[individual event](#events_get_event) or a [list of events](#events_get_events) from\nthe API. We also have a separate [webhooks](https://en.wikipedia.org/wiki/Webhook) API\nfor sending the `Event` objects directly to an endpoint on your server. Webhooks are\nmanaged in your [workspace](https://dashboard.falu.io/webhooks), and our\n[Using Webhooks](/developers/webhooks) guide will help you get setup.\n\n**NOTE:** Access to events through the [Retrieve Event API](#events_get_event)\nis guaranteed only for the last 30 days.",
       "x-object-schema": {
         "name": "Tracked Event",
         "schema": {
@@ -23553,7 +23553,7 @@
       "description": "This is an object representing a file hosted on Falu's servers.\nThe file may have been uploaded by yourself using the [create file](#files_post_file)\nrequest (for example, when uploading an identity document) or it may have been created by Falu\n(for example, a statement of accounts).",
       "externalDocs": {
         "description": "Files",
-        "url": "/docs/files",
+        "url": "/files",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23572,7 +23572,7 @@
       "description": "An `IdentityVerificationReport` is the result of an attempt to collect and verify data from a user.\nYou can find the result of each verification check performed in the appropriate node: `document`, `id_number`, `tax_number`.\n\nEach `IdentityVerificationReport` contains a copy of any data collected by the user as well as reference identifiers\nwhich can be used to access collected images.\nIdentityVerificationReports are created automatically via the [IdentityVerification API](#identity_identity_verifications).",
       "externalDocs": {
         "description": "Accessing verification results",
-        "url": "/docs/identity/verifications#results",
+        "url": "/identity/verifications#results",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23588,10 +23588,10 @@
     },
     {
       "name": "Identity Verifications",
-      "description": "An IdentityVerification guides you through the process of collecting and verifying the identities of your users.\nIt contains details such as what [verification check](/docs/identity/verification-checks) to perform.\nOnly create one IdentityVerification for each verification in your system.\n\nAn IdentityVerification transitions through [multiple statuses](/docs/identity/how-sessions-work) throughout\nits lifetime as it progresses through the verification flow. The IdentityVerification contains the user’s\nverified data after verification checks are complete.",
+      "description": "An IdentityVerification guides you through the process of collecting and verifying the identities of your users.\nIt contains details such as what [verification check](/identity/verification-checks) to perform.\nOnly create one IdentityVerification for each verification in your system.\n\nAn IdentityVerification transitions through [multiple statuses](/identity/how-verifications-work) throughout\nits lifetime as it progresses through the verification flow. The IdentityVerification contains the user’s\nverified data after verification checks are complete.",
       "externalDocs": {
         "description": "Using Identity Verifications API",
-        "url": "/docs/identity/verifications",
+        "url": "/identity/verifications",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23635,10 +23635,10 @@
     },
     {
       "name": "Message Batches",
-      "description": "To send multiple messages you create a `MessageBatch` object. You can retrieve,\ncancel, redact individual messages or the message batch.\n\nFalu supports sending messages or various types and destinations\nas described in the message types [guide](/docs/messages/types)\n\n`MessageBatch` objects expire after 45 days alongside the `Message` objects managed\nby it, after which they are forcefully purged from all our records.",
+      "description": "To send multiple messages you create a `MessageBatch` object. You can retrieve,\ncancel, redact individual messages or the message batch.\n\nFalu supports sending messages or various types and destinations\nas described in the message types [guide](/messages/types)\n\n`MessageBatch` objects expire after 45 days alongside the `Message` objects managed\nby it, after which they are forcefully purged from all our records.",
       "externalDocs": {
         "description": "Using batches to send messages",
-        "url": "/docs/messages/batches",
+        "url": "/messages/batches",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23657,7 +23657,7 @@
       "description": "A `MessageSender` object is a representation of a resource that you use\nto send messages for branding purposes.\n\nThis is usually an alphanumeric or numeric-only code that identifies\nyour business or its units to your customers.",
       "externalDocs": {
         "description": "Send branded messages",
-        "url": "/docs/messages/senders",
+        "url": "/messages/senders",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23676,7 +23676,7 @@
       "description": "A `MessageStream` object allows you to manage the different kinds of messages\nthat you send or received in your workspace. You may have up to 10 streams in\nyour workspace, including the default ones. Default streams cannot be deleted.\n\n`MessageStream` objects help you categorize your messages into multiple categories\nand also allows us to maintain high delivery rates for transactional messages.\nThe messages sent via transactional streams are closely monitored to prevent abuse.",
       "externalDocs": {
         "description": "Sending messages using streams",
-        "url": "/docs/messages/streams",
+        "url": "/messages/streams",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23695,7 +23695,7 @@
       "description": "A `MessageSuppression` object allows you to manage the phone number destinations\nthat are not currently active for sending to.",
       "externalDocs": {
         "description": "Working with message suppressions",
-        "url": "/docs/messages/suppressions",
+        "url": "/messages/suppressions",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23714,7 +23714,7 @@
       "description": "To separate the concerns in sending messages and deciding the message content,\nuse a `MessageTemplate` object. In most setups, the message content is designed\nand evolved by the marketing and operations teams whereas, the actual message\nsending is done by the developers. Message templates help reduce the friction.\n\n`MessageTemplate` objects can also be used to maintain messages in different\nlanguages/regions with much less technical debt in your system.",
       "externalDocs": {
         "description": "Working with message templates",
-        "url": "/docs/messages/templates",
+        "url": "/messages/templates",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23730,10 +23730,10 @@
     },
     {
       "name": "Messages",
-      "description": "To send a message you create a `Message` object. You can retrieve and\nredact individual messages as well as list messages.\n\nFalu supports sending messages or various types and destinations\nas described in the message types [guide](/docs/messages/types)\n\n`Message` objects can also be created if your workspace supports messages\nfrom customers to your business. These are referred to inbound messages.\n\n`Message` objects expire after 45 days, after which they are forcefully\npurged from all our records.",
+      "description": "To send a message you create a `Message` object. You can retrieve and\nredact individual messages as well as list messages.\n\nFalu supports sending messages or various types and destinations\nas described in the message types [guide](/messages/types)\n\n`Message` objects can also be created if your workspace supports messages\nfrom customers to your business. These are referred to inbound messages.\n\n`Message` objects expire after 45 days, after which they are forcefully\npurged from all our records.",
       "externalDocs": {
         "description": "Sending messages to your audiences",
-        "url": "/docs/messages",
+        "url": "/messages",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23763,10 +23763,10 @@
     },
     {
       "name": "Payment Authorizations",
-      "description": "When a payment provider supports customer initiated payments and a customer initiates\na payment, a Payment `Authorization` object is created.\n[Authorizations](/docs/payments/authorizations) must be approved for the payment to\nbe completed successfully.",
+      "description": "When a payment provider supports customer initiated payments and a customer initiates\na payment, a Payment `Authorization` object is created.\n[Authorizations](/payments/authorizations) must be approved for the payment to\nbe completed successfully.",
       "externalDocs": {
         "description": "Accepting a Payment with the Payment Authorizations API",
-        "url": "/docs/payments/authorizations",
+        "url": "/payments/authorizations",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23799,7 +23799,7 @@
       "description": "`PaymentRefund` object allows you to refund a payment that has been previously been\ncreated but not yet refunded. Funds will be refunded to the payment instrument\nthat was originally charged. Some payment providers have a time window after which\nrefunds cannot happen. In this case you can initiate a `Transfer` to the\ncustomer with the appropriate amount.",
       "externalDocs": {
         "description": "Refunding Payments",
-        "url": "/docs/payments#refunds",
+        "url": "/payments#refunds",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23815,10 +23815,10 @@
     },
     {
       "name": "Payments",
-      "description": "To initiate a payment from a customer, you create a `Payment` object. You can retrieve\nand refund individual payments as well as a list all payments.\n\n`Payment` objects can also be created if your workspace supports payment providers that\nallow customers to initiate the payments such as MPESA and EFT/RTGS. In this case, the\nprovider may require you to authorize the payment before it is completed. Our\n[Working with Payment Authorizations](/docs/payments/authorizations) guide will help\nyou get setup.",
+      "description": "To initiate a payment from a customer, you create a `Payment` object. You can retrieve\nand refund individual payments as well as a list all payments.\n\n`Payment` objects can also be created if your workspace supports payment providers that\nallow customers to initiate the payments such as MPESA and EFT/RTGS. In this case, the\nprovider may require you to authorize the payment before it is completed. Our\n[Working with Payment Authorizations](/payments/authorizations) guide will help\nyou get setup.",
       "externalDocs": {
         "description": "Accepting Payments",
-        "url": "/docs/payments",
+        "url": "/payments",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23935,7 +23935,7 @@
       "description": "`TransferReversal` object allows you to reverse a transfer that has been previously\ncreated but not yet reversed. Funds will be refunded your workspace.\n\n**NOTE:** Some providers have a time windows after which reversals cannot happen.",
       "externalDocs": {
         "description": "Reversing Transfers",
-        "url": "/docs/transfers#reversing-a-transfer",
+        "url": "/transfers#reversing-a-transfer",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23954,7 +23954,7 @@
       "description": "A `Transfer` object is created when you move money from your business either to another\nbusiness or to a customer.",
       "externalDocs": {
         "description": "Creating fund transfers",
-        "url": "/docs/transfers",
+        "url": "/transfers",
         "x-kind": "guide"
       },
       "x-object-schema": {
@@ -23970,10 +23970,10 @@
     },
     {
       "name": "Webhook Endpoints",
-      "description": "You can configure [webhook endpoints](/docs/webhooks) via the API to be notified about events that happen in your Falu workspace.\n\nMost users configure webhooks from [the dashboard](https://dashboard.falu.io/webhooks),\nwhich provides a user interface to registering and testing your webhook endpoints.",
+      "description": "You can configure [webhook endpoints](/developers/webhooks) via the API to be notified about events that happen in your Falu workspace.\n\nMost users configure webhooks from [the dashboard](https://dashboard.falu.io/webhooks),\nwhich provides a user interface to registering and testing your webhook endpoints.",
       "externalDocs": {
         "description": "Setting up Webhooks",
-        "url": "/docs/developers/webhooks/go-live",
+        "url": "/developers/webhooks/go-live",
         "x-kind": "guide"
       },
       "x-object-schema": {
