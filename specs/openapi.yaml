@@ -7235,7 +7235,8 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-error-codes:
-        - invalid_settings
+        - money_provider_not_found
+        - money_provider_not_active
         - payment_not_found
         - payment_cannot_be_refunded
   '/v1/payment_refunds/{id}':
@@ -7509,7 +7510,8 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-error-codes:
-        - invalid_settings
+        - money_provider_not_found
+        - money_provider_not_active
         - customer_not_found
         - object_redacted
   '/v1/payments/{id}':
@@ -7972,7 +7974,8 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-error-codes:
-        - invalid_settings
+        - money_provider_not_found
+        - money_provider_not_active
         - transfer_not_found
         - transfer_cannot_be_reversed
   '/v1/transfer_reversals/{id}':
@@ -8252,7 +8255,7 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       x-error-codes:
-        - invalid_settings
+        - money_provider_not_found
         - insufficient_balance
         - customer_not_found
         - object_redacted
@@ -10137,7 +10140,7 @@ components:
           additionalProperties: { }
           description: |-
             Object containing the API resource relevant to the event.
-            For example, a `money_balances.updated` event will have a full payment balances object.
+            For example, a `money_provider.balance.updated` event will have a full payment balances object.
           nullable: true
         previous:
           type: object
@@ -10194,10 +10197,10 @@ components:
         - customer.tax_id.created
         - customer.tax_id.updated
         - customer.tax_id.deleted
-        - money_balances.updated
         - money_statement.uploaded
         - money_provider.created
         - money_provider.updated
+        - money_provider.balance.updated
         - payment.updated
         - payment.succeeded
         - payment.failed
@@ -10274,10 +10277,10 @@ components:
         customer.tax_id.created: Occurs whenever an customer tax id is created.
         customer.tax_id.updated: Occurs whenever an customer tax id is updated.
         customer.tax_id.deleted: Occurs whenever an customer tax id is deleted.
-        money_balances.updated: Occurs whenever money balances are updated.
         money_statement.uploaded: Occurs whenever a money statement is uploaded.
         money_provider.created: Occurs whenever a money provider is created.
         money_provider.updated: Occurs whenever a money provider is updated.
+        money_provider.balance.updated: Occurs whenever a money provider's balance is updated.
         payment.updated: Occurs whenever a payment is updated.
         payment.succeeded: Occurs whenever a payment succeeds.
         payment.failed: Occurs whenever a payment fails.
@@ -16358,7 +16361,7 @@ components:
         type:
           allOf:
             - $ref: '#/components/schemas/EventType'
-          description: 'Type of the event (e.g. money_balances.updated, message.delivered, etc.).'
+          description: 'Type of the event (e.g. money_provider.balance.updated, message.delivered, etc.).'
         request:
           allOf:
             - $ref: '#/components/schemas/EventRequest'
@@ -17056,7 +17059,7 @@ components:
         type:
           allOf:
             - $ref: '#/components/schemas/EventType'
-          description: 'Type of the event (e.g. money_balances.updated, message.delivered, etc.).'
+          description: 'Type of the event (e.g. money_provider.balance.updated, message.delivered, etc.).'
         event:
           type: string
           description: Unique identifier for the event.
@@ -17374,7 +17377,7 @@ components:
           additionalProperties: { }
           description: |-
             Object containing the API resource relevant to the event.
-            For example, a `money_balances.updated` event will have a full payment balances object.
+            For example, a `money_provider.balance.updated` event will have a full payment balances object.
           nullable: true
         previous:
           type: object
@@ -17394,18 +17397,17 @@ components:
         id: evt_602a8dd0a54847479a874de4
         time: '2022-01-19T11:17:57.2260000+00:00'
         source: https://dashboard.falu.io/wksp_602a8dd0a54847479a874de4/events/evt_602a8dd0a54847479a874de4
-        type: io.falu.money_balances.updated
+        type: io.falu.money_provider.balance.updated
         datacontenttype: application/json
         workspace: wksp_602a8dd0a54847479a874de4
         live: false
         data:
           object:
-            balances:
-              '123456': 1030890
-              '654321': 300500
+            id: mprov_0o5Fs0EELR0fUjHjbCnEtdUwQe3
+            amount: 1030890
           previous:
-            balances:
-              '123456': 11050
+            id: mprov_0o5Fs0EELR0fUjHjbCnEtdUwQe3
+            amount: 11050
           request:
             id: req_0o5Fs0EELR0fUjHjbCnEtdUwQe3
             idempotency_key: 9d4d4045-d581-47fe-acfe-c7d000dc90d2
