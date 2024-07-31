@@ -5345,6 +5345,14 @@
             }
           },
           {
+            "name": "inclusive",
+            "in": "query",
+            "description": "Filter options for `inclusive` property.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "created.eq",
             "in": "query",
             "description": "Option for equal (=).\nRecommended only for fixed integral values.",
@@ -13440,6 +13448,10 @@
             "description": "Unique identifier of the tax rate that was applied to get this tax amount.",
             "nullable": true,
             "example": "txr_602a8dd0a54847479a874de4"
+          },
+          "inclusive": {
+            "type": "boolean",
+            "description": "This specifies if the tax rate is inclusive or exclusive."
           }
         },
         "additionalProperties": false
@@ -21836,6 +21848,10 @@
             "format": "double",
             "example": 14
           },
+          "inclusive": {
+            "type": "boolean",
+            "description": "This specifies if the tax rate is inclusive or exclusive."
+          },
           "workspace": {
             "type": "string",
             "description": "Unique identifier for the workspace that the object belongs to.",
@@ -21857,6 +21873,7 @@
       "TaxRateCreateOptions": {
         "required": [
           "country",
+          "inclusive",
           "name",
           "rate"
         ],
@@ -21904,6 +21921,10 @@
             "description": "This represents the tax rate as a percentage out of 100.",
             "format": "double",
             "example": 14
+          },
+          "inclusive": {
+            "type": "boolean",
+            "description": "This specifies if the tax rate is inclusive or exclusive."
           }
         },
         "additionalProperties": false
