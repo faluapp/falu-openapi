@@ -22363,10 +22363,6 @@
             "type": "string",
             "description": "The business short code to be credited.\nThe movement of funds between the respective short codes must be allowed.",
             "example": "200210"
-          },
-          "mmf": {
-            "type": "boolean",
-            "description": "Indicates if the transfer is from MMF to Utility."
           }
         },
         "additionalProperties": false

@@ -16607,9 +16607,6 @@ components:
             The business short code to be credited.
             The movement of funds between the respective short codes must be allowed.
           example: '200210'
-        mmf:
-          type: boolean
-          description: Indicates if the transfer is from MMF to Utility.
       additionalProperties: false
     TransferCreateOptionsMpesaToCustomer:
       required:
