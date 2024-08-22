@@ -6469,6 +6469,7 @@
           }
         ],
         "requestBody": {
+          "description": "Contents of the file.\nIt should follow the specifications of [RFC 2388](https://datatracker.ietf.org/doc/html/rfc2388).",
           "content": {
             "multipart/form-data": {
               "schema": {
@@ -19389,7 +19390,9 @@
           },
           "model": {
             "type": "object",
-            "additionalProperties": {},
+            "additionalProperties": {
+              "nullable": true
+            },
             "description": "A JSON object structure that will provide information\nfor all keys found in the template content submitted.\nIf a `model` was submitted, it will be merged\nand returned with this model.",
             "nullable": true
           }
@@ -19753,13 +19756,15 @@
         "enum": [
           "other",
           "workspace_suspended",
-          "insufficient_amount"
+          "insufficient_amount",
+          "money_provider_suspended"
         ],
         "type": "string",
         "description": "Reasons for declining a payment authorization.",
         "x-enumDescriptions": {
           "workspace_suspended": "The workspace is currently suspended.",
-          "insufficient_amount": "The amount is not enough to serve the purpose of the payment."
+          "insufficient_amount": "The amount is not enough to serve the purpose of the payment.",
+          "money_provider_suspended": "The money provider is currently suspended"
         }
       },
       "PaymentAuthorizationStatus": {
