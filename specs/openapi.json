@@ -14173,8 +14173,7 @@
             "type": "object",
             "additionalProperties": {
               "type": "integer",
-              "format": "int64",
-              "nullable": true
+              "format": "int64"
             },
             "description": "Set of key-value pairs mapping a customer's balances in various currencies. The key is the currency while the value is the customer balance.\nNegative values are treated as credit (a reduction in the amount owed by the customer) that you can apply to the next invoice.\nPositive values are treated as a debit (an increase in the amount owed by the customer to you) that you can apply to the next invoice.",
             "nullable": true
@@ -14182,8 +14181,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -14500,8 +14498,7 @@
             "type": "object",
             "additionalProperties": {
               "type": "integer",
-              "format": "int64",
-              "nullable": true
+              "format": "int64"
             },
             "description": "Set of key-value pairs mapping a customer's balances in various currencies. The key is the currency while the value is the customer balance.\nNegative values are treated as credit (a reduction in the amount owed by the customer) that you can apply to the next invoice.\nPositive values are treated as a debit (an increase in the amount owed by the customer to you) that you can apply to the next invoice.",
             "nullable": true
@@ -14509,8 +14506,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -14886,8 +14882,7 @@
             "type": "object",
             "additionalProperties": {
               "type": "integer",
-              "format": "int64",
-              "nullable": true
+              "format": "int64"
             },
             "description": "Set of key-value pairs mapping a customer's balances in various currencies. The key is the currency while the value is the customer balance.\nNegative values are treated as credit (a reduction in the amount owed by the customer) that you can apply to the next invoice.\nPositive values are treated as a debit (an increase in the amount owed by the customer to you) that you can apply to the next invoice.",
             "nullable": true
@@ -14895,8 +14890,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -17263,8 +17257,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -17751,8 +17744,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -19109,8 +19101,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -19207,8 +19198,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -19301,8 +19291,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -20981,8 +20970,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -21077,8 +21065,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -21142,8 +21129,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -21200,8 +21186,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -21357,8 +21342,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -21780,8 +21764,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -21825,8 +21808,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -21913,8 +21895,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -21970,8 +21951,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -23066,8 +23046,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -23160,8 +23139,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
@@ -23230,8 +23208,7 @@
           "metadata": {
             "type": "object",
             "additionalProperties": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "description": "Set of key-value pairs that you can attach to an object. This can be useful\nfor storing additional information about the object in a structured format.\nThe key can only contain alphanumeric, and ‘-’, ‘_’ characters,\nand the string has to start with a letter.",
             "nullable": true
