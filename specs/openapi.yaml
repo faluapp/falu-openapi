@@ -9407,7 +9407,6 @@ components:
           additionalProperties:
             type: integer
             format: int64
-            nullable: true
           description: |-
             Set of key-value pairs mapping a customer's balances in various currencies. The key is the currency while the value is the customer balance.
             Negative values are treated as credit (a reduction in the amount owed by the customer) that you can apply to the next invoice.
@@ -9417,7 +9416,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -9715,7 +9713,6 @@ components:
           additionalProperties:
             type: integer
             format: int64
-            nullable: true
           description: |-
             Set of key-value pairs mapping a customer's balances in various currencies. The key is the currency while the value is the customer balance.
             Negative values are treated as credit (a reduction in the amount owed by the customer) that you can apply to the next invoice.
@@ -9725,7 +9722,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -10028,7 +10024,6 @@ components:
           additionalProperties:
             type: integer
             format: int64
-            nullable: true
           description: |-
             Set of key-value pairs mapping a customer's balances in various currencies. The key is the currency while the value is the customer balance.
             Negative values are treated as credit (a reduction in the amount owed by the customer) that you can apply to the next invoice.
@@ -10038,7 +10033,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -12019,7 +12013,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -12468,7 +12461,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -13687,7 +13679,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -13777,7 +13768,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -13866,7 +13856,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -15343,7 +15332,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -15436,7 +15424,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -15502,7 +15489,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -15564,7 +15550,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -15702,7 +15687,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -16100,7 +16084,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -16147,7 +16130,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -16231,7 +16213,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -16288,7 +16269,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -17210,7 +17190,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -17304,7 +17283,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
@@ -17371,7 +17349,6 @@ components:
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: |-
             Set of key-value pairs that you can attach to an object. This can be useful
             for storing additional information about the object in a structured format.
