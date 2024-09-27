@@ -10839,6 +10839,7 @@ components:
         - abandoned
         - under_supported_age
         - country_not_supported
+        - over_supported_age
         - id_number_unverified_other
         - id_number_insufficient_document_data
         - id_number_mismatch
@@ -10867,8 +10868,9 @@ components:
           non-biometric means to verify, such as through a manual review.
         device_not_supported: The user's device didn't have a camera or they declined to grant Falu permission to access it.
         abandoned: The user began the verification but didn’t submit it.
-        under_supported_age: Falu does not verify users under the age of 18.
+        under_supported_age: The user is under the minimum age that the workspace allows for verification.
         country_not_supported: Falu does not verify users from the provided country.
+        over_supported_age: The user is over the maximum age that the workspace allows for verification.
         id_number_unverified_other: |-
           The information provided couldn't be verified.
           Ensure the document is supported.
@@ -12519,15 +12521,15 @@ components:
           description: Actual message content sent.
           nullable: true
           x-pii: true
-        template:
-          allOf:
-            - $ref: '#/components/schemas/MessageSourceTemplate'
-          description: Template used for the message
-          nullable: true
         media:
           allOf:
             - $ref: '#/components/schemas/MessageMedia'
           description: Media included with the message.
+          nullable: true
+        template:
+          allOf:
+            - $ref: '#/components/schemas/MessageSourceTemplate'
+          description: Template used for the message
           nullable: true
         stream:
           type: string
@@ -12918,17 +12920,17 @@ components:
           nullable: true
           example: Welcome home John!
           x-pii: true
+        media:
+          allOf:
+            - $ref: '#/components/schemas/MessageCreateOptionsMedia'
+          description: Media to be sent with the message.
+          nullable: true
         template:
           allOf:
             - $ref: '#/components/schemas/MessageCreateOptionsTemplate'
           description: |-
             The template to use.
             Required if `body` is not specified.
-          nullable: true
-        media:
-          allOf:
-            - $ref: '#/components/schemas/MessageCreateOptionsMedia'
-          description: Media to be sent with the message.
           nullable: true
         stream:
           minLength: 1
@@ -13219,7 +13221,7 @@ components:
           type: string
           description: |-
             The alphanumeric code for sending messages.
-            This value is shown to the recipient but they cannot reply.
+            This value is shown to the recipient, but they cannot reply.
             Instead, use `code` or a different sender to receive messages.
           nullable: true
       additionalProperties: false
