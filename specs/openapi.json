@@ -15653,10 +15653,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-pii": [
-          "outputs"
-        ]
+        "additionalProperties": false
       },
       "IdentityVerificationCreateOptions": {
         "required": [
@@ -15787,6 +15784,7 @@
           "abandoned",
           "under_supported_age",
           "country_not_supported",
+          "over_supported_age",
           "id_number_unverified_other",
           "id_number_insufficient_document_data",
           "id_number_mismatch",
@@ -15813,8 +15811,9 @@
           "consent_declined": "The user declined to be verified by Falu.\nCheck with your legal counsel to see if you have an obligation to offer an alternative,\nnon-biometric means to verify, such as through a manual review.",
           "device_not_supported": "The user's device didn't have a camera or they declined to grant Falu permission to access it.",
           "abandoned": "The user began the verification but didn’t submit it.",
-          "under_supported_age": "Falu does not verify users under the age of 18.",
+          "under_supported_age": "The user is under the minimum age that the workspace allows for verification.",
           "country_not_supported": "Falu does not verify users from the provided country.",
+          "over_supported_age": "The user is over the maximum age that the workspace allows for verification.",
           "id_number_unverified_other": "The information provided couldn't be verified.\nEnsure the document is supported.",
           "id_number_insufficient_document_data": "The provided document didn’t contain enough data to match against the ID number.",
           "id_number_mismatch": "The information provided couldn’t be matched against global databases.",
@@ -16320,14 +16319,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-pii": [
-          "id_number",
-          "document",
-          "selfie",
-          "video",
-          "tax_id"
-        ]
+        "additionalProperties": false
       },
       "IdentityVerificationReportDevice": {
         "type": "object",
@@ -17803,15 +17795,6 @@
             "nullable": true,
             "x-pii": true
           },
-          "template": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MessageSourceTemplate"
-              }
-            ],
-            "description": "Template used for the message",
-            "nullable": true
-          },
           "media": {
             "allOf": [
               {
@@ -17819,6 +17802,15 @@
               }
             ],
             "description": "Media included with the message.",
+            "nullable": true
+          },
+          "template": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MessageSourceTemplate"
+              }
+            ],
+            "description": "Template used for the message",
             "nullable": true
           },
           "stream": {
@@ -17907,10 +17899,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents a message.",
-        "x-pii": [
-          "body"
-        ]
+        "description": "Represents a message."
       },
       "MessageBatch": {
         "type": "object",
@@ -18108,11 +18097,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
-        "x-pii": [
-          "tos",
-          "body"
-        ]
+        "additionalProperties": false
       },
       "MessageBatchSchedule": {
         "type": "object",
@@ -18245,15 +18230,6 @@
             "example": "Welcome home John!",
             "x-pii": true
           },
-          "template": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MessageCreateOptionsTemplate"
-              }
-            ],
-            "description": "The template to use.\nRequired if `body` is not specified.",
-            "nullable": true
-          },
           "media": {
             "allOf": [
               {
@@ -18261,6 +18237,15 @@
               }
             ],
             "description": "Media to be sent with the message.",
+            "nullable": true
+          },
+          "template": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MessageCreateOptionsTemplate"
+              }
+            ],
+            "description": "The template to use.\nRequired if `body` is not specified.",
             "nullable": true
           },
           "stream": {
@@ -18285,11 +18270,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
-        "x-pii": [
-          "to",
-          "body"
-        ]
+        "additionalProperties": false
       },
       "MessageCreateOptionsMedia": {
         "type": "object",
@@ -18363,10 +18344,7 @@
             "x-pii": true
           }
         },
-        "additionalProperties": false,
-        "x-pii": [
-          "model"
-        ]
+        "additionalProperties": false
       },
       "MessageError": {
         "type": "object",
@@ -18597,7 +18575,7 @@
           },
           "sender": {
             "type": "string",
-            "description": "The alphanumeric code for sending messages.\nThis value is shown to the recipient but they cannot reply.\nInstead, use `code` or a different sender to receive messages.",
+            "description": "The alphanumeric code for sending messages.\nThis value is shown to the recipient, but they cannot reply.\nInstead, use `code` or a different sender to receive messages.",
             "nullable": true
           }
         },
@@ -18761,10 +18739,7 @@
             "x-pii": true
           }
         },
-        "additionalProperties": false,
-        "x-pii": [
-          "model"
-        ]
+        "additionalProperties": false
       },
       "MessageStatus": {
         "enum": [
@@ -18994,10 +18969,7 @@
             "example": "FL9rRnlW2Qg="
           }
         },
-        "additionalProperties": false,
-        "x-pii": [
-          "to"
-        ]
+        "additionalProperties": false
       },
       "MessageSuppressionCreateOptions": {
         "required": [
@@ -19021,10 +18993,7 @@
             "example": "transactional"
           }
         },
-        "additionalProperties": false,
-        "x-pii": [
-          "to"
-        ]
+        "additionalProperties": false
       },
       "MessageSuppressionOrigin": {
         "enum": [
@@ -19894,11 +19863,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Options for creating an MPESA payment.",
-        "x-pii": [
-          "phone",
-          "reference"
-        ]
+        "description": "Options for creating an MPESA payment."
       },
       "PaymentError": {
         "type": "object",
@@ -20105,10 +20070,7 @@
             "x-pii": true
           }
         },
-        "additionalProperties": false,
-        "x-pii": [
-          "phone"
-        ]
+        "additionalProperties": false
       },
       "PaymentMethodType": {
         "enum": [
@@ -20191,12 +20153,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents the provider details for an MPESA payment.",
-        "x-pii": [
-          "reference",
-          "phone",
-          "payer"
-        ]
+        "description": "Represents the provider details for an MPESA payment."
       },
       "PaymentRefund": {
         "type": "object",
@@ -22374,10 +22331,7 @@
             "x-pii": true
           }
         },
-        "additionalProperties": false,
-        "x-pii": [
-          "phone"
-        ]
+        "additionalProperties": false
       },
       "TransferError": {
         "type": "object",
@@ -22448,11 +22402,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents the provider details for an MPESA transfer.",
-        "x-pii": [
-          "destination",
-          "receiver"
-        ]
+        "description": "Represents the provider details for an MPESA transfer."
       },
       "TransferPurpose": {
         "enum": [
