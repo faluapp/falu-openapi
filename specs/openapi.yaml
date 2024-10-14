@@ -10731,8 +10731,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-pii:
-        - outputs
     IdentityVerificationCreateOptions:
       required:
         - type
@@ -10839,6 +10837,7 @@ components:
         - abandoned
         - under_supported_age
         - country_not_supported
+        - over_supported_age
         - id_number_unverified_other
         - id_number_insufficient_document_data
         - id_number_mismatch
@@ -10867,8 +10866,9 @@ components:
           non-biometric means to verify, such as through a manual review.
         device_not_supported: The user's device didn't have a camera or they declined to grant Falu permission to access it.
         abandoned: The user began the verification but didn’t submit it.
-        under_supported_age: Falu does not verify users under the age of 18.
+        under_supported_age: The user is under the minimum age that the workspace allows for verification.
         country_not_supported: Falu does not verify users from the provided country.
+        over_supported_age: The user is over the maximum age that the workspace allows for verification.
         id_number_unverified_other: |-
           The information provided couldn't be verified.
           Ensure the document is supported.
@@ -11263,12 +11263,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-pii:
-        - id_number
-        - document
-        - selfie
-        - video
-        - tax_id
     IdentityVerificationReportDevice:
       type: object
       properties:
@@ -12519,15 +12513,15 @@ components:
           description: Actual message content sent.
           nullable: true
           x-pii: true
-        template:
-          allOf:
-            - $ref: '#/components/schemas/MessageSourceTemplate'
-          description: Template used for the message
-          nullable: true
         media:
           allOf:
             - $ref: '#/components/schemas/MessageMedia'
           description: Media included with the message.
+          nullable: true
+        template:
+          allOf:
+            - $ref: '#/components/schemas/MessageSourceTemplate'
+          description: Template used for the message
           nullable: true
         stream:
           type: string
@@ -12605,8 +12599,6 @@ components:
           example: FL9rRnlW2Qg=
       additionalProperties: false
       description: Represents a message.
-      x-pii:
-        - body
     MessageBatch:
       type: object
       properties:
@@ -12786,9 +12778,6 @@ components:
           description: Media to be sent with the message.
           nullable: true
       additionalProperties: false
-      x-pii:
-        - tos
-        - body
     MessageBatchSchedule:
       type: object
       properties:
@@ -12918,17 +12907,17 @@ components:
           nullable: true
           example: Welcome home John!
           x-pii: true
+        media:
+          allOf:
+            - $ref: '#/components/schemas/MessageCreateOptionsMedia'
+          description: Media to be sent with the message.
+          nullable: true
         template:
           allOf:
             - $ref: '#/components/schemas/MessageCreateOptionsTemplate'
           description: |-
             The template to use.
             Required if `body` is not specified.
-          nullable: true
-        media:
-          allOf:
-            - $ref: '#/components/schemas/MessageCreateOptionsMedia'
-          description: Media to be sent with the message.
           nullable: true
         stream:
           minLength: 1
@@ -12954,9 +12943,6 @@ components:
             is/are enqueued for immediate sending.
           nullable: true
       additionalProperties: false
-      x-pii:
-        - to
-        - body
     MessageCreateOptionsMedia:
       type: object
       properties:
@@ -13033,8 +13019,6 @@ components:
           nullable: true
           x-pii: true
       additionalProperties: false
-      x-pii:
-        - model
     MessageError:
       type: object
       properties:
@@ -13219,7 +13203,7 @@ components:
           type: string
           description: |-
             The alphanumeric code for sending messages.
-            This value is shown to the recipient but they cannot reply.
+            This value is shown to the recipient, but they cannot reply.
             Instead, use `code` or a different sender to receive messages.
           nullable: true
       additionalProperties: false
@@ -13377,8 +13361,6 @@ components:
           nullable: true
           x-pii: true
       additionalProperties: false
-      x-pii:
-        - model
     MessageStatus:
       enum:
         - accepted
@@ -13580,8 +13562,6 @@ components:
             This value changes with every update and can thus be used to track changes.
           example: FL9rRnlW2Qg=
       additionalProperties: false
-      x-pii:
-        - to
     MessageSuppressionCreateOptions:
       required:
         - stream
@@ -13603,8 +13583,6 @@ components:
             It can either be the name or unique identifier of the stream.
           example: transactional
       additionalProperties: false
-      x-pii:
-        - to
     MessageSuppressionOrigin:
       enum:
         - recipient
@@ -14389,9 +14367,6 @@ components:
           example: '200200'
       additionalProperties: false
       description: Options for creating an MPESA payment.
-      x-pii:
-        - phone
-        - reference
     PaymentError:
       type: object
       properties:
@@ -14557,8 +14532,6 @@ components:
           example: '+254722000000'
           x-pii: true
       additionalProperties: false
-      x-pii:
-        - phone
     PaymentMethodType:
       enum:
         - mpesa
@@ -14637,10 +14610,6 @@ components:
           x-pii: true
       additionalProperties: false
       description: Represents the provider details for an MPESA payment.
-      x-pii:
-        - reference
-        - phone
-        - payer
     PaymentRefund:
       type: object
       properties:
@@ -16617,8 +16586,6 @@ components:
           example: '+254722000000'
           x-pii: true
       additionalProperties: false
-      x-pii:
-        - phone
     TransferError:
       type: object
       properties:
@@ -16684,9 +16651,6 @@ components:
           x-pii: true
       additionalProperties: false
       description: Represents the provider details for an MPESA transfer.
-      x-pii:
-        - destination
-        - receiver
     TransferPurpose:
       enum:
         - business
