@@ -4,44 +4,19 @@ The spec files provided in the `specs` folder (`specs/openapi.{yaml,json}`) conf
 
 ## Extensions
 
-Falu uses a number of vendor-specific extensions in these spec files to provide extra information or enhance existing features. In most cases, you do not need to worry about them unless you are generating new or alternative SDKs.
+Falu uses several vendor-specific extensions in these spec files to provide extra information or enhance existing features. In most cases, you do not need to worry about them unless you are generating new or alternative SDKs.
 
 Known extensions:
 
-- [`x-patchable`](#x-patchable)
 - [`x-pii`](#x-pii)
 - [`x-error-codes`](#x-error-codes)
 - [`x-supports-pagination`](#x-supports-pagination)
 
-### `x-patchable`
-
-Schemas containing `x-patchable` can be updated using via HTTP `PATCH`. This extension contains the names of properties that can be patched/updated.
-
-In the example below, `metadata` and `expires` properties can be updated while `id`, `file`, and `url` cannot.
-
-```yaml
-components:
-  ...
-  schemas:
-    ...
-    FileLink:
-      ...
-      properties:
-        metadata:
-        expires:
-        id:
-        file:
-        url:
-      x-patchable:
-        - metadata
-        - expires
-```
-
 ### `x-pii`
 
-Schemas containing `x-pii` indicate there are properties in the schema that carry Personally Identifiable Information (PII) data. These properties are redacted by removal or masking when the `/{id}/redact` endpoint for the object is invoked.
+Properties containing `x-pii` indicate that they carry Personally Identifiable Information (PII) data. These properties are redacted by removal or masking when the `/{id}/redact` endpoint for the object is invoked.
 
-In the example below, `body` property is marked as PII because it may contain sensitive personal information such as a password or health information.
+In the example below, the `body` property is marked as PII because it may contain sensitive personal information such as passwords or health information.
 
 ```yaml
 components:
@@ -55,8 +30,14 @@ components:
         id:
         stream:
         body:
-      x-pii:
-        - body
+          maxLength: 1600
+          type: string
+          description: |-
+            Actual message content to be sent.
+            Required if `template` is not specified.
+          nullable: true
+          example: Welcome home John!
+          x-pii: true
 ```
 
 ### `x-error-codes`
